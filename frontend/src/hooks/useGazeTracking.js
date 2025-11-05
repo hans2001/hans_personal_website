@@ -3,15 +3,18 @@ import { useState, useEffect, useCallback } from 'react';
 // Grid configuration (must match your generation parameters)
 const P_MIN = -15;
 const P_MAX = 15;
-const STEP = 2.0;  // 256 images (16x16 grid) - very smooth animation
+const STEP = 2.0;  // 256 images (16x16 grid) - ultra smooth animation
 const SIZE = 256;
 
 /**
  * Converts normalized coordinates [-1, 1] to grid coordinates
+ * Snaps to the nearest grid point in the step 2.0 grid: -15, -13, -11, ..., 13, 15
  */
 function quantizeToGrid(val) {
   const raw = P_MIN + (val + 1) * (P_MAX - P_MIN) / 2; // [-1,1] -> [-15,15]
-  const snapped = Math.round(raw / STEP) * STEP;
+  // Snap to nearest grid point: round to nearest step from P_MIN
+  const snapped = Math.round((raw - P_MIN) / STEP) * STEP + P_MIN;
+  // Clamp to valid range and ensure it's a valid grid value
   return Math.max(P_MIN, Math.min(P_MAX, snapped));
 }
 
@@ -23,10 +26,10 @@ function quantizeToGrid(val) {
 function gridToFilename(px, py) {
   const sanitize = (val) => {
     // Python f"{0.0}" gives "0.0", so we need to preserve decimal format
-    // Use toFixed to ensure decimal point, then remove trailing zeros if needed
-    // But Python's format keeps .0, so we'll use a format that matches
-    const str = val.toFixed(1); // This gives "0.0" for 0
-    return str.replace('-', 'm').replace('.', 'p');
+    // Use toFixed to ensure decimal point
+    // Python's replace() replaces ALL occurrences, so we use replaceAll
+    const str = val.toFixed(1); // This gives "0.0" for 0, "-15.0" for -15
+    return str.replaceAll('-', 'm').replaceAll('.', 'p');
   };
   return `gaze_px${sanitize(px)}_py${sanitize(py)}_${SIZE}.webp`;
 }
@@ -89,13 +92,18 @@ export function useGazeTracking(containerRef, basePath = '/faces/') {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('touchmove', handleTouchMove, { passive: true });
 
-    // Set initial center gaze
-    const rect = container.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    updateGaze(centerX, centerY);
+    // Set initial center gaze after a brief delay to ensure container is rendered
+    const initTimer = setTimeout(() => {
+      const rect = container.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        updateGaze(centerX, centerY);
+      }
+    }, 100);
 
     return () => {
+      clearTimeout(initTimer);
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('touchmove', handleTouchMove);
     };

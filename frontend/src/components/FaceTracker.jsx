@@ -52,11 +52,11 @@ export default function FaceTracker({
             width: '100%',
             height: '100%',
             objectFit: 'contain',
-            transition: 'opacity 0.1s ease-out'
+            transition: 'opacity 0.1s ease-out',
+            display: 'block'
           }}
           onError={(e) => {
-            // If image fails to load, hide and show placeholder
-            e.target.style.display = 'none';
+            // Silently handle errors - keep showing previous image
           }}
         />
       ) : (

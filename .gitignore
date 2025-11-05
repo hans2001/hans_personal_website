@@ -53,6 +53,8 @@ out/
 *.png
 *.webp
 !example_face.jpg
+# Allow generated face images for deployment
+!frontend/public/faces/*.webp
 
 # API keys and secrets
 .env.local

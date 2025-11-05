@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 // Grid configuration (must match your generation parameters)
 const P_MIN = -15;
 const P_MAX = 15;
-const STEP = 3;
+const STEP = 3.0;  // 121 images (11x11 grid) - smooth animation
 const SIZE = 256;
 
 /**
@@ -17,9 +17,17 @@ function quantizeToGrid(val) {
 
 /**
  * Converts grid coordinates to filename format
+ * Must match Python's sanitize_val function exactly
+ * Python: f"{v}".replace("-", "m").replace(".", "p")
  */
 function gridToFilename(px, py) {
-  const sanitize = (val) => val.toString().replace('-', 'm').replace('.', 'p');
+  const sanitize = (val) => {
+    // Python f"{0.0}" gives "0.0", so we need to preserve decimal format
+    // Use toFixed to ensure decimal point, then remove trailing zeros if needed
+    // But Python's format keeps .0, so we'll use a format that matches
+    const str = val.toFixed(1); // This gives "0.0" for 0
+    return str.replace('-', 'm').replace('.', 'p');
+  };
   return `gaze_px${sanitize(px)}_py${sanitize(py)}_${SIZE}.webp`;
 }
 
@@ -43,7 +51,9 @@ export function useGazeTracking(containerRef, basePath = '/faces/') {
     
     // Convert to normalized coordinates [-1, 1]
     const nx = (clientX - centerX) / (rect.width / 2);
-    const ny = (clientY - centerY) / (rect.height / 2);
+    // Invert Y axis: when cursor goes up (negative relative to center), face should look up
+    // So we negate the Y calculation to fix the inversion
+    const ny = -(clientY - centerY) / (rect.height / 2);
     
     // Clamp to [-1, 1] range
     const clampedX = Math.max(-1, Math.min(1, nx));
@@ -75,9 +85,9 @@ export function useGazeTracking(containerRef, basePath = '/faces/') {
     const container = containerRef.current;
     if (!container) return;
 
-    // Add event listeners
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('touchmove', handleTouchMove, { passive: true });
+    // Add event listeners to document - track cursor anywhere on the page
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     // Set initial center gaze
     const rect = container.getBoundingClientRect();
@@ -86,8 +96,8 @@ export function useGazeTracking(containerRef, basePath = '/faces/') {
     updateGaze(centerX, centerY);
 
     return () => {
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('touchmove', handleTouchMove);
     };
   }, [handleMouseMove, handleTouchMove, updateGaze]);
 

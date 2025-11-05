@@ -41,6 +41,28 @@ function App() {
           </div>
         </section>
 
+        {/* Stats Section - Data Science Themed */}
+        <section className="section stats-section">
+          <div className="stats-grid">
+            <div className="stat-card">
+              <div className="stat-number">5M+</div>
+              <div className="stat-label">Records Processed</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">92.45%</div>
+              <div className="stat-label">Model Precision</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">3.6M</div>
+              <div className="stat-label">Sentences Analyzed</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">100+</div>
+              <div className="stat-label">Workshop Attendees</div>
+            </div>
+          </div>
+        </section>
+
         {/* Education Section */}
         <section className="section">
           <h2 className="section-title">Education</h2>
@@ -144,7 +166,8 @@ function App() {
         <section className="section">
           <h2 className="section-title">Technical Skills</h2>
           <div className="projects-grid">
-            <div className="project-card">
+            <div className="project-card skill-card">
+              <div className="skill-icon">🐍</div>
               <h3 className="project-title">Languages</h3>
               <p className="project-description">
                 Python (NumPy, Pandas, SciPy, Sklearn, Selenium, PyTorch), R, SQL, MongoDB, 
@@ -152,7 +175,8 @@ function App() {
               </p>
             </div>
 
-            <div className="project-card">
+            <div className="project-card skill-card">
+              <div className="skill-icon">⚙️</div>
               <h3 className="project-title">Tools & Frameworks</h3>
               <p className="project-description">
                 Linux, Git, Bash, Docker, Kubernetes, Protobuf, Spark, Hadoop, Airflow, 
@@ -160,7 +184,8 @@ function App() {
               </p>
             </div>
 
-            <div className="project-card">
+            <div className="project-card skill-card">
+              <div className="skill-icon">📊</div>
               <h3 className="project-title">Visualization</h3>
               <p className="project-description">
                 Apache Superset, Tableau, Power BI, Matplotlib, Seaborn, Plotly, ggplot2, Figma
@@ -244,16 +269,13 @@ function App() {
             <a href="mailto:yc6285@nyu.edu" className="contact-link">
               Email
             </a>
-            <a href="tel:917-349-5144" className="contact-link">
-              Phone
-            </a>
           </div>
         </section>
       </div>
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2025 Yuki Cui | Applied Scientist | The Johns Hopkins University | yc6285@nyu.edu | (917) 349-5144</p>
+        <p>&copy; 2025 Yuki Cui | Applied Scientist | The Johns Hopkins University | yc6285@nyu.edu</p>
       </footer>
     </div>
   )

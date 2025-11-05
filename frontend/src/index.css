@@ -16,7 +16,17 @@
   --jhu-text: #212529;
   --jhu-text-light: #6c757d;
   
-  font-family: 'Georgia', 'Times New Roman', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Data Science Theme Colors */
+  --ds-primary: #002d72;
+  --ds-secondary: #00539b;
+  --ds-accent: #fdc82f;
+  --ds-chart-blue: #4a90e2;
+  --ds-chart-green: #50c878;
+  --ds-chart-purple: #9b59b6;
+  --ds-chart-orange: #f39c12;
+  --ds-bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color: var(--jhu-text);

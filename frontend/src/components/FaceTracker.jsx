@@ -12,18 +12,23 @@ export default function FaceTracker({
   showDebug = false 
 }) {
   const containerRef = useRef(null);
-  const { currentImage, isLoading, error } = useGazeTracking(containerRef, basePath);
+  const { currentImage, error } = useGazeTracking(containerRef, basePath);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
+  // Track mouse position for debug display (only if debug is enabled)
+  React.useEffect(() => {
+    if (!showDebug) return;
     
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: e.clientX,
+        y: e.clientY
+      });
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [showDebug]);
 
   if (error) {
     return (
@@ -37,7 +42,6 @@ export default function FaceTracker({
     <div 
       ref={containerRef}
       className={`face-tracker ${className}`}
-      onMouseMove={handleMouseMove}
     >
       {currentImage ? (
         <img
@@ -51,7 +55,7 @@ export default function FaceTracker({
             transition: 'opacity 0.1s ease-out'
           }}
           onError={(e) => {
-            // If image fails to load, show placeholder
+            // If image fails to load, hide and show placeholder
             e.target.style.display = 'none';
           }}
         />
@@ -64,7 +68,7 @@ export default function FaceTracker({
           color: '#666',
           fontSize: '14px'
         }}>
-          No face images found. Generate images first.
+          Loading face image...
         </div>
       )}
       

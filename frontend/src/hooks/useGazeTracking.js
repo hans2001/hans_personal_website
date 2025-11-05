@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 // Grid configuration (must match your generation parameters)
 const P_MIN = -15;
 const P_MAX = 15;
-const STEP = 3.0;  // 121 images (11x11 grid) - smooth animation
+const STEP = 2.0;  // 256 images (16x16 grid) - very smooth animation
 const SIZE = 256;
 
 /**

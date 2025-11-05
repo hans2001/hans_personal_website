@@ -22,6 +22,7 @@ import io
 import math
 import os
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Tuple, List
@@ -150,6 +151,10 @@ def main():
     # Build grid and iterate
     grid = build_gaze_grid(args.vmin, args.vmax, args.step)
     index_rows: List[Tuple[str, float, float]] = []
+    
+    # Rate limiting: 6 requests per minute = 10 seconds between requests
+    RATE_LIMIT_DELAY = 10.0  # seconds
+    last_request_time = 0.0
 
     for gp in tqdm(grid, desc="Generating", unit="img"):
         fname = filename_for(gp.px, gp.py, args.size)
@@ -158,17 +163,51 @@ def main():
             index_rows.append((fname, gp.px, gp.py))
             continue
 
-        try:
-            output_files = run_expression_editor(image_input, gp.px, gp.py)
-            if not output_files:
-                print(f"WARNING: No output for ({gp.px}, {gp.py}). Skipping.", file=sys.stderr)
-                continue
+        # Rate limiting: wait if needed
+        elapsed = time.time() - last_request_time
+        if elapsed < RATE_LIMIT_DELAY:
+            wait_time = RATE_LIMIT_DELAY - elapsed
+            time.sleep(wait_time)
 
-            # Replicate returns a list; we take first
-            save_resized_webp(output_files[0], target, size=args.size, quality=95)
-            index_rows.append((fname, gp.px, gp.py))
-        except Exception as e:
-            print(f"ERROR generating ({gp.px}, {gp.py}): {e}", file=sys.stderr)
+        retry_count = 0
+        max_retries = 3
+        success = False
+        
+        while retry_count <= max_retries and not success:
+            try:
+                last_request_time = time.time()
+                output_files = run_expression_editor(image_input, gp.px, gp.py)
+                if not output_files:
+                    print(f"WARNING: No output for ({gp.px}, {gp.py}). Skipping.", file=sys.stderr)
+                    break
+
+                # Replicate returns a list; we take first
+                save_resized_webp(output_files[0], target, size=args.size, quality=95)
+                index_rows.append((fname, gp.px, gp.py))
+                success = True
+            except Exception as e:
+                error_str = str(e)
+                # Check if it's a rate limit error (429)
+                if "429" in error_str or "throttled" in error_str.lower():
+                    retry_count += 1
+                    if retry_count <= max_retries:
+                        # Wait longer on retry (exponential backoff)
+                        wait_time = RATE_LIMIT_DELAY * (2 ** retry_count)
+                        print(f"\nRate limited. Waiting {wait_time:.1f}s before retry {retry_count}/{max_retries}...", file=sys.stderr)
+                        time.sleep(wait_time)
+                        last_request_time = time.time()  # Reset timer after wait
+                        continue
+                    else:
+                        print(f"\nERROR generating ({gp.px}, {gp.py}): Max retries exceeded. {e}", file=sys.stderr)
+                        break
+                # Check if it's an insufficient credit error (402)
+                elif "402" in error_str or "insufficient credit" in error_str.lower():
+                    print(f"\nERROR generating ({gp.px}, {gp.py}): {e}", file=sys.stderr)
+                    print(f"Stopping generation. Please add credit to your Replicate account.", file=sys.stderr)
+                    break
+                else:
+                    print(f"\nERROR generating ({gp.px}, {gp.py}): {e}", file=sys.stderr)
+                    break
 
     # Write CSV index
     write_index(out_dir / "index.csv", index_rows)

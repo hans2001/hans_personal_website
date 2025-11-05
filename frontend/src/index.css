@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Johns Hopkins University Brand Colors */
+  --jhu-blue: #002d72;
+  --jhu-blue-light: #00539b;
+  --jhu-gold: #fdc82f;
+  --jhu-gold-dark: #d4a017;
+  --jhu-gray: #6c757d;
+  --jhu-gray-light: #f8f9fa;
+  --jhu-white: #ffffff;
+  --jhu-text: #212529;
+  --jhu-text-light: #6c757d;
+  
+  font-family: 'Georgia', 'Times New Roman', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--jhu-text);
+  background-color: var(--jhu-white);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--jhu-white);
+}
+
+a {
+  color: var(--jhu-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--jhu-blue-light);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--jhu-blue);
+}

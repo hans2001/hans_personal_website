@@ -1,0 +1,267 @@
+.App {
+  min-height: 100vh;
+  background-color: var(--jhu-white);
+  color: var(--jhu-text);
+}
+
+/* Header */
+.header {
+  background-color: var(--jhu-blue);
+  color: var(--jhu-white);
+  padding: 2rem 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--jhu-white);
+  font-weight: 700;
+}
+
+.header-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.header-title {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+/* Main Container - Centered */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Section Styling */
+.section {
+  width: 100%;
+  max-width: 900px;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: var(--jhu-blue);
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 3px solid var(--jhu-gold);
+  padding-bottom: 1rem;
+}
+
+/* About Section */
+.about-section {
+  text-align: center;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.face-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 45, 114, 0.2);
+  background: var(--jhu-gray-light);
+  border: 4px solid var(--jhu-blue);
+}
+
+.about-text {
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--jhu-text);
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+/* Experience Section */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience-item {
+  background: var(--jhu-gray-light);
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--jhu-blue);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 45, 114, 0.15);
+}
+
+.experience-title {
+  font-size: 1.3rem;
+  color: var(--jhu-blue);
+  margin-bottom: 0.5rem;
+}
+
+.experience-org {
+  color: var(--jhu-blue-light);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.experience-date {
+  color: var(--jhu-text-light);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.experience-description {
+  color: var(--jhu-text);
+  line-height: 1.7;
+}
+
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: var(--jhu-white);
+  border: 1px solid var(--jhu-gray-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 45, 114, 0.2);
+  border-color: var(--jhu-blue);
+}
+
+.project-title {
+  font-size: 1.2rem;
+  color: var(--jhu-blue);
+  margin-bottom: 0.5rem;
+}
+
+.project-description {
+  color: var(--jhu-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background: var(--jhu-blue);
+  color: var(--jhu-white);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+  background: var(--jhu-gray-light);
+  padding: 3rem 2rem;
+  border-radius: 8px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  color: var(--jhu-blue);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--jhu-blue);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  background: var(--jhu-blue);
+  color: var(--jhu-white);
+  text-decoration: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--jhu-blue);
+  color: var(--jhu-white);
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .face-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .main-container {
+    padding: 2rem 1rem;
+    gap: 3rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}

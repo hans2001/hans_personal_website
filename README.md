@@ -376,12 +376,24 @@ python main.py --image ./my_face.jpg --out ./out --skip-existing
 
 ## 📊 Cost Estimation
 
-Replicate charges per second of GPU time. As of 2024:
-- ~$0.0001 per image
-- 121 images (default): ~$0.01
-- 169 images (step=2.5): ~$0.02
+Replicate charges per second of GPU time (not per image). The `fofr/expression-editor` model typically uses a T4 GPU.
 
-Check current pricing at [replicate.com/pricing](https://replicate.com/pricing)
+**Current Pricing (2024):**
+- GPU cost: ~$0.000225/second (T4 GPU)
+- Average processing time: ~5-10 seconds per image
+- **Cost per image: ~$0.001 - $0.002**
+
+**Estimated batch costs:**
+- 49 images (step=5): ~$0.05 - $0.10
+- 121 images (step=3, default): ~$0.12 - $0.24
+- 169 images (step=2.5): ~$0.17 - $0.34
+
+**Note:** Actual costs vary based on:
+- Processing time per image (varies by image complexity)
+- Current Replicate pricing
+- GPU availability (may use different GPU tiers)
+
+Check current pricing at [replicate.com/pricing](https://replicate.com/pricing) and the [model page](https://replicate.com/fofr/expression-editor) for exact rates.
 
 ## 🎯 Use Cases
 

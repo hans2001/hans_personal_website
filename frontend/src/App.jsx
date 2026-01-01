@@ -443,7 +443,6 @@ function App() {
           </div>
           <div className="hero-actions">
             <nav className="hero-nav" aria-label="On this page">
-              <a href="#about">About</a>
               <a href="#services">Services</a>
               <a href="#performance">How I work</a>
               <a href="#experience">Experience</a>
@@ -465,7 +464,8 @@ function App() {
               performance-critical systems.
             </p>
             <div className="hero-meta">
-              <span>Looking for C++ developer roles in market infra or AI infra · Open to Hong Kong and US roles</span>
+              <span>Looking for C++ developer roles in market infra or AI infra</span>
+              <span className="hero-meta-highlight">Open to Hong Kong and US roles</span>
             </div>
           </div>
           <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>

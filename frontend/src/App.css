@@ -134,6 +134,10 @@
   align-items: center;
 }
 
+.hero-meta .hero-meta-highlight {
+  color: var(--ink);
+}
+
 .hero-meta span + span::before {
   content: '•';
   margin-right: 0.3rem;
@@ -143,7 +147,7 @@
 .hero-portrait {
   justify-self: end;
   align-self: start;
-  margin-top: -2rem;
+  margin-top: -3rem;
   padding: 4px;
   border-radius: 10px;
   background: var(--panel);
@@ -601,23 +605,29 @@
 }
 
 .footer {
-  padding: 0.8rem clamp(0.9rem, 2.6vw, 2.1rem) 0.9rem;
+  padding: 0.45rem clamp(0.9rem, 2.6vw, 2.1rem);
   display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   border-top: 1px solid var(--line);
 }
 
 .footer-content {
-  display: grid;
-  gap: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .footer-brand {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .footer-title {
@@ -630,13 +640,12 @@
 
 .footer-tagline {
   color: var(--ink-soft);
-  max-width: 420px;
+  white-space: nowrap;
 }
 
 .footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.8rem;
+  display: flex;
+  align-items: center;
 }
 
 .footer-block h4 {
@@ -644,13 +653,14 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ink);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0;
 }
 
 .footer-block ul {
   list-style: none;
-  display: grid;
-  gap: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
   padding: 0;
   margin: 0;
   color: var(--ink-soft);
@@ -668,7 +678,8 @@
 .footer-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1rem;
+  gap: 0.3rem 0.8rem;
+  white-space: nowrap;
   color: var(--muted);
 }
 
@@ -720,7 +731,28 @@
     align-items: flex-start;
   }
 
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-brand {
+    white-space: normal;
+  }
+
+  .footer-tagline {
+    max-width: 100%;
+  }
+
   .footer-meta {
     flex-direction: column;
+    white-space: normal;
   }
 }

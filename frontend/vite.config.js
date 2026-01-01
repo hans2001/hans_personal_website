@@ -9,12 +9,12 @@ export default defineConfig({
       apply: 'build',
       generateBundle() {
         const siteUrl = 'https://hansho.dev'
-        const lastmod = new Date().toISOString().slice(0, 10)
+        const lastmod = new Date().toISOString()
         const routes = ['/']
         const xmlEntries = routes
           .map((route) => {
             const normalized = route === '/' ? `${siteUrl}/` : `${siteUrl}${route.startsWith('/') ? '' : '/'}${route}`
-            return `  <url>\n    <loc>${normalized}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
+            return `  <url>\n    <loc>${normalized}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>`
           })
           .join('\n')
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlEntries}\n</urlset>\n`

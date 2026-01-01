@@ -1,0 +1,5 @@
+Owner: Chak Sing Ho (Hans Ho)
+Site: https://hansho.dev/
+Role: Low-latency backend and systems engineer
+Contact: ho.chak@northeastern.edu
+Location: Boston, MA, US

@@ -1,6 +1,6 @@
 Site: Chak Sing Ho (Hans Ho) - Low-latency backend & systems engineer
-URL: https://example.com/
-Preferred citation: "Chak Sing Ho (Hans Ho), Low-latency backend & systems engineer, https://example.com/"
+URL: https://hansho.dev/
+Preferred citation: "Chak Sing Ho (Hans Ho), Low-latency backend & systems engineer, https://hansho.dev/"
 Contact: ho.chak@northeastern.edu
 Name: Chak Sing Ho (Hans Ho)
 

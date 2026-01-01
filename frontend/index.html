@@ -14,44 +14,55 @@
       content="Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects."
     />
     <meta name="author" content="Chak Sing Ho" />
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://example.com/" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="canonical" href="https://hansho.dev/" />
     <meta property="og:title" content="Chak Sing Ho (Hans Ho) | Low-latency backend &amp; systems engineer" />
     <meta property="og:site_name" content="Chak Sing Ho" />
-    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:url" content="https://hansho.dev/" />
     <meta
       property="og:description"
       content="Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="https://hansho.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="Chak Sing Ho portfolio preview" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Chak Sing Ho (Hans Ho) | Low-latency backend &amp; systems engineer" />
-    <meta name="twitter:url" content="https://example.com/" />
+    <meta name="twitter:url" content="https://hansho.dev/" />
     <meta
       name="twitter:description"
       content="Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects."
     />
-    <meta name="twitter:image" content="/og.png" />
+    <meta name="twitter:image" content="https://hansho.dev/og.png" />
     <meta name="twitter:image:alt" content="Chak Sing Ho portfolio preview" />
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="seo-jsonld">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": ["Person", "Organization"],
-            "@id": "https://example.com/#person",
+            "@id": "https://hansho.dev/#person",
             "name": "Chak Sing Ho",
             "alternateName": "Hans Ho",
-            "url": "https://example.com/",
-            "image": "https://example.com/og.png",
+            "url": "https://hansho.dev/",
+            "image": "https://hansho.dev/og.png",
             "jobTitle": "Low-latency backend and systems engineer",
             "sameAs": [
               "https://github.com/hans2001",
               "https://linkedin.com/in/chaksingho/",
               "https://leetcode.com/u/justnotarandomkid/"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "inquiries",
+                "email": "ho.chak@northeastern.edu",
+                "url": "https://hansho.dev/#contact"
+              }
             ],
             "address": {
               "@type": "PostalAddress",
@@ -62,11 +73,26 @@
           },
           {
             "@type": "WebSite",
-            "@id": "https://example.com/#website",
-            "url": "https://example.com/",
+            "@id": "https://hansho.dev/#website",
+            "url": "https://hansho.dev/",
             "name": "Chak Sing Ho",
             "publisher": {
-              "@id": "https://example.com/#person"
+              "@id": "https://hansho.dev/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://hansho.dev/#webpage",
+            "url": "https://hansho.dev/",
+            "name": "Chak Sing Ho | Low-latency backend and systems engineer",
+            "description": "Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects.",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://hansho.dev/og.png"
+            },
+            "about": {
+              "@id": "https://hansho.dev/#person"
             },
             "inLanguage": "en-US"
           }

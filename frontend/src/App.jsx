@@ -1,5 +1,143 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
+
+const SITE_URL = 'https://hansho.dev'
+const BASE_TITLE = 'Chak Sing Ho (Hans Ho) | Low-latency backend & systems engineer'
+const BASE_DESCRIPTION =
+  'Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects.'
+const OG_IMAGE = `${SITE_URL}/og.png`
+
+const sectionMeta = {
+  top: {
+    title: BASE_TITLE,
+    description: BASE_DESCRIPTION
+  },
+  about: {
+    title: 'About | Hans Ho',
+    description: 'About Hans Ho: low-latency backend, market data pipelines, observability, C++ and Python systems.'
+  },
+  services: {
+    title: 'Services | Hans Ho',
+    description: 'Services in low-latency C++ engineering, market data pipelines, observability, and AI infrastructure.'
+  },
+  performance: {
+    title: 'How I Work | Hans Ho',
+    description: 'Systems approach to market ingestion, latency budgeting, and audit-ready replay tooling.'
+  },
+  experience: {
+    title: 'Experience | Hans Ho',
+    description: 'Experience building production market data, AI infrastructure, and performance-first systems.'
+  },
+  projects: {
+    title: 'Projects | Hans Ho',
+    description: 'Selected projects in C++20, concurrency, deterministic execution, and low-latency infrastructure.'
+  },
+  skills: {
+    title: 'Skills | Hans Ho',
+    description: 'Core skills across C++20, Python, data infrastructure, and low-latency systems engineering.'
+  },
+  education: {
+    title: 'Education | Hans Ho',
+    description: 'Education in computer science and electronic engineering with a focus on systems and performance.'
+  },
+  contact: {
+    title: 'Contact | Hans Ho',
+    description: 'Contact Hans Ho for low-latency backend, market infrastructure, and C++ systems roles.'
+  }
+}
+
+const sectionIds = ['top', 'about', 'services', 'performance', 'experience', 'projects', 'skills', 'education', 'contact']
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Person', 'Organization'],
+      '@id': `${SITE_URL}/#person`,
+      name: 'Chak Sing Ho',
+      alternateName: 'Hans Ho',
+      url: SITE_URL,
+      image: OG_IMAGE,
+      jobTitle: 'Low-latency backend and systems engineer',
+      sameAs: [
+        'https://github.com/hans2001',
+        'https://linkedin.com/in/chaksingho/',
+        'https://leetcode.com/u/justnotarandomkid/'
+      ],
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'inquiries',
+          email: 'ho.chak@northeastern.edu',
+          url: `${SITE_URL}/#contact`
+        }
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Boston',
+        addressRegion: 'MA',
+        addressCountry: 'US'
+      }
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Chak Sing Ho',
+      publisher: {
+        '@id': `${SITE_URL}/#person`
+      },
+      inLanguage: 'en-US'
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: 'Chak Sing Ho | Low-latency backend and systems engineer',
+      description: BASE_DESCRIPTION,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: OG_IMAGE
+      },
+      about: {
+        '@id': `${SITE_URL}/#person`
+      },
+      inLanguage: 'en-US'
+    },
+  ]
+}
+
+const setMetaTag = (attr, key, content) => {
+  const selector = `meta[${attr}="${key}"]`
+  let tag = document.head.querySelector(selector)
+  if (!tag) {
+    tag = document.createElement('meta')
+    tag.setAttribute(attr, key)
+    document.head.appendChild(tag)
+  }
+  tag.setAttribute('content', content)
+}
+
+const setLinkTag = (rel, href) => {
+  let link = document.head.querySelector(`link[rel="${rel}"]`)
+  if (!link) {
+    link = document.createElement('link')
+    link.setAttribute('rel', rel)
+    document.head.appendChild(link)
+  }
+  link.setAttribute('href', href)
+}
+
+const setJsonLd = (data) => {
+  let script = document.getElementById('seo-jsonld')
+  if (!script) {
+    script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'seo-jsonld'
+    document.head.appendChild(script)
+  }
+  script.textContent = JSON.stringify(data)
+}
 
 const heroMetrics = [
   { value: '<10ms', label: 'P99 read latency on market data backend' },
@@ -13,13 +151,13 @@ const performanceStory = [
     title: 'Market Ingestion',
     tag: 'Burst-safe',
     description:
-      'When feeds spike, I use rate controls, safe retries, and clean reprocessing so downstream stays stable.'
+      'When data volume spikes, I keep systems stable with rate limits, safe retries, and clean reprocessing.'
   },
   {
     title: 'Latency Budgeting',
     tag: 'P99-first',
     description:
-      'I keep queues bounded, favor cache-first paths, and surface contention so tail latency stays predictable.'
+      'I protect user experience by keeping queues bounded, using cache-first paths, and exposing bottlenecks early.'
   },
   {
     title: 'Audit + Replay',
@@ -99,23 +237,23 @@ const experiences = [
 
 const projects = [
   {
-    title: 'Low-Latency Market Data Engine (C++20)',
+    title: 'Low-Latency Market Data Engine',
     description:
-      'I built an in-memory L2 order book with contention-aware synchronization, deterministic replay, and low-variance tail latency.',
+      'Built an in-memory L2 order book with contention-aware sync, deterministic replay, and tail-latency benchmarks.',
     tags: ['C++20', 'Low Latency', 'Concurrency'],
     repo: 'https://github.com/hans2001/low-latency-market-data-engine'
   },
   {
-    title: 'Multithreaded Task Scheduler & Work-Stealing Pool',
+    title: 'Work-Stealing Task Scheduler',
     description:
-      'I built a fixed-size thread pool with work-stealing queues and explicit lifetime management, benchmarked against std::async.',
+      'Designed a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
     tags: ['C++', 'Schedulers', 'Benchmarks'],
     repo: 'https://github.com/hans2001/cpp-thread-pool'
   },
   {
-    title: 'Deterministic Agent Execution Framework',
+    title: 'Deterministic Agent Framework',
     description:
-      'I extended Open Interpreter with deterministic execution and permissioned tool policies for replayable runs and auditability.',
+      'Extended Open Interpreter with deterministic execution, policy-based tool access, and replayable audits.',
     tags: ['AI Infra', 'Determinism', 'Policy Engine'],
     repo: 'https://github.com/hans2001'
   }
@@ -198,16 +336,16 @@ const education = [
   {
     school: 'Northeastern University',
     url: 'https://www.northeastern.edu/',
-    degree: 'M.S. in Computer Science',
-    details: 'GPA: 4.0',
+    degree: 'M.S. Computer Science',
+    details: 'GPA 4.0',
     location: 'Boston, MA',
     dates: 'Sep 2025 - May 2027'
   },
   {
-    school: 'Hong Kong University of Science and Technology',
+    school: 'Hong Kong Univ. of Sci. & Tech.',
     url: 'https://hkust.edu.hk/',
-    degree: 'B.Eng. in Electronic Engineering, Minor in Computer Science',
-    details: 'Second Class Honor, Division I',
+    degree: 'B.Eng. Electronic Eng. (CS minor)',
+    details: 'Second Class Honors (Div. I)',
     location: 'Hong Kong',
     dates: 'Sep 2020 - May 2024'
   }
@@ -216,6 +354,7 @@ const education = [
 function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
   const [skillsMinHeight, setSkillsMinHeight] = useState(0)
+  const [activeSection, setActiveSection] = useState('top')
   const skillPanelRefs = useRef({})
 
   useLayoutEffect(() => {
@@ -229,6 +368,59 @@ function App() {
     }
   }, [activeTrack, skillsMinHeight])
 
+  useEffect(() => {
+    const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
+    if (!elements.length) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting)
+        if (!visibleEntries.length) {
+          return
+        }
+        const [primary] = visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (primary?.target?.id) {
+          setActiveSection(primary.target.id)
+        }
+      },
+      {
+        rootMargin: '0px 0px -45% 0px',
+        threshold: [0.25, 0.5, 0.75]
+      },
+    )
+
+    elements.forEach((element) => observer.observe(element))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const activeMeta = sectionMeta[activeSection] || sectionMeta.top
+
+  useEffect(() => {
+    document.title = activeMeta.title
+    setMetaTag('name', 'description', activeMeta.description)
+    setMetaTag('name', 'author', 'Chak Sing Ho')
+    setMetaTag('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1')
+    setLinkTag('canonical', SITE_URL)
+    setMetaTag('property', 'og:title', activeMeta.title)
+    setMetaTag('property', 'og:site_name', 'Chak Sing Ho')
+    setMetaTag('property', 'og:url', SITE_URL)
+    setMetaTag('property', 'og:description', activeMeta.description)
+    setMetaTag('property', 'og:type', 'website')
+    setMetaTag('property', 'og:image', OG_IMAGE)
+    setMetaTag('property', 'og:image:alt', 'Chak Sing Ho portfolio preview')
+    setMetaTag('property', 'og:locale', 'en_US')
+    setMetaTag('name', 'twitter:card', 'summary_large_image')
+    setMetaTag('name', 'twitter:title', activeMeta.title)
+    setMetaTag('name', 'twitter:url', SITE_URL)
+    setMetaTag('name', 'twitter:description', activeMeta.description)
+    setMetaTag('name', 'twitter:image', OG_IMAGE)
+    setMetaTag('name', 'twitter:image:alt', 'Chak Sing Ho portfolio preview')
+    setJsonLd(schemaData)
+  }, [activeMeta])
+
   return (
     <div className="App">
       <header className="hero" id="top">
@@ -241,6 +433,8 @@ function App() {
           </div>
           <div className="hero-actions">
             <nav className="hero-nav" aria-label="On this page">
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
               <a href="#performance">How I work</a>
               <a href="#experience">Experience</a>
               <a href="#projects">Projects</a>
@@ -254,17 +448,15 @@ function App() {
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              I build market data systems that stay fast and predictable under load. I design low-latency backends,
-              data pipelines, and observability for trading and AI infrastructure teams.
+              Computer science student focused on low-latency C++ systems and AI infrastructure, with experience in
+              market data pipelines, distributed backends, and production reliability.
             </p>
             <div className="hero-meta">
-              <span>Based in Boston</span>
-              <span>Open to US and Hong Kong roles</span>
-              <span>Looking for C++ quant, market infra, or AI infra roles</span>
+              <span>Looking for C++ quant, market infra, or AI infra roles · Open to Hong Kong and US roles</span>
             </div>
           </div>
-          <div className="hero-portrait reveal" style={{ '--delay': '220ms' }}>
-            <img src="/hans.jpeg" alt="Portrait of Hans Ho" />
+          <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
+            <img src="/hans.jpeg" alt="Hans Ho portrait" loading="eager" decoding="async" />
           </div>
         </div>
 
@@ -280,6 +472,26 @@ function App() {
       </header>
 
       <main className="main">
+        <section className="section" id="services">
+          <div className="section-heading">
+            <h2>Services</h2>
+          </div>
+          <div className="card">
+            <p>
+              I build SaaS, mobile, and web applications alongside performance-critical systems, with a focus on
+              low-latency C++ services, market data pipelines, and AI infrastructure reliability.
+            </p>
+            <ul>
+              <li>SaaS, mobile, and web application development</li>
+              <li>Low-latency C++ backend engineering and optimization</li>
+              <li>Market data ingestion, normalization, and distribution</li>
+              <li>Distributed systems reliability, profiling, and performance tuning</li>
+              <li>Observability, tracing, and audit-ready telemetry</li>
+              <li>AI infrastructure foundations and evaluation pipelines</li>
+            </ul>
+          </div>
+        </section>
+
         <section className="section performance" id="performance">
           <div className="section-heading">
             <h2>How I work</h2>
@@ -522,7 +734,7 @@ function App() {
 
       <footer className="footer">
         <span>Hans Ho · I build low-latency market systems</span>
-        <span>Boston, MA · Open to US and Hong Kong roles</span>
+        <span>Open to Hong Kong and US roles</span>
       </footer>
     </div>
   )

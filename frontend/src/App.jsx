@@ -1,281 +1,528 @@
-import { useState } from 'react'
-import FaceTracker from './components/FaceTracker'
+import { useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
 
+const heroMetrics = [
+  { value: '<10ms', label: 'P99 read latency on market data backend' },
+  { value: '100k+', label: 'Peak ingest rate (events/sec)' },
+  { value: '+60%', label: 'Stability improvement during bursty feeds' },
+  { value: '5x', label: 'Faster semantic lookup latency (RAG)' }
+]
+
+const performanceStory = [
+  {
+    title: 'Market Ingestion',
+    tag: 'Burst-safe',
+    description:
+      'When feeds spike, I use rate controls, safe retries, and clean reprocessing so downstream stays stable.'
+  },
+  {
+    title: 'Latency Budgeting',
+    tag: 'P99-first',
+    description:
+      'I keep queues bounded, favor cache-first paths, and surface contention so tail latency stays predictable.'
+  },
+  {
+    title: 'Audit + Replay',
+    tag: 'Compliance-ready',
+    description: 'I build replay harnesses and structured tracing so teams can explain incidents and prove the SLA.'
+  }
+]
+
+const experiences = [
+  {
+    role: 'Software Engineer Intern',
+    org: 'Folio AI',
+    orgUrl: 'https://gofolio.ai',
+    location: 'San Jose, CA (Remote)',
+    dates: 'Sep 2025 - Present',
+    bullets: [
+      'Impact: Delivered <10ms P99 reads at 100k+ events/sec using FastAPI, PostgreSQL, Redis.',
+      'Impact: Built deterministic retries + backpressure, improving burst stability by 60%.'
+    ]
+  },
+  {
+    role: 'Software Engineer Intern (Innovation Lab)',
+    org: 'Hong Kong Telecom (HKT)',
+    orgUrl: 'https://www.hkt.com/?locale=en',
+    location: 'Hong Kong',
+    dates: 'Jun 2024 - Aug 2024',
+    bullets: [
+      'Impact: Built a multi-provider GenAI platform adopted by 20+ internal teams.',
+      'Impact: Shipped a production RAG service cutting semantic lookup latency by 5x.'
+    ]
+  },
+  {
+    role: 'Senior Developer Intern, Computational Chemistry Lab',
+    org: 'HKUST',
+    orgUrl: 'https://hkust.edu.hk',
+    location: 'Hong Kong',
+    dates: 'Jun 2024 - Aug 2024',
+    bullets: [
+      'Impact: Built a GenAI learning platform that secured HKD 250k in education funding.',
+      'Impact: Engineered a multi-modal AI chat system with realtime streaming.'
+    ]
+  },
+  {
+    role: 'Information Technology Intern',
+    org: 'China International Capital Corporation (CICC)',
+    orgUrl: 'https://cicc.zhiye.com/custom/index',
+    location: 'Hong Kong',
+    dates: 'Oct 2023 - Jan 2024',
+    bullets: [
+      'Impact: Built a realtime Bloomberg usage dashboard, flagging 15+ anomalies.',
+      'Impact: Implemented a derivatives valuation engine to meet SFC requirements.'
+    ]
+  },
+  {
+    role: 'Software Engineer Intern',
+    org: 'Midas Analytics Limited (FinTech)',
+    orgUrl: 'https://midasanalytics.ai',
+    location: 'Hong Kong',
+    dates: 'Jun 2022 - Oct 2023',
+    bullets: [
+      'Impact: Built a realtime market intelligence platform that secured HKD 1M seed funding.',
+      'Impact: Engineered Kafka-streamed pipelines for 5M+ tenant-filtered events.'
+    ]
+  },
+  {
+    role: 'Software Engineer Intern',
+    org: 'SOCIF Limited (Smart Travel Software)',
+    orgUrl: 'https://www.socif.co/?lang=en',
+    location: 'Hong Kong',
+    dates: 'Dec 2021 - Jan 2022',
+    bullets: [
+      'Impact: Rolled out a React Native photo upload feature, boosting UGC by 20%.',
+      'Impact: Built an image processing pipeline, cutting latency by 300ms.'
+    ]
+  }
+]
+
+const projects = [
+  {
+    title: 'Low-Latency Market Data Engine (C++20)',
+    description:
+      'I built an in-memory L2 order book with contention-aware synchronization, deterministic replay, and low-variance tail latency.',
+    tags: ['C++20', 'Low Latency', 'Concurrency'],
+    repo: 'https://github.com/hans2001/low-latency-market-data-engine'
+  },
+  {
+    title: 'Multithreaded Task Scheduler & Work-Stealing Pool',
+    description:
+      'I built a fixed-size thread pool with work-stealing queues and explicit lifetime management, benchmarked against std::async.',
+    tags: ['C++', 'Schedulers', 'Benchmarks'],
+    repo: 'https://github.com/hans2001/cpp-thread-pool'
+  },
+  {
+    title: 'Deterministic Agent Execution Framework',
+    description:
+      'I extended Open Interpreter with deterministic execution and permissioned tool policies for replayable runs and auditability.',
+    tags: ['AI Infra', 'Determinism', 'Policy Engine'],
+    repo: 'https://github.com/hans2001'
+  }
+]
+
+const skillSets = {
+  'AI Infrastructure': {
+    core: [
+      {
+        title: 'Systems & Backend',
+        items: ['Python', 'C++', 'FastAPI', 'Node.js', 'REST', 'GraphQL', 'WebSocket']
+      },
+      {
+        title: 'Data & Retrieval',
+        items: ['PostgreSQL', 'MongoDB', 'Redis', 'pgvector', 'SQL', 'Mongoose', 'Sequelize', 'Knex']
+      },
+      {
+        title: 'Infra & Cloud',
+        items: ['Docker', 'Kubernetes', 'AWS (EC2/S3/CloudFront)', 'Nginx', 'Linux', 'GitHub Actions', 'Terraform']
+      }
+    ],
+    supporting: [
+      {
+        title: 'Frontend & UX',
+        items: ['React', 'Next.js', 'React Native', 'Electron', 'Vue.js', 'Vuetify', 'Chart.js', 'Babylon.js']
+      },
+      {
+        title: 'Languages & Tools',
+        items: ['TypeScript/JavaScript', 'Java', 'C', 'MATLAB', 'Spark', 'GCP', 'Azure', 'Firebase', 'YAML', 'GoDaddy']
+      }
+    ]
+  },
+  'C++ / Quant Dev': {
+    core: [
+      {
+        title: 'Programming',
+        items: ['C++20 (STL, templates, RAII)', 'Python', 'SQL', 'Bash']
+      },
+      {
+        title: 'Concurrency & Systems',
+        items: [
+          'Multithreading (std::thread, mutex)',
+          'Memory layout',
+          'Contention-aware design',
+          'Linux process & memory model'
+        ]
+      },
+      {
+        title: 'Networking',
+        items: ['TCP/IP', 'Streaming systems', 'WebSocket-style protocols']
+      }
+    ],
+    supporting: [
+      {
+        title: 'Tools',
+        items: [
+          'gcc / clang',
+          'CMake',
+          'gdb',
+          'perf',
+          'valgrind',
+          'Google Test',
+          'Git',
+          'Unix/Linux'
+        ]
+      },
+      {
+        title: 'Focus',
+        items: [
+          'I focus on low-latency C++ systems for financial applications, with an emphasis on concurrency safety and production performance.'
+        ]
+      }
+    ]
+  }
+}
+
+const skillTracks = Object.keys(skillSets)
+
+const education = [
+  {
+    school: 'Northeastern University',
+    url: 'https://www.northeastern.edu/',
+    degree: 'M.S. in Computer Science',
+    details: 'GPA: 4.0',
+    location: 'Boston, MA',
+    dates: 'Sep 2025 - May 2027'
+  },
+  {
+    school: 'Hong Kong University of Science and Technology',
+    url: 'https://hkust.edu.hk/',
+    degree: 'B.Eng. in Electronic Engineering, Minor in Computer Science',
+    details: 'Second Class Honor, Division I',
+    location: 'Hong Kong',
+    dates: 'Sep 2020 - May 2024'
+  }
+]
+
 function App() {
+  const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
+  const [skillsMinHeight, setSkillsMinHeight] = useState(0)
+  const skillPanelRefs = useRef({})
+
+  useLayoutEffect(() => {
+    const heights = skillTracks.map((track) => {
+      const panel = skillPanelRefs.current[track]
+      return panel ? panel.getBoundingClientRect().height : 0
+    })
+    const maxHeight = Math.max(0, ...heights)
+    if (maxHeight && maxHeight !== skillsMinHeight) {
+      setSkillsMinHeight(maxHeight)
+    }
+  }, [activeTrack, skillsMinHeight])
+
   return (
     <div className="App">
-      {/* Header */}
-      <header className="header">
-        <div className="header-content">
-          <h1>Yuki Cui</h1>
-          <p className="header-subtitle">Applied Scientist</p>
-          <p className="header-title">The Johns Hopkins University | School of Government and Policy</p>
-          <p className="header-title" style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>Washington, District of Columbia</p>
+      <header className="hero" id="top">
+        <div className="hero-top reveal" style={{ '--delay': '60ms' }}>
+          <div>
+            <h1>Hans Ho</h1>
+            <p className="hero-role">
+              Low-latency backend engineer for market data and AI infrastructure
+            </p>
+          </div>
+          <div className="hero-actions">
+            <nav className="hero-nav" aria-label="On this page">
+              <a href="#performance">How I work</a>
+              <a href="#experience">Experience</a>
+              <a href="#projects">Projects</a>
+              <a href="#skills">Skills</a>
+              <a href="#education">Education</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
         </div>
+
+        <div className="hero-grid">
+          <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
+            <p className="hero-summary">
+              I build market data systems that stay fast and predictable under load. I design low-latency backends,
+              data pipelines, and observability for trading and AI infrastructure teams.
+            </p>
+            <div className="hero-meta">
+              <span>Based in Boston</span>
+              <span>Open to US and Hong Kong roles</span>
+              <span>Looking for C++ quant, market infra, or AI infra roles</span>
+            </div>
+          </div>
+          <div className="hero-portrait reveal" style={{ '--delay': '220ms' }}>
+            <img src="/hans.jpeg" alt="Portrait of Hans Ho" />
+          </div>
+        </div>
+
+        <div className="hero-metrics reveal" style={{ '--delay': '280ms' }}>
+          {heroMetrics.map((stat) => (
+            <div className="hero-metric" key={stat.label}>
+              <div className="hero-metric-value">{stat.value}</div>
+              <div className="hero-metric-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
       </header>
 
-      {/* Main Content - Centered */}
-      <div className="main-container">
-        {/* About Section */}
-        <section className="section about-section">
-          <h2 className="section-title">About</h2>
-          <div className="about-content">
-            <div className="face-container">
-              <FaceTracker basePath="/faces/" showDebug={false} />
-            </div>
-            <div className="about-text">
-              <p>
-                I am an Applied Scientist at The Johns Hopkins University's School of Government and Policy, 
-                where I apply advanced data science and machine learning methods to address complex policy challenges. 
-                I hold a Master's in Data Science from New York University (GPA: 3.94/4.0) and a Bachelor's in 
-                Quantitative Finance from The Chinese University of Hong Kong (1st Class Honor).
-              </p>
-              <p>
-                My expertise spans Python, SQL, cloud platforms (GCP, Azure), and data visualization tools. 
-                I have extensive experience developing production-grade data pipelines, building ML models, and creating 
-                insights from complex datasets. I'm passionate about using data science to solve real-world problems 
-                in criminal justice, social media analysis, policy evaluation, and financial markets.
-              </p>
-            </div>
+      <main className="main">
+        <section className="section performance" id="performance">
+          <div className="section-heading">
+            <h2>How I work</h2>
+          </div>
+          <div className="performance-grid">
+            {performanceStory.map((item, index) => (
+              <article className="performance-card reveal" style={{ '--delay': `${index * 90}ms` }} key={item.title}>
+                <span className="performance-tag">{item.tag}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* Stats Section - Data Science Themed */}
-        <section className="section stats-section">
-          <div className="stats-grid">
-            <div className="stat-card">
-              <div className="stat-number">5M+</div>
-              <div className="stat-label">Records Processed</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">92.45%</div>
-              <div className="stat-label">Model Precision</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">3.6M</div>
-              <div className="stat-label">Sentences Analyzed</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">100+</div>
-              <div className="stat-label">Workshop Attendees</div>
-            </div>
+        <section className="section" id="experience">
+          <div className="section-heading">
+            <h2>Experience</h2>
+          </div>
+          <div className="card-stack">
+            {experiences.map((item) => (
+              <article className="card" key={`${item.org}-${item.role}`}>
+                <div className="card-header">
+                  <div>
+                    <h3>{item.role}</h3>
+                    <p className="card-subtitle">
+                      {item.orgUrl ? (
+                        <a
+                          className="org-link"
+                          href={item.orgUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${item.org} website`}
+                          title={`Visit ${item.org}`}
+                        >
+                          <span>{item.org}</span>
+                          <span className="org-link-hint">site</span>
+                        </a>
+                      ) : (
+                        item.org
+                      )}{' '}
+                      · {item.location}
+                    </p>
+                  </div>
+                  <span className="card-date">{item.dates}</span>
+                </div>
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+                {item.details?.length ? (
+                  <details className="experience-details">
+                    <summary>More impact</summary>
+                    <ul>
+                      {item.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  </details>
+                ) : null}
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* Education Section */}
-        <section className="section">
-          <h2 className="section-title">Education</h2>
-          <div className="experience-list">
-            <div className="experience-item">
-              <h3 className="experience-title">M.S. in Data Science | GPA: 3.94/4.0</h3>
-              <div className="experience-org">New York University</div>
-              <div className="experience-date">Sep 2022 - May 2024</div>
-              <div className="experience-description">
-                <strong>Key Courses:</strong> Machine Learning, Natural Language Processing, Big Data (Hadoop, Spark), 
-                Responsible Data Science, Text as Data
-              </div>
-            </div>
-            
-            <div className="experience-item">
-              <h3 className="experience-title">B.S. in Quantitative Finance, Minor in Statistics | GPA: 3.76/4.0, 1st Class Honor</h3>
-              <div className="experience-org">The Chinese University of Hong Kong</div>
-              <div className="experience-date">Sep 2018 - May 2022</div>
-              <div className="experience-description">
-                <strong>Honors:</strong> Dean's List, EY Scholarship ($10k for leadership), 
-                Sir Run Run Shaw Scholarship ($40k for academic excellence)<br/>
-                <strong>Key Courses:</strong> Regression, Data Mining, Time Series Analysis, 
-                Probability and Statistics, Survey and Sampling, Bayesian Learning
-              </div>
-            </div>
+        <section className="section" id="projects">
+          <div className="section-heading">
+            <h2>Projects</h2>
           </div>
-        </section>
-
-        {/* Experience Section */}
-        <section className="section">
-          <h2 className="section-title">Professional Experience</h2>
-          <div className="experience-list">
-            <div className="experience-item" style={{ borderLeft: '4px solid var(--jhu-gold)', background: 'var(--jhu-white)', boxShadow: '0 4px 12px rgba(0, 45, 114, 0.2)' }}>
-              <h3 className="experience-title">Applied Scientist</h3>
-              <div className="experience-org">The Johns Hopkins University | School of Government and Policy</div>
-              <div className="experience-date">Jul 2025 - Present</div>
-              <div className="experience-description">
-                Applying advanced data science and machine learning methodologies to support policy research and evaluation 
-                at one of the world's leading research institutions. Collaborating with interdisciplinary teams to develop 
-                innovative solutions for complex policy challenges.
-              </div>
-            </div>
-
-            <div className="experience-item">
-              <h3 className="experience-title">Junior Research Scientist/Data Scientist</h3>
-              <div className="experience-org">NYU Marron Institute of Urban Management</div>
-              <div className="experience-date">Sep 2024 - May 2025</div>
-              <div className="experience-description">
-                • Developed Selenium scraper prototypes to extract 5M+ electronic criminal case records from Wisconsin Circuit Court Access<br/>
-                • Designed schema and managed large-scale SQL Server database using Azure Data Studio<br/>
-                • Created SQL queries to disambiguate defendants, map criminal history, and infer recidivism rates<br/>
-                • Built interactive Tableau dashboards for district attorneys featuring defendant search, criminal trajectory analysis, 
-                and pre/post diversion analysis<br/>
-                • Created public-facing dashboard visualizing demographics, racial disparity, criminal activities, and incarceration trends
-              </div>
-            </div>
-
-            <div className="experience-item">
-              <h3 className="experience-title">Data for Justice Fellow</h3>
-              <div className="experience-org">NYU Marron Institute of Urban Management</div>
-              <div className="experience-date">Jan 2024 - Aug 2024</div>
-              <div className="experience-description">
-                Summer Fellow (Jun 2024 - Aug 2024) and Student Fellow (Jan 2024 - May 2024) working on criminal justice 
-                data analysis and policy research projects.
-              </div>
-            </div>
-
-            <div className="experience-item">
-              <h3 className="experience-title">Data Scientist</h3>
-              <div className="experience-org">Information Tracer</div>
-              <div className="experience-date">Jan 2023 - May 2024</div>
-              <div className="experience-description">
-                • Designed real-time ETL pipelines for JSON social media data from Twitter, Instagram, Facebook, YouTube, and Reddit<br/>
-                • Built 4 interactive Superset dashboards monitoring Mexico governor, UK general, and US presidential elections<br/>
-                • Scripted Linux VM setup with Docker, integrating scraper, database and frontend, reducing deployment time by 90%<br/>
-                • Developed bot detection program with 10 indicators using NLP techniques (regex, text clustering, similarity scores)<br/>
-                • Delivered 5 workshops to 100+ professors and students on GCP, Docker, Airflow, and social network analysis<br/>
-                • Investigated science misinformation spread about Fukushima Nuclear Wastewater Release through large-scale data collection 
-                and 20+ interviews across 5 countries, composed news story supported by Pulitzer Center and Initium Media
-              </div>
-            </div>
-
-            <div className="experience-item">
-              <h3 className="experience-title">Product Data Scientist</h3>
-              <div className="experience-org">Midas Analytics</div>
-              <div className="experience-date">Dec 2022 - Dec 2023</div>
-              <div className="experience-description">
-                • Developed four-layer taxonomy-based financial news topic modeling algorithm achieving 92.45% precision using 
-                clustering, text similarity and tree traversal techniques<br/>
-                • Fine-tuned BERT with TensorFlow for emotion and sentiment prediction, obtaining F1 scores &gt; 0.7 for 5 out of 7 emotion classes<br/>
-                • Performed EDA on 3.6M news sentences to generate sentiment signals quantifying company risks (causality test confidence &gt; 99%)<br/>
-                • Setup containerized CI/CD workflow using GitHub Actions to automate build, test and engine deployment<br/>
-                • Revamped data schema using Protobuf and C++, created MongoDB indexes saving over 90% processing time<br/>
-                • Fixed entity validation logic reducing 64% duplicated company names in NER system
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Technical Skills Section */}
-        <section className="section">
-          <h2 className="section-title">Technical Skills</h2>
           <div className="projects-grid">
-            <div className="project-card skill-card">
-              <div className="skill-icon">🐍</div>
-              <h3 className="project-title">Languages</h3>
-              <p className="project-description">
-                Python (NumPy, Pandas, SciPy, Sklearn, Selenium, PyTorch), R, SQL, MongoDB, 
-                HTML, CSS, JavaScript, C++
-              </p>
-            </div>
-
-            <div className="project-card skill-card">
-              <div className="skill-icon">⚙️</div>
-              <h3 className="project-title">Tools & Frameworks</h3>
-              <p className="project-description">
-                Linux, Git, Bash, Docker, Kubernetes, Protobuf, Spark, Hadoop, Airflow, 
-                GCP, Microsoft Azure
-              </p>
-            </div>
-
-            <div className="project-card skill-card">
-              <div className="skill-icon">📊</div>
-              <h3 className="project-title">Visualization</h3>
-              <p className="project-description">
-                Apache Superset, Tableau, Power BI, Matplotlib, Seaborn, Plotly, ggplot2, Figma
-              </p>
-            </div>
+            {projects.map((project) => (
+              <article className="project-card" key={project.title}>
+                <div className="project-header">
+                  <div>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                  <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+                    GitHub Repo
+                  </a>
+                </div>
+                <div className="tag-row">
+                  {project.tags.map((tag) => (
+                    <span className="tag-text" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* Key Projects Section */}
-        <section className="section">
-          <h2 className="section-title">Key Projects & Achievements</h2>
-          <div className="projects-grid">
-            <div className="project-card">
-              <h3 className="project-title">Criminal Justice Database & Analytics</h3>
-              <p className="project-description">
-                Built comprehensive database with 5M+ criminal records and interactive Tableau dashboards 
-                for district attorneys. Enabled criminal trajectory analysis and recidivism prediction.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Python</span>
-                <span className="tag">Selenium</span>
-                <span className="tag">SQL</span>
-                <span className="tag">Tableau</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <h3 className="project-title">Social Media Election Monitoring</h3>
-              <p className="project-description">
-                Designed real-time ETL pipelines for social media data and built 4 interactive dashboards 
-                monitoring elections across multiple countries. Automated deployment reducing setup time by 90%.
-              </p>
-              <div className="project-tags">
-                <span className="tag">GCP</span>
-                <span className="tag">Docker</span>
-                <span className="tag">Airflow</span>
-                <span className="tag">Superset</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <h3 className="project-title">Financial News Topic Modeling</h3>
-              <p className="project-description">
-                Developed taxonomy-based topic modeling algorithm achieving 92.45% precision. 
-                Fine-tuned BERT for sentiment analysis with F1 scores &gt; 0.7 for 5 emotion classes.
-              </p>
-              <div className="project-tags">
-                <span className="tag">BERT</span>
-                <span className="tag">NLP</span>
-                <span className="tag">PyTorch</span>
-                <span className="tag">MongoDB</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <h3 className="project-title">Misinformation Research</h3>
-              <p className="project-description">
-                Investigated science misinformation spread through large-scale data collection and 20+ 
-                interviews across 5 countries. Composed news story supported by Pulitzer Center.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Research</span>
-                <span className="tag">Data Analysis</span>
-                <span className="tag">NLP</span>
-              </div>
-            </div>
+        <section className="section" id="skills">
+          <div className="section-heading">
+            <h2>Skills</h2>
+          </div>
+          <div className="skills-toggle" role="tablist" aria-label="Skill track toggle">
+            {skillTracks.map((track) => (
+              <button
+                key={track}
+                type="button"
+                className={`toggle-button ${track === activeTrack ? 'active' : ''}`}
+                onClick={() => setActiveTrack(track)}
+                role="tab"
+                aria-selected={track === activeTrack}
+              >
+                {track}
+              </button>
+            ))}
+          </div>
+          <div className="skills-panels" style={skillsMinHeight ? { minHeight: `${skillsMinHeight}px` } : undefined}>
+            {skillTracks.map((track) => {
+              const skills = skillSets[track]
+              const isActive = track === activeTrack
+              return (
+                <div
+                  key={track}
+                  className={`skills-panel ${isActive ? 'is-active' : ''}`}
+                  ref={(node) => {
+                    skillPanelRefs.current[track] = node
+                  }}
+                  role="tabpanel"
+                  aria-hidden={!isActive}
+                >
+                  <div className="skills-split">
+                    <div className="skills-column">
+                      <div className="skills-grid compact">
+                        {skills.core.map((group) => (
+                          <div className="skill-card" key={group.title}>
+                            <h3>{group.title}</h3>
+                            <div className="tag-row skill-tags">
+                              {group.items.map((item) => (
+                                <span className="tag" key={item}>
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="skills-column supporting">
+                      <div className="skills-grid compact">
+                        {skills.supporting.map((group) => (
+                          <div className="skill-card" key={group.title}>
+                            <h3>{group.title}</h3>
+                            <div className="tag-row skill-tags">
+                              {group.items.map((item) => (
+                                <span className="tag" key={item}>
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="section contact-section">
-          <h2 className="section-title">Contact</h2>
-          <p>Interested in collaboration or have questions about my work?</p>
-          <div className="contact-links">
-            <a href="https://www.linkedin.com/in/yukicui/" target="_blank" rel="noopener noreferrer" className="contact-link">
-              LinkedIn
-            </a>
-            <a href="https://github.com/yuqingcuiyuki" target="_blank" rel="noopener noreferrer" className="contact-link">
-              GitHub
-            </a>
-            <a href="mailto:yc6285@nyu.edu" className="contact-link">
-              Email
-            </a>
+        <section className="section" id="education">
+          <div className="section-heading">
+            <h2>Education</h2>
+          </div>
+          <div className="education-grid">
+            {education.map((item) => (
+              <div className="education-card" key={item.school}>
+                <h3>
+                  {item.url ? (
+                    <a
+                      className="education-link"
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.school}
+                    </a>
+                  ) : (
+                    item.school
+                  )}
+                </h3>
+                <p className="education-degree">{item.degree}</p>
+                <p className="education-meta">{item.details}</p>
+                <p className="education-meta">{item.location}</p>
+                <span className="education-date">{item.dates}</span>
+              </div>
+            ))}
           </div>
         </section>
-      </div>
 
-      {/* Footer */}
+        <section className="section contact" id="contact">
+          <div className="contact-card">
+            <div>
+              <h2>Contact</h2>
+              <p>
+                If you are hiring for market systems, AI infrastructure, or C++/quant work, I would love to talk.
+              </p>
+            </div>
+            <div className="contact-actions">
+              <a className="button primary" href="mailto:ho.chak@northeastern.edu">
+                ho.chak@northeastern.edu
+              </a>
+              <a className="button ghost" href="tel:+19735171462">
+                +1 (973) 517-1462
+              </a>
+              <a
+                className="button ghost"
+                href="https://linkedin.com/in/chaksingho/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                linkedin.com/in/chaksingho
+              </a>
+              <a
+                className="button ghost"
+                href="https://github.com/hans2001"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/hans2001
+              </a>
+              <a
+                className="button ghost"
+                href="https://leetcode.com/u/justnotarandomkid/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                leetcode.com/u/justnotarandomkid
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
       <footer className="footer">
-        <p>&copy; 2025 Yuki Cui | Applied Scientist | The Johns Hopkins University | yc6285@nyu.edu</p>
+        <span>Hans Ho · I build low-latency market systems</span>
+        <span>Boston, MA · Open to US and Hong Kong roles</span>
       </footer>
     </div>
   )

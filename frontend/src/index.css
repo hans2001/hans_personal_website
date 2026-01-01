@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,32 +7,24 @@
 }
 
 :root {
-  /* Johns Hopkins University Brand Colors */
-  --jhu-blue: #002d72;
-  --jhu-blue-light: #00539b;
-  --jhu-gold: #fdc82f;
-  --jhu-gold-dark: #d4a017;
-  --jhu-gray: #6c757d;
-  --jhu-gray-light: #f8f9fa;
-  --jhu-white: #ffffff;
-  --jhu-text: #212529;
-  --jhu-text-light: #6c757d;
-  
-  /* Data Science Theme Colors */
-  --ds-primary: #002d72;
-  --ds-secondary: #00539b;
-  --ds-accent: #fdc82f;
-  --ds-chart-blue: #4a90e2;
-  --ds-chart-green: #50c878;
-  --ds-chart-purple: #9b59b6;
-  --ds-chart-orange: #f39c12;
-  --ds-bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  line-height: 1.6;
+  --ink: #111827;
+  --ink-soft: #1f2937;
+  --muted: #6b7280;
+  --paper: #f8f6f1;
+  --panel: #ffffff;
+  --line: rgba(17, 24, 39, 0.12);
+  --accent: #d97706;
+  --accent-2: #0f766e;
+  --accent-soft: rgba(217, 119, 6, 0.08);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  font-family: var(--font-body);
+  line-height: 1.55;
   font-weight: 400;
-  color: var(--jhu-text);
-  background-color: var(--jhu-white);
+  color: var(--ink);
+  background-color: var(--paper);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,26 +32,35 @@
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
   min-height: 100vh;
-  background-color: var(--jhu-white);
+  background-color: var(--paper);
 }
 
 a {
-  color: var(--jhu-blue);
+  color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--jhu-blue-light);
-  text-decoration: underline;
+  color: var(--accent-2);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Georgia', 'Times New Roman', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.2;
-  color: var(--jhu-blue);
+}
+
+p {
+  color: var(--ink-soft);
+}
+
+li,
+small {
+  color: var(--ink-soft);
 }

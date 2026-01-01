@@ -1,0 +1,32 @@
+{
+  "person": {
+    "name": "Hans Ho",
+    "title": "Low-latency backend & systems engineer",
+    "location": "Boston, MA",
+    "open_to": "Hong Kong roles",
+    "email": "ho.chak@northeastern.edu",
+    "phone": "+1 (973) 517-1462",
+    "github": "https://github.com/hans2001",
+    "linkedin": "https://linkedin.com/in/chaksingho/",
+    "targets": ["SIG", "Goldman Sachs", "Citadel"]
+  },
+  "sections": [
+    "hero",
+    "impact_stats",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "contact"
+  ],
+  "visual": {
+    "fonts": ["IBM Plex Sans", "IBM Plex Mono"],
+    "palette": {
+      "ink": "#0b1220",
+      "paper": "#f4f6f8",
+      "accent_signal": "#f97316",
+      "accent_link": "#2563eb"
+    },
+    "style": "compact, finance-forward, high-density"
+  }
+}

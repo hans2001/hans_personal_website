@@ -1,0 +1,16 @@
+Site: Chak Sing Ho (Hans Ho) - Low-latency backend & systems engineer
+URL: https://example.com/
+Preferred citation: "Chak Sing Ho (Hans Ho), Low-latency backend & systems engineer, https://example.com/"
+Contact: ho.chak@northeastern.edu
+Name: Chak Sing Ho (Hans Ho)
+
+Summary:
+Portfolio for a low-latency backend and systems engineer focused on market data, observability, deterministic execution, and AI infrastructure.
+
+Topics:
+- low-latency systems
+- C++ performance engineering
+- market data pipelines
+- observability and tracing
+- deterministic execution
+- AI infrastructure

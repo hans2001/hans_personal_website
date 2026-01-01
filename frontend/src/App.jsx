@@ -2,9 +2,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
 
 const SITE_URL = 'https://hansho.dev'
-const BASE_TITLE = 'Chak Sing Ho (Hans Ho) | Low-latency backend & systems engineer'
+const BASE_TITLE = 'Chak Sing Ho (Hans Ho) | Quant C++ & low-latency systems engineer'
 const BASE_DESCRIPTION =
-  'Chak Sing Ho (Hans Ho) is a low-latency backend and systems engineer. Portfolio featuring market data, observability, and performance-focused projects.'
+  'Chak Sing Ho (Hans Ho) is a C++ and low-latency systems engineer. Portfolio featuring market data infrastructure, deterministic execution, and performance-critical projects for Hong Kong and US teams.'
 const OG_IMAGE = `${SITE_URL}/og.png`
 
 const sectionMeta = {
@@ -14,11 +14,13 @@ const sectionMeta = {
   },
   about: {
     title: 'About | Hans Ho',
-    description: 'About Hans Ho: low-latency backend, market data pipelines, observability, C++ and Python systems.'
+    description:
+      'About Hans Ho: C++ systems engineer working on market data, deterministic execution, and latency-critical infrastructure.'
   },
   services: {
     title: 'Services | Hans Ho',
-    description: 'Services in low-latency C++ engineering, market data pipelines, observability, and AI infrastructure.'
+    description:
+      'Services in low-latency C++ engineering, market data pipelines, observability, and systems infrastructure.'
   },
   performance: {
     title: 'How I Work | Hans Ho',
@@ -42,7 +44,7 @@ const sectionMeta = {
   },
   contact: {
     title: 'Contact | Hans Ho',
-    description: 'Contact Hans Ho for low-latency backend, market infrastructure, and C++ systems roles.'
+    description: 'Contact Hans Ho for C++ systems, market infrastructure, and low-latency roles.'
   }
 }
 
@@ -58,7 +60,15 @@ const schemaData = {
       alternateName: 'Hans Ho',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'Low-latency backend and systems engineer',
+      jobTitle: 'Quant C++ and low-latency systems engineer',
+      knowsAbout: [
+        'Low-latency C++',
+        'Market data infrastructure',
+        'Deterministic systems',
+        'Latency budgeting',
+        'Observability'
+      ],
+      areaServed: ['Hong Kong', 'United States'],
       sameAs: [
         'https://github.com/hans2001',
         'https://linkedin.com/in/chaksingho/',
@@ -93,7 +103,7 @@ const schemaData = {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: 'Chak Sing Ho | Low-latency backend and systems engineer',
+      name: 'Chak Sing Ho | Quant C++ and low-latency systems engineer',
       description: BASE_DESCRIPTION,
       primaryImageOfPage: {
         '@type': 'ImageObject',
@@ -448,11 +458,14 @@ function App() {
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              Computer science student focused on low-latency C++ systems and AI infrastructure, with experience in
-              market data pipelines, distributed backends, and production reliability.
+              Computer science student focused on low-latency C++ systems and AI infrastructure, with hands-on
+              experience in market data, distributed services, and production observability.{' '}
+              <strong>Tight latency budgets, deterministic performance, and pragmatic reliability</strong> guide how
+              I build. Seeking C++ developer roles in market infrastructure or AI infrastructure for
+              performance-critical systems.
             </p>
             <div className="hero-meta">
-              <span>Looking for C++ quant, market infra, or AI infra roles · Open to Hong Kong and US roles</span>
+              <span>Looking for C++ developer roles in market infra or AI infra · Open to Hong Kong and US roles</span>
             </div>
           </div>
           <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
@@ -688,53 +701,55 @@ function App() {
           </div>
         </section>
 
-        <section className="section contact" id="contact">
-          <div className="contact-card">
-            <div>
-              <h2>Contact</h2>
-              <p>
-                If you are hiring for market systems, AI infrastructure, or C++/quant work, I would love to talk.
-              </p>
-            </div>
-            <div className="contact-actions">
-              <a className="button primary" href="mailto:ho.chak@northeastern.edu">
-                ho.chak@northeastern.edu
-              </a>
-              <a className="button ghost" href="tel:+19735171462">
-                +1 (973) 517-1462
-              </a>
-              <a
-                className="button ghost"
-                href="https://linkedin.com/in/chaksingho/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                linkedin.com/in/chaksingho
-              </a>
-              <a
-                className="button ghost"
-                href="https://github.com/hans2001"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                github.com/hans2001
-              </a>
-              <a
-                className="button ghost"
-                href="https://leetcode.com/u/justnotarandomkid/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                leetcode.com/u/justnotarandomkid
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="footer">
-        <span>Hans Ho · I build low-latency market systems</span>
-        <span>Open to Hong Kong and US roles</span>
+      <footer className="footer" id="contact">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <span className="footer-title">Hans Ho</span>
+            <p className="footer-tagline">Quant C++ and low-latency systems engineer</p>
+          </div>
+          <div className="footer-grid">
+            <div className="footer-block">
+              <h4>Distribution Channels</h4>
+              <ul>
+                <li>
+                  <a href="mailto:ho.chak@northeastern.edu">Email</a>
+                </li>
+                <li>
+                  <a href="tel:+19735171462">Phone</a>
+                </li>
+                <li>
+                  <a
+                    href="https://linkedin.com/in/chaksingho/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/hans2001" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://leetcode.com/u/justnotarandomkid/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LeetCode
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="footer-meta">
+          <span>Built for speed, clarity, and auditability.</span>
+          <span>© {new Date().getFullYear()} Hans Ho</span>
+        </div>
       </footer>
     </div>
   )

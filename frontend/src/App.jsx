@@ -52,130 +52,31 @@ const sectionMeta = {
 
 const sectionIds = ['top', 'about', 'services', 'performance', 'experience', 'projects', 'skills', 'education', 'contact']
 
-const schemaData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': ['Person', 'Organization'],
-      '@id': `${SITE_URL}/#person`,
-      name: PRIMARY_NAME,
-      alternateName: [ALT_NAME, 'Hans Ho', 'Hans'],
-      givenName: 'Chak Sing',
-      familyName: 'Ho',
-      additionalName: 'Hans',
-      disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
-      url: SITE_URL,
-      image: OG_IMAGE,
-      jobTitle: 'AI infrastructure and C++ / quant developer',
-      knowsAbout: [
-        'Low-latency C++',
-        'Market data infrastructure',
-        'AI infrastructure',
-        'Deterministic systems',
-        'Latency budgeting',
-        'Observability'
-      ],
-      areaServed: ['Hong Kong', 'United States'],
-      sameAs: [
-        'https://github.com/hans2001',
-        'https://linkedin.com/in/chaksingho/',
-        'https://instagram.com/chaksingho'
-      ],
-      contactPoint: [
-        {
-          '@type': 'ContactPoint',
-          contactType: 'inquiries',
-          email: 'ho.chak@northeastern.edu',
-          url: `${SITE_URL}/#contact`
-        }
-      ],
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Boston',
-        addressRegion: 'MA',
-        addressCountry: 'US'
-      }
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: BRAND_NAME,
-      publisher: {
-        '@id': `${SITE_URL}/#person`
-      },
-      inLanguage: 'en-US'
-    },
-    {
-      '@type': 'WebPage',
-      '@id': `${SITE_URL}/#webpage`,
-      url: SITE_URL,
-      name: `${BRAND_NAME} | AI infrastructure & C++ / quant dev`,
-      description: BASE_DESCRIPTION,
-      primaryImageOfPage: {
-        '@type': 'ImageObject',
-        url: OG_IMAGE
-      },
-      about: {
-        '@id': `${SITE_URL}/#person`
-      },
-      inLanguage: 'en-US'
-    },
-  ]
-}
-
-const setMetaTag = (attr, key, content) => {
-  const selector = `meta[${attr}="${key}"]`
-  let tag = document.head.querySelector(selector)
-  if (!tag) {
-    tag = document.createElement('meta')
-    tag.setAttribute(attr, key)
-    document.head.appendChild(tag)
-  }
-  tag.setAttribute('content', content)
-}
-
-const setLinkTag = (rel, href) => {
-  let link = document.head.querySelector(`link[rel="${rel}"]`)
-  if (!link) {
-    link = document.createElement('link')
-    link.setAttribute('rel', rel)
-    document.head.appendChild(link)
-  }
-  link.setAttribute('href', href)
-}
-
-const setJsonLd = (data) => {
-  let script = document.getElementById('seo-jsonld')
-  if (!script) {
-    script = document.createElement('script')
-    script.type = 'application/ld+json'
-    script.id = 'seo-jsonld'
-    document.head.appendChild(script)
-  }
-  script.textContent = JSON.stringify(data)
-}
-
-const performanceStory = [
+const projects = [
   {
-    title: 'Map the critical path',
-    tag: 'Define',
+    title: 'Low-Latency Market Data Engine',
     description:
-      'Start with data contracts and latency budgets so the team knows what must be fast and what can be async.'
+      'Built an in-memory L2 order book with contention-aware sync, deterministic replay, and tail-latency benchmarks.',
+    tags: ['C++20', 'Low Latency', 'Concurrency'],
+    repo: 'https://github.com/hans2001/low-latency-market-data-engine'
   },
   {
-    title: 'Control the burst',
-    tag: 'Stabilize',
+    title: 'Work-Stealing Task Scheduler',
     description:
-      'Use backpressure, retries, and partitioning to keep ingestion predictable when volume spikes.'
+      'Designed a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
+    tags: ['C++', 'Schedulers', 'Benchmarks'],
+    repo: 'https://github.com/hans2001/cpp-thread-pool'
   },
   {
-    title: 'Prove the outcome',
-    tag: 'Verify',
-    description: 'Instrument and replay to explain incidents and defend performance claims with evidence.'
+    title: 'Deterministic Agent Framework',
+    description:
+      'Extended Open Interpreter with deterministic execution, policy-based tool access, and replayable audits.',
+    tags: ['AI Infra', 'Determinism', 'Policy Engine'],
+    repo: 'https://github.com/hans2001'
   }
 ]
 
+// Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
   {
     role: 'Software Engineer Intern',
@@ -259,27 +160,233 @@ const experiences = [
   }
 ]
 
-const projects = [
+const education = [
   {
-    title: 'Low-Latency Market Data Engine',
-    description:
-      'Built an in-memory L2 order book with contention-aware sync, deterministic replay, and tail-latency benchmarks.',
-    tags: ['C++20', 'Low Latency', 'Concurrency'],
-    repo: 'https://github.com/hans2001/low-latency-market-data-engine'
+    school: 'Northeastern University',
+    url: 'https://www.northeastern.edu/',
+    degree: 'M.S. Computer Science',
+    details: 'GPA 4.0',
+    location: 'Boston, MA',
+    dates: 'Sep 2025 - May 2027'
   },
   {
-    title: 'Work-Stealing Task Scheduler',
+    school: 'Hong Kong Univ. of Sci. & Tech.',
+    url: 'https://hkust.edu.hk/',
+    degree: 'B.Eng. Electronic Eng. (CS minor)',
+    details: 'Second Class Honors (Div. I)',
+    location: 'Hong Kong',
+    dates: 'Sep 2020 - May 2024'
+  }
+]
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Person', 'Organization'],
+      '@id': `${SITE_URL}/#person`,
+      name: PRIMARY_NAME,
+      alternateName: [ALT_NAME, 'Hans Ho', 'Hans'],
+      givenName: 'Chak Sing',
+      familyName: 'Ho',
+      additionalName: 'Hans',
+      disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
+      url: SITE_URL,
+      image: OG_IMAGE,
+      jobTitle: 'AI infrastructure and C++ / quant developer',
+      knowsAbout: [
+        'Low-latency C++',
+        'Market data infrastructure',
+        'AI infrastructure',
+        'Deterministic systems',
+        'Latency budgeting',
+        'Observability'
+      ],
+      areaServed: ['Hong Kong', 'United States'],
+      sameAs: [
+        'https://github.com/hans2001',
+        'https://linkedin.com/in/chaksingho/',
+        'https://instagram.com/chaksingho'
+      ],
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'inquiries',
+          email: 'ho.chak@northeastern.edu',
+          url: `${SITE_URL}/#contact`
+        }
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Boston',
+        addressRegion: 'MA',
+        addressCountry: 'US'
+      }
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: BRAND_NAME,
+      publisher: {
+        '@id': `${SITE_URL}/#person`
+      },
+      inLanguage: 'en-US',
+      potentialAction: {
+        '@type': 'ReadAction',
+        target: SITE_URL
+      }
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: `${BRAND_NAME} | AI infrastructure & C++ / quant dev`,
+      description: BASE_DESCRIPTION,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: OG_IMAGE
+      },
+      about: {
+        '@id': `${SITE_URL}/#person`
+      },
+      inLanguage: 'en-US',
+      breadcrumb: {
+        '@id': `${SITE_URL}/#breadcrumb`
+      }
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${SITE_URL}/#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: SITE_URL
+        }
+      ]
+    },
+    ...projects.map((project, index) => ({
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/#project-${index + 1}`,
+      name: project.title,
+      description: project.description,
+      url: project.repo,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Cross-platform',
+      programmingLanguage: project.tags.filter(tag => ['C++', 'C++20', 'Python', 'TypeScript', 'JavaScript'].includes(tag)),
+      keywords: project.tags.join(', '),
+      creator: {
+        '@id': `${SITE_URL}/#person`
+      }
+    })),
+    ...experiences.map((exp, index) => ({
+      '@type': 'OrganizationRole',
+      '@id': `${SITE_URL}/#experience-${index + 1}`,
+      roleName: exp.role,
+      startDate: exp.dates.split(' - ')[0],
+      endDate: exp.dates.includes('Present') ? undefined : exp.dates.split(' - ')[1],
+      worksFor: {
+        '@type': 'Organization',
+        name: exp.org,
+        url: exp.orgUrl || undefined,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: exp.location.split(',')[0]?.trim(),
+          addressRegion: exp.location.split(',').length > 1 ? exp.location.split(',')[1]?.trim() : undefined,
+          addressCountry: exp.location.includes('Hong Kong') ? 'HK' : exp.location.includes('CA') ? 'US' : undefined
+        }
+      },
+      description: exp.bullets.join(' ')
+    })),
+    ...education.map((edu, index) => ({
+      '@type': 'EducationalOccupationalCredential',
+      '@id': `${SITE_URL}/#education-${index + 1}`,
+      credentialCategory: 'degree',
+      recognizedBy: {
+        '@type': 'EducationalOrganization',
+        name: edu.school,
+        url: edu.url,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: edu.location.split(',')[0]?.trim(),
+          addressRegion: edu.location.split(',').length > 1 ? edu.location.split(',')[1]?.trim() : undefined,
+          addressCountry: edu.location.includes('Hong Kong') ? 'HK' : 'US'
+        }
+      },
+      educationalLevel: edu.degree,
+      about: {
+        '@id': `${SITE_URL}/#person`
+      },
+      dateCreated: edu.dates.split(' - ')[0]
+    }))
+  ]
+}
+
+const setMetaTag = (attr, key, content) => {
+  const selector = `meta[${attr}="${key}"]`
+  let tag = document.head.querySelector(selector)
+  if (!tag) {
+    tag = document.createElement('meta')
+    tag.setAttribute(attr, key)
+    document.head.appendChild(tag)
+  }
+  tag.setAttribute('content', content)
+}
+
+const setLinkTag = (rel, href, attributes = {}) => {
+  if (attributes.hreflang) {
+    // For hreflang, we need unique links per hreflang value
+    const selector = `link[rel="${rel}"][hreflang="${attributes.hreflang}"]`
+    let link = document.head.querySelector(selector)
+    if (!link) {
+      link = document.createElement('link')
+      link.setAttribute('rel', rel)
+      link.setAttribute('hreflang', attributes.hreflang)
+      document.head.appendChild(link)
+    }
+    link.setAttribute('href', href)
+  } else {
+    // For regular links, use the existing logic
+    let link = document.head.querySelector(`link[rel="${rel}"]`)
+    if (!link) {
+      link = document.createElement('link')
+      link.setAttribute('rel', rel)
+      document.head.appendChild(link)
+    }
+    link.setAttribute('href', href)
+  }
+}
+
+const setJsonLd = (data) => {
+  let script = document.getElementById('seo-jsonld')
+  if (!script) {
+    script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'seo-jsonld'
+    document.head.appendChild(script)
+  }
+  script.textContent = JSON.stringify(data)
+}
+
+const performanceStory = [
+  {
+    title: 'Map the critical path',
+    tag: 'Define',
     description:
-      'Designed a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
-    tags: ['C++', 'Schedulers', 'Benchmarks'],
-    repo: 'https://github.com/hans2001/cpp-thread-pool'
+      'Start with data contracts and latency budgets so the team knows what must be fast and what can be async.'
   },
   {
-    title: 'Deterministic Agent Framework',
+    title: 'Control the burst',
+    tag: 'Stabilize',
     description:
-      'Extended Open Interpreter with deterministic execution, policy-based tool access, and replayable audits.',
-    tags: ['AI Infra', 'Determinism', 'Policy Engine'],
-    repo: 'https://github.com/hans2001'
+      'Use backpressure, retries, and partitioning to keep ingestion predictable when volume spikes.'
+  },
+  {
+    title: 'Prove the outcome',
+    tag: 'Verify',
+    description: 'Instrument and replay to explain incidents and defend performance claims with evidence.'
   }
 ]
 
@@ -368,25 +475,6 @@ const skillSets = {
 
 const skillTracks = Object.keys(skillSets)
 
-const education = [
-  {
-    school: 'Northeastern University',
-    url: 'https://www.northeastern.edu/',
-    degree: 'M.S. Computer Science',
-    details: 'GPA 4.0',
-    location: 'Boston, MA',
-    dates: 'Sep 2025 - May 2027'
-  },
-  {
-    school: 'Hong Kong Univ. of Sci. & Tech.',
-    url: 'https://hkust.edu.hk/',
-    degree: 'B.Eng. Electronic Eng. (CS minor)',
-    details: 'Second Class Honors (Div. I)',
-    location: 'Hong Kong',
-    dates: 'Sep 2020 - May 2024'
-  }
-]
-
 function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
   const [skillsMinHeight, setSkillsMinHeight] = useState(0)
@@ -441,6 +529,10 @@ function App() {
     setMetaTag('name', 'author', BRAND_NAME)
     setMetaTag('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1')
     setLinkTag('canonical', SITE_URL)
+    // hreflang tags for multi-region targeting
+    setLinkTag('alternate', SITE_URL, { hreflang: 'en-US' })
+    setLinkTag('alternate', SITE_URL, { hreflang: 'en-HK' })
+    setLinkTag('alternate', SITE_URL, { hreflang: 'x-default' })
     setMetaTag('property', 'og:title', activeMeta.title)
     setMetaTag('property', 'og:site_name', BRAND_NAME)
     setMetaTag('property', 'og:url', SITE_URL)
@@ -449,6 +541,7 @@ function App() {
     setMetaTag('property', 'og:image', OG_IMAGE)
     setMetaTag('property', 'og:image:alt', `${BRAND_NAME} portfolio preview`)
     setMetaTag('property', 'og:locale', 'en_US')
+    setMetaTag('property', 'og:locale:alternate', 'en_HK')
     setMetaTag('name', 'twitter:card', 'summary_large_image')
     setMetaTag('name', 'twitter:title', activeMeta.title)
     setMetaTag('name', 'twitter:url', SITE_URL)
@@ -467,7 +560,11 @@ function App() {
       <header className="hero" id="top">
         <div className="hero-top reveal" style={{ '--delay': '60ms' }}>
           <div>
-            <h1>{PRIMARY_NAME} | Hans</h1>
+            <h1>
+              <a href={SITE_URL} className="hero-brand-link" aria-label="Home">
+                {PRIMARY_NAME} | Hans
+              </a>
+            </h1>
             <p className="hero-role">
               AI Infrastructure / C++ Developer
             </p>
@@ -753,6 +850,9 @@ function App() {
               <h4>Contact</h4>
               <ul>
                 <li>
+                  <a href={SITE_URL}>Website</a>
+                </li>
+                <li>
                   <a className="footer-email" href="mailto:ho.chak@northeastern.edu">
                     ho.chak@northeastern.edu
                   </a>
@@ -785,7 +885,12 @@ function App() {
         </div>
         <div className="footer-meta">
           <span>Built for speed, clarity, and auditability.</span>
-          <span>© {new Date().getFullYear()} {BRAND_NAME}</span>
+          <span>
+            © {new Date().getFullYear()}{' '}
+            <a href={SITE_URL} className="footer-site-link">
+              {BRAND_NAME}
+            </a>
+          </span>
         </div>
       </footer>
     </div>

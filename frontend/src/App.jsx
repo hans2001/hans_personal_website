@@ -5,8 +5,8 @@ const SITE_URL = 'https://hans-ho.vercel.app'
 const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME} | Hans`
-const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & C++ developer`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME} or Hans) builds AI infrastructure and latency-first C++ systems for markets and AI teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
+const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & C++ / quant dev`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME} or Hans) builds AI infrastructure and latency-first C++ systems for markets and quant dev teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
 const OG_IMAGE = `${SITE_URL}/og.png`
 
 const sectionMeta = {
@@ -66,10 +66,11 @@ const schemaData = {
       disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'AI infrastructure and C++ developer',
+      jobTitle: 'AI infrastructure and C++ / quant developer',
       knowsAbout: [
         'Low-latency C++',
         'Market data infrastructure',
+        'AI infrastructure',
         'Deterministic systems',
         'Latency budgeting',
         'Observability'
@@ -109,7 +110,7 @@ const schemaData = {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: `${BRAND_NAME} | AI infrastructure & C++ developer`,
+      name: `${BRAND_NAME} | AI infrastructure & C++ / quant dev`,
       description: BASE_DESCRIPTION,
       primaryImageOfPage: {
         '@type': 'ImageObject',

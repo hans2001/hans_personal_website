@@ -1,5 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import vitePrerender from 'vite-plugin-prerender'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -24,6 +30,13 @@ export default defineConfig({
           source: xml
         })
       }
-    }
+    },
+    vitePrerender({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: ['/'],
+      renderer: new vitePrerender.PuppeteerRenderer({
+        renderAfterDocumentEvent: 'prerender-ready'
+      })
+    })
   ],
 })

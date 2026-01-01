@@ -2,9 +2,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
 
 const SITE_URL = 'https://hans-ho.vercel.app'
-const BASE_TITLE = 'Ho Chak Sing | Hans | Quant C++ & low-latency systems engineer'
-const BASE_DESCRIPTION =
-  'Ho Chak Sing | Hans is a C++ and low-latency systems engineer. Portfolio featuring market data infrastructure, deterministic execution, and performance-critical projects for Hong Kong and US teams.'
+const PRIMARY_NAME = 'Chak Sing Ho'
+const ALT_NAME = 'Ho Chak Sing'
+const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME} | Hans`
+const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & C++ developer`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME} or Hans) builds AI infrastructure and latency-first C++ systems for markets and AI teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
 const OG_IMAGE = `${SITE_URL}/og.png`
 
 const sectionMeta = {
@@ -13,38 +15,38 @@ const sectionMeta = {
     description: BASE_DESCRIPTION
   },
   about: {
-    title: 'About | Ho Chak Sing | Hans',
+    title: `About | ${BRAND_NAME}`,
     description:
-      'About Ho Chak Sing | Hans: C++ systems engineer working on market data, deterministic execution, and latency-critical infrastructure.'
+      'Background across fintech, telecom, and research labs, with a focus on end-to-end data paths and operational clarity.'
   },
   services: {
-    title: 'Services | Ho Chak Sing | Hans',
+    title: `Services | ${BRAND_NAME}`,
     description:
-      'Services in low-latency C++ engineering, market data pipelines, observability, and systems infrastructure.'
+      'Services across ingestion pipelines, low-latency C++ backends, retrieval infrastructure, and production hardening.'
   },
   performance: {
-    title: 'How I Work | Ho Chak Sing | Hans',
-    description: 'Systems approach to market ingestion, latency budgeting, and audit-ready replay tooling.'
+    title: `How I Work | ${BRAND_NAME}`,
+    description: 'How I work: map critical paths, control bursts, and verify outcomes with replayable evidence.'
   },
   experience: {
-    title: 'Experience | Ho Chak Sing | Hans',
-    description: 'Experience building production market data, AI infrastructure, and performance-first systems.'
+    title: `Experience | ${BRAND_NAME}`,
+    description: 'Timeline of internships and leadership with measurable impact across fintech, AI, and research.'
   },
   projects: {
-    title: 'Projects | Ho Chak Sing | Hans',
-    description: 'Selected projects in C++20, concurrency, deterministic execution, and low-latency infrastructure.'
+    title: `Projects | ${BRAND_NAME}`,
+    description: 'Selected C++ systems, concurrency, and data-platform projects with open-source repos.'
   },
   skills: {
-    title: 'Skills | Ho Chak Sing | Hans',
-    description: 'Core skills across C++20, Python, data infrastructure, and low-latency systems engineering.'
+    title: `Skills | ${BRAND_NAME}`,
+    description: 'Skills across systems programming, data infrastructure, and platform tooling; organized by track.'
   },
   education: {
-    title: 'Education | Ho Chak Sing | Hans',
-    description: 'Education in computer science and electronic engineering with a focus on systems and performance.'
+    title: `Education | ${BRAND_NAME}`,
+    description: 'Education in computer science and electronic engineering across Hong Kong and the US.'
   },
   contact: {
-    title: 'Contact | Ho Chak Sing | Hans',
-    description: 'Contact Ho Chak Sing | Hans for C++ systems, market infrastructure, and low-latency roles.'
+    title: `Contact | ${BRAND_NAME}`,
+    description: `Contact ${PRIMARY_NAME} (${ALT_NAME} | Hans) for low-latency backend and data infrastructure roles.`
   }
 }
 
@@ -56,11 +58,15 @@ const schemaData = {
     {
       '@type': ['Person', 'Organization'],
       '@id': `${SITE_URL}/#person`,
-      name: 'Ho Chak Sing | Hans',
-      alternateName: 'Ho Chak Sing | Hans',
+      name: PRIMARY_NAME,
+      alternateName: [ALT_NAME, 'Hans Ho', 'Hans'],
+      givenName: 'Chak Sing',
+      familyName: 'Ho',
+      additionalName: 'Hans',
+      disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'Quant C++ and low-latency systems engineer',
+      jobTitle: 'AI infrastructure and C++ developer',
       knowsAbout: [
         'Low-latency C++',
         'Market data infrastructure',
@@ -93,7 +99,7 @@ const schemaData = {
       '@type': 'WebSite',
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: 'Ho Chak Sing | Hans',
+      name: BRAND_NAME,
       publisher: {
         '@id': `${SITE_URL}/#person`
       },
@@ -103,7 +109,7 @@ const schemaData = {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: 'Ho Chak Sing | Hans | Quant C++ and low-latency systems engineer',
+      name: `${BRAND_NAME} | AI infrastructure & C++ developer`,
       description: BASE_DESCRIPTION,
       primaryImageOfPage: {
         '@type': 'ImageObject',
@@ -149,30 +155,23 @@ const setJsonLd = (data) => {
   script.textContent = JSON.stringify(data)
 }
 
-const heroMetrics = [
-  { value: '<10ms', label: 'P99 read latency on market data backend' },
-  { value: '100k+', label: 'Peak ingest rate (events/sec)' },
-  { value: '+60%', label: 'Stability improvement during bursty feeds' },
-  { value: '5x', label: 'Faster semantic lookup latency (RAG)' }
-]
-
 const performanceStory = [
   {
-    title: 'Market Ingestion',
-    tag: 'Burst-safe',
+    title: 'Map the critical path',
+    tag: 'Define',
     description:
-      'When data volume spikes, I keep systems stable with rate limits, safe retries, and clean reprocessing.'
+      'Start with data contracts and latency budgets so the team knows what must be fast and what can be async.'
   },
   {
-    title: 'Latency Budgeting',
-    tag: 'P99-first',
+    title: 'Control the burst',
+    tag: 'Stabilize',
     description:
-      'I protect user experience by keeping queues bounded, using cache-first paths, and exposing bottlenecks early.'
+      'Use backpressure, retries, and partitioning to keep ingestion predictable when volume spikes.'
   },
   {
-    title: 'Audit + Replay',
-    tag: 'Compliance-ready',
-    description: 'I build replay harnesses and structured tracing so teams can explain incidents and prove the SLA.'
+    title: 'Prove the outcome',
+    tag: 'Verify',
+    description: 'Instrument and replay to explain incidents and defend performance claims with evidence.'
   }
 ]
 
@@ -359,7 +358,7 @@ const skillSets = {
       {
         title: 'Focus',
         items: [
-          'I focus on low-latency C++ systems for financial applications, with an emphasis on concurrency safety and production performance.'
+          'This track reflects my interest in correctness under concurrency and predictable performance in high-stakes systems.'
         ]
       }
     ]
@@ -392,6 +391,7 @@ function App() {
   const [skillsMinHeight, setSkillsMinHeight] = useState(0)
   const [activeSection, setActiveSection] = useState('top')
   const skillPanelRefs = useRef({})
+  const prerenderDispatched = useRef(false)
 
   useLayoutEffect(() => {
     const heights = skillTracks.map((track) => {
@@ -437,24 +437,28 @@ function App() {
   useEffect(() => {
     document.title = activeMeta.title
     setMetaTag('name', 'description', activeMeta.description)
-    setMetaTag('name', 'author', 'Ho Chak Sing | Hans')
+    setMetaTag('name', 'author', BRAND_NAME)
     setMetaTag('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1')
     setLinkTag('canonical', SITE_URL)
     setMetaTag('property', 'og:title', activeMeta.title)
-    setMetaTag('property', 'og:site_name', 'Ho Chak Sing | Hans')
+    setMetaTag('property', 'og:site_name', BRAND_NAME)
     setMetaTag('property', 'og:url', SITE_URL)
     setMetaTag('property', 'og:description', activeMeta.description)
     setMetaTag('property', 'og:type', 'website')
     setMetaTag('property', 'og:image', OG_IMAGE)
-    setMetaTag('property', 'og:image:alt', 'Ho Chak Sing | Hans portfolio preview')
+    setMetaTag('property', 'og:image:alt', `${BRAND_NAME} portfolio preview`)
     setMetaTag('property', 'og:locale', 'en_US')
     setMetaTag('name', 'twitter:card', 'summary_large_image')
     setMetaTag('name', 'twitter:title', activeMeta.title)
     setMetaTag('name', 'twitter:url', SITE_URL)
     setMetaTag('name', 'twitter:description', activeMeta.description)
     setMetaTag('name', 'twitter:image', OG_IMAGE)
-    setMetaTag('name', 'twitter:image:alt', 'Ho Chak Sing | Hans portfolio preview')
+    setMetaTag('name', 'twitter:image:alt', `${BRAND_NAME} portfolio preview`)
     setJsonLd(schemaData)
+    if (!prerenderDispatched.current) {
+      prerenderDispatched.current = true
+      document.dispatchEvent(new Event('prerender-ready'))
+    }
   }, [activeMeta])
 
   return (
@@ -462,9 +466,9 @@ function App() {
       <header className="hero" id="top">
         <div className="hero-top reveal" style={{ '--delay': '60ms' }}>
           <div>
-            <h1>Ho Chak Sing | Hans</h1>
+            <h1>{PRIMARY_NAME} | Hans</h1>
             <p className="hero-role">
-              Low-latency backend engineer for market data and AI infrastructure
+              AI Infrastructure / C++ Developer
             </p>
           </div>
         </div>
@@ -472,50 +476,73 @@ function App() {
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              Computer science student focused on low-latency C++ systems and AI infrastructure, with hands-on
-              experience in market data, distributed services, and production observability.{' '}
-              <strong>Tight latency budgets, deterministic performance, and pragmatic reliability</strong> guide how
-              I build. Seeking C++ developer roles in market infrastructure or AI infrastructure for
-              performance-critical systems.
+              I am happiest close to the systems layer: profiling, trimming latency, and making data paths readable.
+              I like owning the full lifecycle so I can explain performance and make failures debuggable. That mindset
+              is why I keep shipping AI infrastructure and C++ systems that teams can trust.
             </p>
             <div className="hero-meta">
-              <span>Looking for AI infrastructure roles and C++ quant dev roles</span>
-              <span className="hero-meta-highlight">Open to Hong Kong &amp; US roles</span>
+              <span>Seeking AI infrastructure, C++ dev, or quant dev roles</span>
+              <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
           </div>
           <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
-            <img src="/hans.jpeg" alt="Ho Chak Sing | Hans portrait" loading="eager" decoding="async" />
+            <img
+              src="/hans.jpeg"
+              alt={`${PRIMARY_NAME} (${ALT_NAME} | Hans) portrait`}
+              loading="eager"
+              decoding="async"
+            />
           </div>
-        </div>
-
-        <div className="hero-metrics reveal" style={{ '--delay': '280ms' }}>
-          {heroMetrics.map((stat) => (
-            <div className="hero-metric" key={stat.label}>
-              <div className="hero-metric-value">{stat.value}</div>
-              <div className="hero-metric-label">{stat.label}</div>
-            </div>
-          ))}
         </div>
 
       </header>
 
       <main className="main">
+        <section className="section" id="about">
+          <div className="section-heading">
+            <h2>About</h2>
+          </div>
+          <div className="card about-card">
+            <div className="about-grid">
+              <div className="about-copy">
+                <p>
+                  A professional developer with a strong theoretical foundation and extensive hands-on experience who
+                  has shipped systems in fintech, telecom, and research labs across Hong Kong and the US, thriving in
+                  both startups and large corporations.
+                </p>
+                <p>
+                  Focused on AI infrastructure (retrieval, evaluation, production hardening) and latency-first C++
+                  backends for market-facing systems, with measurable SLOs and operational clarity.
+                </p>
+              </div>
+              <div className="about-side">
+                <h3>Track record</h3>
+                <ul>
+                  <li>Achieved &lt;10ms P99 reads at 100k+ events/sec for analytics workloads.</li>
+                  <li>Secured HKD 250k in education funding for a GenAI learning platform.</li>
+                  <li>Built a market intelligence SaaS that supported HKD 1M in startup funding.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="services">
           <div className="section-heading">
             <h2>Services</h2>
           </div>
           <div className="card">
             <p>
-              I build SaaS, mobile, and web applications alongside performance-critical systems, with a focus on
-              low-latency C++ services, market data pipelines, and AI infrastructure reliability.
+              I help teams turn high-volume data and model outputs into reliable products, from core backends to the
+              tooling that keeps them maintainable.
             </p>
             <ul>
-              <li>SaaS, mobile, and web application development</li>
-              <li>Low-latency C++ backend engineering and optimization</li>
-              <li>Market data ingestion, normalization, and distribution</li>
-              <li>Distributed systems reliability, profiling, and performance tuning</li>
-              <li>Observability, tracing, and audit-ready telemetry</li>
-              <li>AI infrastructure foundations and evaluation pipelines</li>
+              <li>Market data ingestion, normalization, and distribution pipelines</li>
+              <li>Low-latency C++ services and concurrency tuning</li>
+              <li>Retrieval infrastructure (pgvector, vector search, ranking)</li>
+              <li>AI platform tooling and evaluation workflows</li>
+              <li>Internal dashboards, automation, and developer experience</li>
+              <li>Capacity planning and performance diagnostics</li>
             </ul>
           </div>
         </section>
@@ -757,7 +784,7 @@ function App() {
         </div>
         <div className="footer-meta">
           <span>Built for speed, clarity, and auditability.</span>
-          <span>© {new Date().getFullYear()} Ho Chak Sing | Hans</span>
+          <span>© {new Date().getFullYear()} {BRAND_NAME}</span>
         </div>
       </footer>
     </div>

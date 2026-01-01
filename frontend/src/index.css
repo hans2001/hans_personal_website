@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -10,18 +10,18 @@
   --ink: #111827;
   --ink-soft: #1f2937;
   --muted: #6b7280;
-  --paper: #f8f6f1;
+  --paper: #ffffff;
   --panel: #ffffff;
-  --line: rgba(17, 24, 39, 0.12);
-  --accent: #d97706;
-  --accent-2: #0f766e;
-  --accent-soft: rgba(217, 119, 6, 0.08);
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'JetBrains Mono', monospace;
-  --font-mono: 'JetBrains Mono', monospace;
+  --line: #e5e7eb;
+  --accent: #111827;
+  --accent-2: #374151;
+  --accent-soft: #f3f4f6;
+  --font-display: 'IBM Plex Sans', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
   font-family: var(--font-body);
-  line-height: 1.55;
+  line-height: 1.45;
   font-weight: 400;
   color: var(--ink);
   background-color: var(--paper);
@@ -58,9 +58,11 @@ h6 {
 
 p {
   color: var(--ink-soft);
+  font-size: 0.92rem;
 }
 
 li,
 small {
   color: var(--ink-soft);
+  font-size: 0.9rem;
 }

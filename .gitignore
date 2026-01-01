@@ -55,6 +55,11 @@ out/
 !example_face.jpg
 # Allow generated face images for deployment
 !frontend/public/faces/*.webp
+# Allow static site assets
+!frontend/public/*.jpg
+!frontend/public/*.jpeg
+!frontend/public/*.png
+!frontend/public/*.webp
 
 # API keys and secrets
 .env.local

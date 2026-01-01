@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
 
-const SITE_URL = 'https://hansho.dev'
-const BASE_TITLE = 'Chak Sing Ho (Hans Ho) | Quant C++ & low-latency systems engineer'
+const SITE_URL = 'https://hans-ho.vercel.app'
+const BASE_TITLE = 'Ho Chak Sing | Hans | Quant C++ & low-latency systems engineer'
 const BASE_DESCRIPTION =
-  'Chak Sing Ho (Hans Ho) is a C++ and low-latency systems engineer. Portfolio featuring market data infrastructure, deterministic execution, and performance-critical projects for Hong Kong and US teams.'
+  'Ho Chak Sing | Hans is a C++ and low-latency systems engineer. Portfolio featuring market data infrastructure, deterministic execution, and performance-critical projects for Hong Kong and US teams.'
 const OG_IMAGE = `${SITE_URL}/og.png`
 
 const sectionMeta = {
@@ -13,38 +13,38 @@ const sectionMeta = {
     description: BASE_DESCRIPTION
   },
   about: {
-    title: 'About | Hans Ho',
+    title: 'About | Ho Chak Sing | Hans',
     description:
-      'About Hans Ho: C++ systems engineer working on market data, deterministic execution, and latency-critical infrastructure.'
+      'About Ho Chak Sing | Hans: C++ systems engineer working on market data, deterministic execution, and latency-critical infrastructure.'
   },
   services: {
-    title: 'Services | Hans Ho',
+    title: 'Services | Ho Chak Sing | Hans',
     description:
       'Services in low-latency C++ engineering, market data pipelines, observability, and systems infrastructure.'
   },
   performance: {
-    title: 'How I Work | Hans Ho',
+    title: 'How I Work | Ho Chak Sing | Hans',
     description: 'Systems approach to market ingestion, latency budgeting, and audit-ready replay tooling.'
   },
   experience: {
-    title: 'Experience | Hans Ho',
+    title: 'Experience | Ho Chak Sing | Hans',
     description: 'Experience building production market data, AI infrastructure, and performance-first systems.'
   },
   projects: {
-    title: 'Projects | Hans Ho',
+    title: 'Projects | Ho Chak Sing | Hans',
     description: 'Selected projects in C++20, concurrency, deterministic execution, and low-latency infrastructure.'
   },
   skills: {
-    title: 'Skills | Hans Ho',
+    title: 'Skills | Ho Chak Sing | Hans',
     description: 'Core skills across C++20, Python, data infrastructure, and low-latency systems engineering.'
   },
   education: {
-    title: 'Education | Hans Ho',
+    title: 'Education | Ho Chak Sing | Hans',
     description: 'Education in computer science and electronic engineering with a focus on systems and performance.'
   },
   contact: {
-    title: 'Contact | Hans Ho',
-    description: 'Contact Hans Ho for C++ systems, market infrastructure, and low-latency roles.'
+    title: 'Contact | Ho Chak Sing | Hans',
+    description: 'Contact Ho Chak Sing | Hans for C++ systems, market infrastructure, and low-latency roles.'
   }
 }
 
@@ -56,8 +56,8 @@ const schemaData = {
     {
       '@type': ['Person', 'Organization'],
       '@id': `${SITE_URL}/#person`,
-      name: 'Chak Sing Ho',
-      alternateName: 'Hans Ho',
+      name: 'Ho Chak Sing | Hans',
+      alternateName: 'Ho Chak Sing | Hans',
       url: SITE_URL,
       image: OG_IMAGE,
       jobTitle: 'Quant C++ and low-latency systems engineer',
@@ -72,7 +72,7 @@ const schemaData = {
       sameAs: [
         'https://github.com/hans2001',
         'https://linkedin.com/in/chaksingho/',
-        'https://leetcode.com/u/justnotarandomkid/'
+        'https://instagram.com/chaksingho'
       ],
       contactPoint: [
         {
@@ -93,7 +93,7 @@ const schemaData = {
       '@type': 'WebSite',
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: 'Chak Sing Ho',
+      name: 'Ho Chak Sing | Hans',
       publisher: {
         '@id': `${SITE_URL}/#person`
       },
@@ -103,7 +103,7 @@ const schemaData = {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: 'Chak Sing Ho | Quant C++ and low-latency systems engineer',
+      name: 'Ho Chak Sing | Hans | Quant C++ and low-latency systems engineer',
       description: BASE_DESCRIPTION,
       primaryImageOfPage: {
         '@type': 'ImageObject',
@@ -184,8 +184,9 @@ const experiences = [
     location: 'San Jose, CA (Remote)',
     dates: 'Sep 2025 - Present',
     bullets: [
-      'Impact: Delivered <10ms P99 reads at 100k+ events/sec using FastAPI, PostgreSQL, Redis.',
-      'Impact: Built deterministic retries + backpressure, improving burst stability by 60%.'
+      'Building a low-latency read path for high-rate event analytics using FastAPI, PostgreSQL, and Redis.',
+      'Achieved <10ms P99 reads at 100k+ events/sec.',
+      'Improved burst stability by 60% with deterministic retries and backpressure.'
     ]
   },
   {
@@ -195,19 +196,24 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
     bullets: [
-      'Impact: Built a multi-provider GenAI platform adopted by 20+ internal teams.',
-      'Impact: Shipped a production RAG service cutting semantic lookup latency by 5x.'
+      'Built an internal GenAI platform by customizing LibreChat/Open WebUI and deploying OpenAI, Gemini, and Llama3 on-prem (Ollama).',
+      'Improved Q&A accuracy by 30% with Assistants API and context-aware responses.',
+      'Enabled compliance-safe usage via LangChain + Azure LLM integration and RAG document workflows.',
+      'Automated Docker installs and VPN-tunneled container networking to unblock regional API access.',
+      'Revamped Tap&Go rewards search and cut cell diagram generation time by 90% with a Python automation pipeline.'
     ]
   },
   {
-    role: 'Senior Developer Intern, Computational Chemistry Lab',
-    org: 'HKUST',
+    role: 'Tech Lead, Theoretical & Computational Chemistry Lab',
+    org: 'Hong Kong University of Science and Technology',
     orgUrl: 'https://hkust.edu.hk',
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
     bullets: [
-      'Impact: Built a GenAI learning platform that secured HKD 250k in education funding.',
-      'Impact: Engineered a multi-modal AI chat system with realtime streaming.'
+      'Led a GenAI learning platform and immersive 3D classroom for the lab.',
+      'Secured HKD 250k in education funding for the platform.',
+      'Delivered WebXR interactions for Meta Quest 3 and a multimodal chat interface (Whisper + SSE).',
+      'Deployed real-time avatar networking with Colyseus, supporting 100+ concurrent users.'
     ]
   },
   {
@@ -217,8 +223,10 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Oct 2023 - Jan 2024',
     bullets: [
-      'Impact: Built a realtime Bloomberg usage dashboard, flagging 15+ anomalies.',
-      'Impact: Implemented a derivatives valuation engine to meet SFC requirements.'
+      'Built internal tools for Bloomberg B-PIPE usage monitoring and derivatives valuation.',
+      'Flagged 15+ anomalous spend patterns across 7 departments with a real-time dashboard.',
+      'Processed 100k+ Oracle invoice records via Knex-powered REST endpoints.',
+      'Delivered a valuation SaaS to meet SFC requirements and accelerated reporting with typed UI + high-volume Excel export.'
     ]
   },
   {
@@ -228,8 +236,12 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Jun 2022 - Oct 2023',
     bullets: [
-      'Impact: Built a realtime market intelligence platform that secured HKD 1M seed funding.',
-      'Impact: Engineered Kafka-streamed pipelines for 5M+ tenant-filtered events.'
+      'Architected a market intelligence SaaS from scratch for a fintech startup.',
+      'Led 10+ product iterations and supported HKD 1M funding.',
+      'Processed 5M+ news records with React Window + GraphQL, reducing memory via chunking.',
+      'Achieved 2x faster retrieval after MongoDB schema redesign and native driver migration.',
+      'Cut API overhead by 40% with a typed GraphQL API and caching.',
+      'Shipped AWS infra (EC2, S3/CloudFront, Nginx, PM2, SSL, load balancing) for UAT/prod.'
     ]
   },
   {
@@ -239,8 +251,10 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Dec 2021 - Jan 2022',
     bullets: [
-      'Impact: Rolled out a React Native photo upload feature, boosting UGC by 20%.',
-      'Impact: Built an image processing pipeline, cutting latency by 300ms.'
+      'Built mobile and desktop tools for transit operations using React Native and Electron.',
+      'Boosted UGC by 20% with an iOS/Android photo upload feature on Azure Functions.',
+      'Cut image latency by 300ms and storage by ~40% with compression and Storj (S3 API).',
+      'Automated attendance reporting with signed-URL upload APIs and a Windows RollCall app.'
     ]
   }
 ]
@@ -292,7 +306,19 @@ const skillSets = {
       },
       {
         title: 'Languages & Tools',
-        items: ['TypeScript/JavaScript', 'Java', 'C', 'MATLAB', 'Spark', 'GCP', 'Azure', 'Firebase', 'YAML', 'GoDaddy']
+        items: [
+          'TypeScript',
+          'JavaScript',
+          'Java',
+          'C',
+          'MATLAB',
+          'Spark',
+          'GCP',
+          'Azure',
+          'Firebase',
+          'YAML',
+          'GoDaddy'
+        ]
       }
     ]
   },
@@ -411,23 +437,23 @@ function App() {
   useEffect(() => {
     document.title = activeMeta.title
     setMetaTag('name', 'description', activeMeta.description)
-    setMetaTag('name', 'author', 'Chak Sing Ho')
+    setMetaTag('name', 'author', 'Ho Chak Sing | Hans')
     setMetaTag('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1')
     setLinkTag('canonical', SITE_URL)
     setMetaTag('property', 'og:title', activeMeta.title)
-    setMetaTag('property', 'og:site_name', 'Chak Sing Ho')
+    setMetaTag('property', 'og:site_name', 'Ho Chak Sing | Hans')
     setMetaTag('property', 'og:url', SITE_URL)
     setMetaTag('property', 'og:description', activeMeta.description)
     setMetaTag('property', 'og:type', 'website')
     setMetaTag('property', 'og:image', OG_IMAGE)
-    setMetaTag('property', 'og:image:alt', 'Chak Sing Ho portfolio preview')
+    setMetaTag('property', 'og:image:alt', 'Ho Chak Sing | Hans portfolio preview')
     setMetaTag('property', 'og:locale', 'en_US')
     setMetaTag('name', 'twitter:card', 'summary_large_image')
     setMetaTag('name', 'twitter:title', activeMeta.title)
     setMetaTag('name', 'twitter:url', SITE_URL)
     setMetaTag('name', 'twitter:description', activeMeta.description)
     setMetaTag('name', 'twitter:image', OG_IMAGE)
-    setMetaTag('name', 'twitter:image:alt', 'Chak Sing Ho portfolio preview')
+    setMetaTag('name', 'twitter:image:alt', 'Ho Chak Sing | Hans portfolio preview')
     setJsonLd(schemaData)
   }, [activeMeta])
 
@@ -436,21 +462,10 @@ function App() {
       <header className="hero" id="top">
         <div className="hero-top reveal" style={{ '--delay': '60ms' }}>
           <div>
-            <h1>Hans Ho</h1>
+            <h1>Ho Chak Sing | Hans</h1>
             <p className="hero-role">
               Low-latency backend engineer for market data and AI infrastructure
             </p>
-          </div>
-          <div className="hero-actions">
-            <nav className="hero-nav" aria-label="On this page">
-              <a href="#services">Services</a>
-              <a href="#performance">How I work</a>
-              <a href="#experience">Experience</a>
-              <a href="#projects">Projects</a>
-              <a href="#skills">Skills</a>
-              <a href="#education">Education</a>
-              <a href="#contact">Contact</a>
-            </nav>
           </div>
         </div>
 
@@ -464,12 +479,12 @@ function App() {
               performance-critical systems.
             </p>
             <div className="hero-meta">
-              <span>Looking for C++ developer roles in market infra or AI infra</span>
-              <span className="hero-meta-highlight">Open to Hong Kong and US roles</span>
+              <span>Looking for AI infrastructure roles and C++ quant dev roles</span>
+              <span className="hero-meta-highlight">Open to Hong Kong &amp; US roles</span>
             </div>
           </div>
           <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
-            <img src="/hans.jpeg" alt="Hans Ho portrait" loading="eager" decoding="async" />
+            <img src="/hans.jpeg" alt="Ho Chak Sing | Hans portrait" loading="eager" decoding="async" />
           </div>
         </div>
 
@@ -705,16 +720,14 @@ function App() {
 
       <footer className="footer" id="contact">
         <div className="footer-content">
-          <div className="footer-brand">
-            <span className="footer-title">Hans Ho</span>
-            <p className="footer-tagline">Quant C++ and low-latency systems engineer</p>
-          </div>
           <div className="footer-grid">
             <div className="footer-block">
-              <h4>Distribution Channels</h4>
+              <h4>Contact</h4>
               <ul>
                 <li>
-                  <a href="mailto:ho.chak@northeastern.edu">Email</a>
+                  <a className="footer-email" href="mailto:ho.chak@northeastern.edu">
+                    ho.chak@northeastern.edu
+                  </a>
                 </li>
                 <li>
                   <a href="tel:+19735171462">Phone</a>
@@ -734,12 +747,8 @@ function App() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://leetcode.com/u/justnotarandomkid/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    LeetCode
+                  <a href="https://instagram.com/chaksingho" target="_blank" rel="noopener noreferrer">
+                    Instagram
                   </a>
                 </li>
               </ul>
@@ -748,7 +757,7 @@ function App() {
         </div>
         <div className="footer-meta">
           <span>Built for speed, clarity, and auditability.</span>
-          <span>© {new Date().getFullYear()} Hans Ho</span>
+          <span>© {new Date().getFullYear()} Ho Chak Sing | Hans</span>
         </div>
       </footer>
     </div>

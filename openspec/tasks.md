@@ -22,7 +22,7 @@
 
 ## Current implementation tasks (Vite track)
 - [x] Finance/quant compact UI refresh
-- [x] Portfolio content aligned to Hans Ho resumes
+- [x] Portfolio content aligned to Ho Chak Sing | Hans resume
 - [x] Project cards link to GitHub repositories
 - [x] Add resume PDF CTA (C++ + AI infra)
 - [x] Add baseline SEO metadata + JSON-LD

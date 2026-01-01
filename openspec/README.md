@@ -1,4 +1,4 @@
-# OpenSpec - Hans Ho Personal Site (Finance / Quant Focus)
+# OpenSpec - Ho Chak Sing | Hans Personal Site (Finance / Quant Focus)
 
 ## Overview
 Compact, finance-forward portfolio focused on low-latency backend systems, deterministic execution, and production reliability. The layout is intentionally minimal and dense for quick scanning by quant and infra teams.

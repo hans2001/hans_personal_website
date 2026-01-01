@@ -1,4 +1,4 @@
-# Deployment Guide for Yuki Cui's Portfolio
+# Deployment Guide for the Ho Chak Sing | Hans Portfolio
 
 This guide covers deploying your portfolio website to various platforms.
 
@@ -31,7 +31,7 @@ Vercel is the best choice for React/Vite projects. It offers:
    - **Output Directory**: `dist` (auto-detected)
    - Click "Deploy"
 
-3. **Done!** Your site will be live at `your-project.vercel.app`
+3. **Done!** Your site will be live at `https://hans-ho.vercel.app`
 
 ### Manual Deploy via CLI
 
@@ -108,8 +108,9 @@ If you need environment variables (e.g., API keys):
 
 ## 🎯 Best Practices
 
-1. **Custom Domain**: 
+1. **Custom Domain**:
    - Vercel: Project Settings → Domains → Add your domain
+   - Current production URL: `https://hans-ho.vercel.app`
    - Free SSL certificate automatically provided
 
 2. **Continuous Deployment**:
@@ -154,4 +155,3 @@ If you need environment variables (e.g., API keys):
 | Performance | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
 
 **Recommendation**: Use **Vercel** for the best experience!
-

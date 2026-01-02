@@ -31,6 +31,14 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "hans-ho.vercel.app" }],
+      "destination": "https://chaksingho.com/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

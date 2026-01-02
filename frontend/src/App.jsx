@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import './App.css'
 
-const SITE_URL = 'https://hans-ho.vercel.app'
+const SITE_URL = 'https://chaksingho.com'
 const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME} | Hans`

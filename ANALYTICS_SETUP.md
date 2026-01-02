@@ -47,7 +47,7 @@ gtag('config', 'YOUR_MEASUREMENT_ID'); // Replace with your ID
 
 ```html
 <!-- Plausible Analytics -->
-<script defer data-domain="hans-ho.vercel.app" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="chaksingho.com" src="https://plausible.io/js/script.js"></script>
 ```
 
 **Benefits of Plausible:**
@@ -83,5 +83,4 @@ For a portfolio site, **Plausible** is recommended because:
 - Good free tier for personal sites
 
 If you need detailed Google Search Console integration, use **Google Analytics 4**.
-
 

@@ -8,7 +8,7 @@ export default defineConfig({
       name: 'emit-sitemap',
       apply: 'build',
       generateBundle() {
-        const siteUrl = 'https://hans-ho.vercel.app'
+        const siteUrl = 'https://chaksingho.com'
         const lastmod = new Date().toISOString()
         const routes = ['/']
         const xmlEntries = routes

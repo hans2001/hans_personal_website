@@ -1,6 +1,6 @@
 Site: Ho Chak Sing | Hans - Low-latency backend & systems engineer
-URL: https://hans-ho.vercel.app/
-Preferred citation: "Ho Chak Sing | Hans, Low-latency backend & systems engineer, https://hans-ho.vercel.app/"
+URL: https://chaksingho.com/
+Preferred citation: "Ho Chak Sing | Hans, Low-latency backend & systems engineer, https://chaksingho.com/"
 Contact: ho.chak@northeastern.edu
 Name: Ho Chak Sing | Hans
 

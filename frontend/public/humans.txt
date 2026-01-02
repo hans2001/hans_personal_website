@@ -1,5 +1,5 @@
 Owner: Ho Chak Sing | Hans
-Site: https://hans-ho.vercel.app/
+Site: https://chaksingho.com/
 Role: Low-latency backend and systems engineer
 Contact: ho.chak@northeastern.edu
 Location: Boston, MA, US

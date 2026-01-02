@@ -27,7 +27,7 @@ Three main metrics:
 
 1. **Set up Google Search Console** (if not already done)
    - Go to [Google Search Console](https://search.google.com/search-console)
-   - Add your property: `https://hans-ho.vercel.app`
+   - Add your property: `https://chaksingho.com`
 
 2. **Check Core Web Vitals Report**
    - Navigate to: Experience → Core Web Vitals
@@ -38,7 +38,7 @@ Three main metrics:
 
 1. **Test your site**
    - Go to [PageSpeed Insights](https://pagespeed.web.dev/)
-   - Enter your URL: `https://hans-ho.vercel.app`
+   - Enter your URL: `https://chaksingho.com`
    - Click "Analyze"
 
 2. **Review results**
@@ -116,5 +116,4 @@ To check your current Core Web Vitals:
 - [Web Vitals Extension](https://chrome.google.com/webstore/detail/web-vitals/ahfhijdlegdabablpippeagghigmibma) - Real-time metrics in Chrome
 - [Web.dev Measure Tool](https://web.dev/measure/) - Comprehensive site analysis
 - [Vercel Analytics](https://vercel.com/docs/analytics) - Built-in performance monitoring
-
 

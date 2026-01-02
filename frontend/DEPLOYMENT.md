@@ -31,7 +31,7 @@ Vercel is the best choice for React/Vite projects. It offers:
    - **Output Directory**: `dist` (auto-detected)
    - Click "Deploy"
 
-3. **Done!** Your site will be live at `https://hans-ho.vercel.app`
+3. **Done!** Your site will be live at `https://chaksingho.com`
 
 ### Manual Deploy via CLI
 
@@ -110,7 +110,7 @@ If you need environment variables (e.g., API keys):
 
 1. **Custom Domain**:
    - Vercel: Project Settings → Domains → Add your domain
-   - Current production URL: `https://hans-ho.vercel.app`
+   - Current production URL: `https://chaksingho.com`
    - Free SSL certificate automatically provided
 
 2. **Continuous Deployment**:

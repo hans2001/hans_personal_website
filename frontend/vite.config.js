@@ -10,7 +10,7 @@ export default defineConfig({
       generateBundle() {
         const siteUrl = 'https://chaksingho.com'
         const lastmod = new Date().toISOString()
-        const routes = ['/']
+        const routes = ['/', '/hans-ho/']
         const xmlEntries = routes
           .map((route) => {
             const normalized = route === '/' ? `${siteUrl}/` : `${siteUrl}${route.startsWith('/') ? '' : '/'}${route}`

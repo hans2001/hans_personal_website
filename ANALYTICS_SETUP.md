@@ -84,3 +84,4 @@ For a portfolio site, **Plausible** is recommended because:
 
 If you need detailed Google Search Console integration, use **Google Analytics 4**.
 
+

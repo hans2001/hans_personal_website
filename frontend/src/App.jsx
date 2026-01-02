@@ -4,9 +4,10 @@ import './App.css'
 const SITE_URL = 'https://chaksingho.com'
 const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
-const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME} | Hans`
+const ALT_NAME_EN = 'Hans Ho'
+const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
 const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & C++ / quant dev`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME} or Hans) builds AI infrastructure and latency-first C++ systems for markets and quant dev teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds AI infrastructure and latency-first C++ systems for markets and quant dev teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
 const OG_IMAGE = `${SITE_URL}/og.png`
 
 const sectionMeta = {
@@ -46,7 +47,7 @@ const sectionMeta = {
   },
   contact: {
     title: `Contact | ${BRAND_NAME}`,
-    description: `Contact ${PRIMARY_NAME} (${ALT_NAME} | Hans) for low-latency backend and data infrastructure roles.`
+    description: `Contact ${PRIMARY_NAME} (${ALT_NAME_EN} | ${ALT_NAME} | Hans) for low-latency backend and data infrastructure roles.`
   }
 }
 

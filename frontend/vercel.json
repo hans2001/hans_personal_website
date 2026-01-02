@@ -41,6 +41,14 @@
   ],
   "rewrites": [
     {
+      "source": "/hans-ho",
+      "destination": "/hans-ho/index.html"
+    },
+    {
+      "source": "/hans-ho/",
+      "destination": "/hans-ho/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

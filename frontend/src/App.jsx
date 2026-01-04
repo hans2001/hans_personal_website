@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const SITE_URL = 'https://chaksingho.com'
@@ -25,10 +25,6 @@ const sectionMeta = {
     description:
       'Services across ingestion pipelines, low-latency C++ backends, retrieval infrastructure, and production hardening.'
   },
-  performance: {
-    title: `How I Work | ${BRAND_NAME}`,
-    description: 'How I work: map critical paths, control bursts, and verify outcomes with replayable evidence.'
-  },
   experience: {
     title: `Experience | ${BRAND_NAME}`,
     description: 'Timeline of internships and leadership with measurable impact across fintech, AI, and research.'
@@ -51,7 +47,7 @@ const sectionMeta = {
   }
 }
 
-const sectionIds = ['top', 'about', 'services', 'performance', 'experience', 'projects', 'skills', 'education', 'contact']
+const sectionIds = ['top', 'about', 'services', 'experience', 'projects', 'skills', 'education', 'contact']
 
 const projects = [
   {
@@ -371,26 +367,6 @@ const setJsonLd = (data) => {
   script.textContent = JSON.stringify(data)
 }
 
-const performanceStory = [
-  {
-    title: 'Map the critical path',
-    tag: 'Define',
-    description:
-      'Start with data contracts and latency budgets so the team knows what must be fast and what can be async.'
-  },
-  {
-    title: 'Control the burst',
-    tag: 'Stabilize',
-    description:
-      'Use backpressure, retries, and partitioning to keep ingestion predictable when volume spikes.'
-  },
-  {
-    title: 'Prove the outcome',
-    tag: 'Verify',
-    description: 'Instrument and replay to explain incidents and defend performance claims with evidence.'
-  }
-]
-
 const skillSets = {
   'AI Infrastructure': {
     core: [
@@ -478,21 +454,8 @@ const skillTracks = Object.keys(skillSets)
 
 function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
-  const [skillsMinHeight, setSkillsMinHeight] = useState(0)
   const [activeSection, setActiveSection] = useState('top')
-  const skillPanelRefs = useRef({})
   const prerenderDispatched = useRef(false)
-
-  useLayoutEffect(() => {
-    const heights = skillTracks.map((track) => {
-      const panel = skillPanelRefs.current[track]
-      return panel ? panel.getBoundingClientRect().height : 0
-    })
-    const maxHeight = Math.max(0, ...heights)
-    if (maxHeight && maxHeight !== skillsMinHeight) {
-      setSkillsMinHeight(maxHeight)
-    }
-  }, [activeTrack, skillsMinHeight])
 
   useEffect(() => {
     const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
@@ -646,21 +609,6 @@ function App() {
           </div>
         </section>
 
-        <section className="section performance" id="performance">
-          <div className="section-heading">
-            <h2>How I work</h2>
-          </div>
-          <div className="performance-grid">
-            {performanceStory.map((item, index) => (
-              <article className="performance-card reveal" style={{ '--delay': `${index * 90}ms` }} key={item.title}>
-                <span className="performance-tag">{item.tag}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="section" id="experience">
           <div className="section-heading">
             <h2>Experience</h2>
@@ -758,7 +706,7 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="skills-panels" style={skillsMinHeight ? { minHeight: `${skillsMinHeight}px` } : undefined}>
+          <div className="skills-panels">
             {skillTracks.map((track) => {
               const skills = skillSets[track]
               const isActive = track === activeTrack
@@ -766,9 +714,6 @@ function App() {
                 <div
                   key={track}
                   className={`skills-panel ${isActive ? 'is-active' : ''}`}
-                  ref={(node) => {
-                    skillPanelRefs.current[track] = node
-                  }}
                   role="tabpanel"
                   aria-hidden={!isActive}
                 >

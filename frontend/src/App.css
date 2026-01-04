@@ -360,19 +360,37 @@
   font-variant-numeric: tabular-nums;
 }
 
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.card-type {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: var(--accent-2);
+  border: 1px solid var(--line);
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+}
+
 .org-link {
   color: var(--ink);
   display: inline-flex;
   align-items: baseline;
   gap: 0.35rem;
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
 
 .org-link:hover {
-  color: var(--ink-soft);
-  text-decoration-style: solid;
+  color: var(--accent-2);
 }
 
 .org-link-hint {
@@ -380,7 +398,11 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-family: var(--font-mono);
-  opacity: 0.6;
+  color: var(--accent-2);
+  border: 1px solid var(--line);
+  padding: 0.05rem 0.25rem;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.08);
 }
 
 .card ul {
@@ -489,6 +511,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.35rem;
+}
+
+.project-toggle {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.experience-toggle {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .project-card {
@@ -729,6 +763,11 @@
   font-family: var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.education-coursework {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
 }
 
 

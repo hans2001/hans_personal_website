@@ -91,7 +91,33 @@ const projects = [
     impact: 'Reduced leakage and idle power while retaining data.',
     highlight: 'Power-gated SRAM simulated and validated in Cadence Virtuoso.',
     tags: ['TSMC 180nm', 'Power Gating', 'SRAM'],
+    repo: 'https://drive.google.com/file/d/1UUswsKy2AfpEP6Ja7mSuGMwmd4cjCP03/view?usp=sharing',
+    linkLabel: 'Project overview',
     schemaType: 'Project',
+    group: 'academic'
+  },
+  {
+    title: 'Airbnb Listings ETL + Market Insights',
+    context: 'HKUST · Data engineering',
+    description:
+      'Built an ETL pipeline over Inside Airbnb data to analyze pricing, amenities, and demand across 85 global regions.',
+    impact: 'Processed 6–8GB of listings into parquet for consistent, faster analysis.',
+    highlight: 'Spark ETL + PySpark SQL with sentiment and pricing model comparisons.',
+    tags: ['ETL', 'PySpark', 'Analytics'],
+    repo: 'https://drive.google.com/file/d/1afxda583McI0Wp_UDlM5nYFmIQSaUDbV/view?usp=sharing',
+    linkLabel: 'Read report',
+    group: 'academic'
+  },
+  {
+    title: 'SimCLR + Skin Lesion Classifier',
+    context: 'HKUST · Deep learning',
+    description:
+      'Applied contrastive pretraining and semi-supervised learning with a ResNet50 encoder on the ISIC skin lesion datasets.',
+    impact: 'Improved classification robustness over a supervised baseline on ISIC benchmarks.',
+    highlight: 'SimCLR pretraining + FixMatch-style pseudo-labeling with ResNet50.',
+    tags: ['Deep Learning', 'SimCLR', 'FixMatch'],
+    repo: 'https://drive.google.com/file/d/1pfVlWrskko6F7k7LXyLrlDSPqPVgoT6d/view?usp=sharing',
+    linkLabel: 'Read report',
     group: 'academic'
   },
   {
@@ -101,7 +127,9 @@ const projects = [
       'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
     impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
     highlight: 'CLI + Swing GUI with iCal/CSV export support.',
-    tags: ['Java', 'MVC', 'Swing'],
+    repo: 'https://github.com/hans2001/CS5010--MultiCalendarApp',
+    linkLabel: 'Project overview',
+    tags: ['Java', 'MVC', 'Design Patterns'],
     group: 'academic'
   }
 ]
@@ -112,11 +140,13 @@ const academicProjects = projects.filter((project) => project.group === 'academi
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
   {
-    role: 'Software Engineer Intern',
+    role: 'Software Engineer Intern (Volunteer)',
     org: 'Folio AI',
     orgUrl: 'https://gofolio.ai',
     location: 'San Jose, CA (Remote)',
-    dates: 'Sep 2025 - Present',
+    dates: 'Sep 2025 - Dec 2025',
+    employmentType: 'Part-time',
+    group: 'additional',
     bullets: [
       'Delivering a low-latency read path for high-rate event analytics using FastAPI, PostgreSQL, and Redis.',
       'Benchmarked and tuned read performance for predictable tail latency.',
@@ -129,6 +159,7 @@ const experiences = [
     orgUrl: 'https://www.hkt.com/?locale=en',
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
+    employmentType: 'Full-time',
     bullets: [
       'Operationalized an internal GenAI platform with multi-model routing across cloud and on-prem.',
       'Improved answer quality with structured prompting, evaluation loops, and context management.',
@@ -137,15 +168,17 @@ const experiences = [
     ]
   },
   {
-    role: 'Tech Lead, Theoretical & Computational Chemistry Lab',
+    role: 'Senior Developer Intern, Theoretical & Computational Chemistry Lab (Supervisor: Prof. Haibin Su)',
     org: 'Hong Kong University of Science and Technology',
     orgUrl: 'https://hkust.edu.hk',
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
+    employmentType: 'Part-time',
     bullets: [
-      'Led a GenAI learning platform and immersive 3D classroom for the lab.',
-      'Secured education funding for the platform.',
-      'Delivered WebXR interactions with a multimodal chat interface and avatar networking.'
+      'Built an AI-driven learning platform with Next.js, securing HKD 250k funding from HKUST Center for Education Innovation.',
+      'Designed a 3D virtual classroom with Babylon.js, Ammo.js, and Blender, enabling avatar control, spatial audio, and WebXR for Meta Quest 3.',
+      'Engineered a multimodal GenAI chat system with Whisper API, SSE streaming, and context-aware memory for voice + markdown output.',
+      'Developed real-time avatar networking with Colyseus on Fly.io, supporting 100+ concurrent users.'
     ]
   },
   {
@@ -154,6 +187,7 @@ const experiences = [
     orgUrl: 'https://cicc.zhiye.com/custom/index',
     location: 'Hong Kong',
     dates: 'Oct 2023 - Jan 2024',
+    employmentType: 'Part-time',
     bullets: [
       'Built internal tools for market data usage monitoring and derivatives valuation.',
       'Flagged anomalous spend patterns across departments with a real-time dashboard.',
@@ -166,8 +200,9 @@ const experiences = [
     orgUrl: 'https://midasanalytics.ai',
     location: 'Hong Kong',
     dates: 'Jun 2022 - Oct 2023',
+    employmentType: 'Full-time',
     bullets: [
-      'Owned a market intelligence SaaS from 0→1 for a fintech startup.',
+      'Founding engineer who built the market intelligence SaaS platform from scratch, securing HKD 1M+ in VC funding.',
       'Shipped production AWS infrastructure (EC2, S3/CloudFront, Nginx, PM2, SSL, load balancing).',
       'Improved retrieval latency via MongoDB schema redesign and native driver migration.',
       'Built high-volume browsing with React Window + GraphQL, reducing memory via chunking.',
@@ -175,10 +210,13 @@ const experiences = [
     ]
   },
   {
-    role: 'Senior Software Engineer, Web Team Lead (Part-time)',
-    org: 'USThing',
+    role: 'Senior Software Engineer, Web Team Lead',
+    org: 'USThing - HKUST',
+    orgUrl: 'https://usthing.xyz',
     location: 'Hong Kong SAR',
     dates: 'Sep 2021 - Sep 2023',
+    employmentType: 'Part-time',
+    group: 'additional',
     bullets: [
       'Led platform architecture across core services to improve maintainability and delivery cycles.',
       'Shipped feature roadmaps end-to-end, from technical design to production release.',
@@ -193,6 +231,7 @@ const experiences = [
     orgUrl: 'https://www.socif.co/?lang=en',
     location: 'Hong Kong',
     dates: 'Dec 2021 - Jan 2022',
+    employmentType: 'Full-time',
     bullets: [
       'Built mobile and desktop tools for transit operations using React Native and Electron.',
       'Boosted UGC with an iOS/Android photo upload feature on Azure Functions.',
@@ -208,7 +247,9 @@ const education = [
     degree: 'M.S. Computer Science',
     location: 'Boston, MA',
     dates: 'Sep 2025 - May 2027',
-    gpa: '4.0 CGPA'
+    gpa: '4.0 CGPA',
+    coursework:
+      'OS Kernel Implementation, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems'
   },
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
@@ -216,7 +257,9 @@ const education = [
     degree: 'B.Eng. Electronic Eng. (CS minor)',
     location: 'Hong Kong',
     dates: 'Sep 2020 - May 2024',
-    honor: 'Second Class Honors, Division I'
+    honor: 'Second Class Honors, Division I',
+    coursework:
+      'Algorithms & Data Structures, Computer Organization, Computer Communication Networks, Discrete Math, Probability & Random Processes, Linear Algebra, C++ & OOP'
   }
 ]
 
@@ -508,7 +551,64 @@ const skillTracks = Object.keys(skillSets)
 function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
   const [activeSection, setActiveSection] = useState('top')
+  const [showAllAcademic, setShowAllAcademic] = useState(false)
+  const [showAdditionalExperience, setShowAdditionalExperience] = useState(false)
+  const visibleAcademicProjects = showAllAcademic ? academicProjects : academicProjects.slice(0, 3)
+  const coreExperiences = experiences.filter((item) => item.group !== 'additional')
+  const additionalExperiences = experiences.filter((item) => item.group === 'additional')
   const prerenderDispatched = useRef(false)
+
+  const renderExperienceCard = (item) => {
+    const [primaryBullet, ...restBullets] = item.bullets
+    const extraDetails = item.details?.length ? item.details : []
+    const moreBullets = [...restBullets, ...extraDetails]
+
+    return (
+      <article className="card" key={`${item.org}-${item.role}`}>
+        <div className="card-header">
+          <div>
+            <h3>{item.role}</h3>
+            <p className="card-subtitle">
+              {item.orgUrl ? (
+                <a
+                  className="org-link"
+                  href={item.orgUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.org} website`}
+                  title={`Visit ${item.org}`}
+                >
+                  <span>{item.org}</span>
+                </a>
+              ) : (
+                item.org
+              )}{' '}
+              · {item.location}
+            </p>
+          </div>
+          <div className="card-meta">
+            <span className="card-date">{item.dates}</span>
+            {item.employmentType ? <span className="card-type">{item.employmentType}</span> : null}
+          </div>
+        </div>
+        {primaryBullet ? (
+          <ul>
+            <li>{primaryBullet}</li>
+          </ul>
+        ) : null}
+        {moreBullets.length ? (
+          <details className="experience-details">
+            <summary>More impact</summary>
+            <ul>
+              {moreBullets.map((detail) => (
+                <li key={detail}>{detail}</li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
+      </article>
+    )
+  }
 
   useEffect(() => {
     const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
@@ -650,56 +750,27 @@ function App() {
             <h2>Experience</h2>
           </div>
           <div className="card-stack">
-            {experiences.map((item) => {
-              const [primaryBullet, ...restBullets] = item.bullets
-              const extraDetails = item.details?.length ? item.details : []
-              const moreBullets = [...restBullets, ...extraDetails]
-
-              return (
-                <article className="card" key={`${item.org}-${item.role}`}>
-                  <div className="card-header">
-                    <div>
-                      <h3>{item.role}</h3>
-                      <p className="card-subtitle">
-                        {item.orgUrl ? (
-                          <a
-                            className="org-link"
-                            href={item.orgUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${item.org} website`}
-                            title={`Visit ${item.org}`}
-                          >
-                            <span>{item.org}</span>
-                            <span className="org-link-hint">site</span>
-                          </a>
-                        ) : (
-                          item.org
-                        )}{' '}
-                        · {item.location}
-                      </p>
-                    </div>
-                    <span className="card-date">{item.dates}</span>
-                  </div>
-                  {primaryBullet ? (
-                    <ul>
-                      <li>{primaryBullet}</li>
-                    </ul>
-                  ) : null}
-                  {moreBullets.length ? (
-                    <details className="experience-details">
-                      <summary>More impact</summary>
-                      <ul>
-                        {moreBullets.map((detail) => (
-                          <li key={detail}>{detail}</li>
-                        ))}
-                      </ul>
-                    </details>
-                  ) : null}
-                </article>
-              )
-            })}
+            {coreExperiences.map(renderExperienceCard)}
           </div>
+          {additionalExperiences.length ? (
+            <div className="experience-toggle">
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setShowAdditionalExperience((prev) => !prev)}
+              >
+                {showAdditionalExperience ? 'Show fewer' : 'Show more experience'}
+              </button>
+            </div>
+          ) : null}
+          {showAdditionalExperience ? (
+            <>
+              <p className="section-subhead">Additional experience</p>
+              <div className="card-stack">
+                {additionalExperiences.map(renderExperienceCard)}
+              </div>
+            </>
+          ) : null}
         </section>
 
         <section className="section" id="projects">
@@ -729,7 +800,7 @@ function App() {
                 <div className="project-footer">
                   {project.repo ? (
                     <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                      View code
+                      {project.linkLabel || 'View code'}
                     </a>
                   ) : (
                     <span className="project-link project-link-muted">Project overview</span>
@@ -752,7 +823,7 @@ function App() {
             <h2>Research &amp; academic</h2>
           </div>
           <div className="projects-grid">
-            {academicProjects.map((project) => (
+            {visibleAcademicProjects.map((project) => (
               <article className="project-card" key={project.title}>
                 <div className="project-content">
                   <h3>{project.title}</h3>
@@ -774,7 +845,7 @@ function App() {
                 <div className="project-footer">
                   {project.repo ? (
                     <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                      View code
+                      {project.linkLabel || 'View code'}
                     </a>
                   ) : (
                     <span className="project-link project-link-muted">Project overview</span>
@@ -790,6 +861,17 @@ function App() {
               </article>
             ))}
           </div>
+          {academicProjects.length > 3 ? (
+            <div className="project-toggle">
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setShowAllAcademic((prev) => !prev)}
+              >
+                {showAllAcademic ? 'Show fewer' : 'Show more'}
+              </button>
+            </div>
+          ) : null}
         </section>
 
         <section className="section" id="skills">
@@ -888,6 +970,7 @@ function App() {
                   {item.gpa ? ` · ${item.gpa}` : ''}
                   {item.honor ? ` · ${item.honor}` : ''}
                 </p>
+                {item.coursework ? <p className="education-coursework">{item.coursework}</p> : null}
                 <span className="education-date">{item.dates}</span>
               </div>
             ))}

@@ -7,7 +7,7 @@ const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
 const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & low-latency C++ systems`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds AI infrastructure and low-latency C++ systems for market data teams, with an interest in quant systems, focused on measurable SLOs, clean data paths, and production-ready reliability.`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds low-latency C++ systems and AI infrastructure for market data teams, focused on deterministic performance, clean data paths, and production reliability.`
 const OG_IMAGE = `${SITE_URL}/og.jpg`
 
 const sectionMeta = {
@@ -19,11 +19,6 @@ const sectionMeta = {
     title: `How I Work | ${BRAND_NAME}`,
     description:
       'Clear goals, simple metrics, and reliable handoffs.'
-  },
-  services: {
-    title: `Results | ${BRAND_NAME}`,
-    description:
-      'Selected outcomes across latency, funding, and delivery.'
   },
   experience: {
     title: `Experience | ${BRAND_NAME}`,
@@ -47,31 +42,72 @@ const sectionMeta = {
   }
 }
 
-const sectionIds = ['top', 'about', 'services', 'experience', 'projects', 'skills', 'education', 'contact']
+const sectionIds = [
+  'top',
+  'about',
+  'experience',
+  'projects',
+  'skills',
+  'education',
+  'contact'
+]
 
 const projects = [
   {
     title: 'Low-Latency Market Data Engine',
     description:
-      'Built an in-memory L2 order book with contention-aware sync, deterministic replay, and tail-latency benchmarks.',
+      'Designed an in-memory L2 order book with contention-aware synchronization, deterministic replay, and a tail-latency harness.',
+    impact: 'Enabled repeatable tail-latency regression checks for tuning and correctness.',
+    highlight: 'Deterministic replay paired with contention-aware synchronization across the L2 pipeline.',
     tags: ['C++20', 'Low Latency', 'Concurrency'],
-    repo: 'https://github.com/hans2001/low-latency-market-data-engine'
+    repo: 'https://github.com/hans2001/low-latency-market-data-engine',
+    group: 'featured'
   },
   {
     title: 'Work-Stealing Task Scheduler',
     description:
-      'Designed a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
+      'Built a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
+    impact: 'Documented throughput tradeoffs under a bounded worker pool.',
+    highlight: 'Work-stealing queues with explicit lifetimes and a fixed-size runtime.',
     tags: ['C++', 'Schedulers', 'Benchmarks'],
-    repo: 'https://github.com/hans2001/cpp-thread-pool'
+    repo: 'https://github.com/hans2001/cpp-thread-pool',
+    group: 'featured'
   },
   {
     title: 'Deterministic Agent Framework',
     description:
       'Extended Open Interpreter with deterministic execution, policy-based tool access, and replayable audits.',
+    impact: 'Added policy gates and auditability for tool-using agents.',
+    highlight: 'Deterministic execution harness with policy-based tool access.',
     tags: ['AI Infra', 'Determinism', 'Policy Engine'],
-    repo: 'https://github.com/hans2001'
+    repo: 'https://github.com/hans2001',
+    group: 'featured'
+  },
+  {
+    title: 'Low-Power SRAM (TSMC 180nm)',
+    context: 'HKUST · Oct 2023 - May 2024',
+    description:
+      'Designed a low-power SRAM using power gating, simulated in Cadence Virtuoso to reduce leakage and idle power while retaining data.',
+    impact: 'Reduced leakage and idle power while retaining data.',
+    highlight: 'Power-gated SRAM simulated and validated in Cadence Virtuoso.',
+    tags: ['TSMC 180nm', 'Power Gating', 'SRAM'],
+    schemaType: 'Project',
+    group: 'academic'
+  },
+  {
+    title: 'Multi-Calendar App (MVC + GUI)',
+    context: 'Northeastern · Software design',
+    description:
+      'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
+    impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
+    highlight: 'CLI + Swing GUI with iCal/CSV export support.',
+    tags: ['Java', 'MVC', 'Swing'],
+    group: 'academic'
   }
 ]
+
+const featuredProjects = projects.filter((project) => project.group !== 'academic')
+const academicProjects = projects.filter((project) => project.group === 'academic')
 
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
@@ -82,9 +118,9 @@ const experiences = [
     location: 'San Jose, CA (Remote)',
     dates: 'Sep 2025 - Present',
     bullets: [
-      'Building a low-latency read path for high-rate event analytics using FastAPI, PostgreSQL, and Redis.',
-      'Achieved <10ms P99 reads at 100k+ events/sec.',
-      'Improved burst stability by 60% with deterministic retries and backpressure.'
+      'Delivering a low-latency read path for high-rate event analytics using FastAPI, PostgreSQL, and Redis.',
+      'Benchmarked and tuned read performance for predictable tail latency.',
+      'Improved burst stability with deterministic retries and backpressure.'
     ]
   },
   {
@@ -94,11 +130,10 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
     bullets: [
-      'Built an internal GenAI platform by customizing LibreChat/Open WebUI and deploying OpenAI, Gemini, and Llama3 on-prem (Ollama).',
-      'Improved Q&A accuracy by 30% with Assistants API and context-aware responses.',
-      'Enabled compliance-safe usage via LangChain + Azure LLM integration and RAG document workflows.',
-      'Automated Docker installs and VPN-tunneled container networking to unblock regional API access.',
-      'Revamped Tap&Go rewards search and cut cell diagram generation time by 90% with a Python automation pipeline.'
+      'Operationalized an internal GenAI platform with multi-model routing across cloud and on-prem.',
+      'Improved answer quality with structured prompting, evaluation loops, and context management.',
+      'Enabled compliance-safe usage with RAG document workflows and policy controls.',
+      'Automated Docker installs and VPN-tunneled container networking to unblock regional API access.'
     ]
   },
   {
@@ -109,9 +144,8 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     bullets: [
       'Led a GenAI learning platform and immersive 3D classroom for the lab.',
-      'Secured HKD 250k in education funding for the platform.',
-      'Delivered WebXR interactions for Meta Quest 3 and a multimodal chat interface (Whisper + SSE).',
-      'Deployed real-time avatar networking with Colyseus, supporting 100+ concurrent users.'
+      'Secured education funding for the platform.',
+      'Delivered WebXR interactions with a multimodal chat interface and avatar networking.'
     ]
   },
   {
@@ -121,10 +155,9 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Oct 2023 - Jan 2024',
     bullets: [
-      'Built internal tools for Bloomberg B-PIPE usage monitoring and derivatives valuation.',
-      'Flagged 15+ anomalous spend patterns across 7 departments with a real-time dashboard.',
-      'Processed 100k+ Oracle invoice records via Knex-powered REST endpoints.',
-      'Delivered a valuation SaaS to meet SFC requirements and accelerated reporting with typed UI + high-volume Excel export.'
+      'Built internal tools for market data usage monitoring and derivatives valuation.',
+      'Flagged anomalous spend patterns across departments with a real-time dashboard.',
+      'Delivered a valuation SaaS to meet regulatory requirements with typed UI + Excel export.'
     ]
   },
   {
@@ -134,12 +167,24 @@ const experiences = [
     location: 'Hong Kong',
     dates: 'Jun 2022 - Oct 2023',
     bullets: [
-      'Architected a market intelligence SaaS from scratch for a fintech startup.',
-      'Led 10+ product iterations and supported HKD 1M funding.',
-      'Processed 5M+ news records with React Window + GraphQL, reducing memory via chunking.',
-      'Achieved 2x faster retrieval after MongoDB schema redesign and native driver migration.',
-      'Cut API overhead by 40% with a typed GraphQL API and caching.',
-      'Shipped AWS infra (EC2, S3/CloudFront, Nginx, PM2, SSL, load balancing) for UAT/prod.'
+      'Owned a market intelligence SaaS from 0→1 for a fintech startup.',
+      'Shipped production AWS infrastructure (EC2, S3/CloudFront, Nginx, PM2, SSL, load balancing).',
+      'Improved retrieval latency via MongoDB schema redesign and native driver migration.',
+      'Built high-volume browsing with React Window + GraphQL, reducing memory via chunking.',
+      'Reduced API overhead with a typed GraphQL API and caching.'
+    ]
+  },
+  {
+    role: 'Senior Software Engineer, Web Team Lead (Part-time)',
+    org: 'USThing',
+    location: 'Hong Kong SAR',
+    dates: 'Sep 2021 - Sep 2023',
+    bullets: [
+      'Led platform architecture across core services to improve maintainability and delivery cycles.',
+      'Shipped feature roadmaps end-to-end, from technical design to production release.',
+      'Owned code reviews to keep quality and consistency high across teams.',
+      'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.',
+      'Trained and onboarded engineers with technical docs and hands-on sessions.'
     ]
   },
   {
@@ -150,9 +195,8 @@ const experiences = [
     dates: 'Dec 2021 - Jan 2022',
     bullets: [
       'Built mobile and desktop tools for transit operations using React Native and Electron.',
-      'Boosted UGC by 20% with an iOS/Android photo upload feature on Azure Functions.',
-      'Cut image latency by 300ms and storage by ~40% with compression and Storj (S3 API).',
-      'Automated attendance reporting with signed-URL upload APIs and a Windows RollCall app.'
+      'Boosted UGC with an iOS/Android photo upload feature on Azure Functions.',
+      'Reduced image latency and storage with compression and S3-compatible object storage.'
     ]
   }
 ]
@@ -162,17 +206,17 @@ const education = [
     school: 'Northeastern University',
     url: 'https://www.northeastern.edu/',
     degree: 'M.S. Computer Science',
-    details: 'GPA 4.0',
     location: 'Boston, MA',
-    dates: 'Sep 2025 - May 2027'
+    dates: 'Sep 2025 - May 2027',
+    gpa: '4.0 CGPA'
   },
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
     url: 'https://hkust.edu.hk/',
     degree: 'B.Eng. Electronic Eng. (CS minor)',
-    details: 'Second Class Honors (Div. I)',
     location: 'Hong Kong',
-    dates: 'Sep 2020 - May 2024'
+    dates: 'Sep 2020 - May 2024',
+    honor: 'Second Class Honors, Division I'
   }
 ]
 
@@ -264,20 +308,29 @@ const schemaData = {
         }
       ]
     },
-    ...projects.map((project, index) => ({
-      '@type': 'SoftwareApplication',
-      '@id': `${SITE_URL}/#project-${index + 1}`,
-      name: project.title,
-      description: project.description,
-      url: project.repo,
-      applicationCategory: 'DeveloperApplication',
-      operatingSystem: 'Cross-platform',
-      programmingLanguage: project.tags.filter(tag => ['C++', 'C++20', 'Python', 'TypeScript', 'JavaScript'].includes(tag)),
-      keywords: project.tags.join(', '),
-      creator: {
-        '@id': `${SITE_URL}/#person`
+    ...projects.map((project, index) => {
+      const languages = project.tags.filter(tag => ['C++', 'C++20', 'Python', 'TypeScript', 'JavaScript'].includes(tag))
+      const schemaType = project.schemaType || 'SoftwareApplication'
+      const isSoftware = schemaType === 'SoftwareApplication'
+      return {
+        '@type': schemaType,
+        '@id': `${SITE_URL}/#project-${index + 1}`,
+        name: project.title,
+        description: project.description,
+        url: project.repo || undefined,
+        ...(isSoftware
+          ? {
+              applicationCategory: 'DeveloperApplication',
+              operatingSystem: 'Cross-platform',
+              programmingLanguage: languages
+            }
+          : {}),
+        keywords: project.tags.join(', '),
+        creator: {
+          '@id': `${SITE_URL}/#person`
+        }
       }
-    })),
+    }),
     ...experiences.map((exp, index) => ({
       '@type': 'OrganizationRole',
       '@id': `${SITE_URL}/#experience-${index + 1}`,
@@ -528,29 +581,28 @@ function App() {
               </a>
             </h1>
             <p className="hero-role">
-              AI Infrastructure / C++ — interested in quant systems & market data
+              AI infrastructure &amp; low-latency systems developer
             </p>
           </div>
         </div>
-
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              I build fast, reliable data systems. I turn vague asks into clear targets and make performance easy to
-              explain.
+              I build low-latency C++ systems and AI infrastructure for market data teams. I focus on deterministic
+              pipelines, latency budgets, and production tooling for trading workflows.
             </p>
             <div className="signal-grid">
               <div className="signal-card">
-                <span className="signal-label">Comms</span>
-                <span className="signal-value">Short RFCs, diagrams, clear handoffs.</span>
+                <span className="signal-label">Execution</span>
+                <span className="signal-value">Define scope, deliver milestones, and de-risk early.</span>
               </div>
               <div className="signal-card">
-                <span className="signal-label">Learning</span>
-                <span className="signal-value">Prototype fast, test, then harden.</span>
+                <span className="signal-label">Reliability</span>
+                <span className="signal-value">Benchmark, monitor, and harden for predictable performance.</span>
               </div>
               <div className="signal-card">
-                <span className="signal-label">Team</span>
-                <span className="signal-value">Share context, unblock early, pair often.</span>
+                <span className="signal-label">Collaboration</span>
+                <span className="signal-value">Share context, unblock early, and write it down.</span>
               </div>
             </div>
             <div className="hero-meta">
@@ -579,44 +631,15 @@ function App() {
             <div className="about-grid">
               <div className="about-copy">
                 <p>
-                  I start by agreeing on the goal and assumptions, then ship with simple benchmarks and logs we can
-                  trust.
+                  I build robust systems and sweat the details: profiling, refactoring, and hardening until the code is
+                  battle-survivable, scalable, and maintainable. Teammates call out strong product sense, system-level
+                  thinking, and good technical taste.
                 </p>
                 <ul>
-                  <li>Measure first, then tune.</li>
-                  <li>Ship small, learn fast.</li>
-                  <li>Leave a clear handoff.</li>
+                  <li>Profile early and fix root causes.</li>
+                  <li>Refactor for long-term maintainability.</li>
+                  <li>Ship clean handoffs and clear docs.</li>
                 </ul>
-              </div>
-              <div className="about-side">
-                <h3>Working rules</h3>
-                <ul>
-                  <li>Prefer predictable systems.</li>
-                  <li>Explain the why, not just the what.</li>
-                  <li>Write it down once.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="services">
-          <div className="section-heading">
-            <h2>Results</h2>
-          </div>
-          <div className="card">
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-value">P99 &lt; 10ms</div>
-                <div className="stat-label">Read path @ 100k+ events/sec</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-value">HKD 250k</div>
-                <div className="stat-label">GenAI platform funding</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-value">HKD 1M</div>
-                <div className="stat-label">Market intelligence SaaS backing</div>
               </div>
             </div>
           </div>
@@ -681,26 +704,88 @@ function App() {
 
         <section className="section" id="projects">
           <div className="section-heading">
-            <h2>Projects</h2>
+            <h2>Selected projects</h2>
           </div>
           <div className="projects-grid">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <article className="project-card" key={project.title}>
-                <div className="project-header">
-                  <div>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                  </div>
-                  <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                    GitHub Repo
-                  </a>
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  {project.context ? <p className="project-context">{project.context}</p> : null}
+                  <p>{project.description}</p>
+                  {project.impact ? (
+                    <p className="project-impact">
+                      <span className="project-label">Impact</span>
+                      {project.impact}
+                    </p>
+                  ) : null}
+                  {project.highlight ? (
+                    <p className="project-highlight">
+                      <span className="project-label">Highlight</span>
+                      {project.highlight}
+                    </p>
+                  ) : null}
                 </div>
-                <div className="tag-row">
-                  {project.tags.map((tag) => (
-                    <span className="tag-text" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
+                <div className="project-footer">
+                  {project.repo ? (
+                    <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+                      View code
+                    </a>
+                  ) : (
+                    <span className="project-link project-link-muted">Project overview</span>
+                  )}
+                  <div className="tag-row">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span className="tag-text" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-heading">
+            <h2>Research &amp; academic</h2>
+          </div>
+          <div className="projects-grid">
+            {academicProjects.map((project) => (
+              <article className="project-card" key={project.title}>
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  {project.context ? <p className="project-context">{project.context}</p> : null}
+                  <p>{project.description}</p>
+                  {project.impact ? (
+                    <p className="project-impact">
+                      <span className="project-label">Impact</span>
+                      {project.impact}
+                    </p>
+                  ) : null}
+                  {project.highlight ? (
+                    <p className="project-highlight">
+                      <span className="project-label">Highlight</span>
+                      {project.highlight}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="project-footer">
+                  {project.repo ? (
+                    <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+                      View code
+                    </a>
+                  ) : (
+                    <span className="project-link project-link-muted">Project overview</span>
+                  )}
+                  <div className="tag-row">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span className="tag-text" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}
@@ -798,8 +883,11 @@ function App() {
                   )}
                 </h3>
                 <p className="education-degree">{item.degree}</p>
-                <p className="education-meta">{item.details}</p>
-                <p className="education-meta">{item.location}</p>
+                <p className="education-meta">
+                  {item.location}
+                  {item.gpa ? ` · ${item.gpa}` : ''}
+                  {item.honor ? ` · ${item.honor}` : ''}
+                </p>
                 <span className="education-date">{item.dates}</span>
               </div>
             ))}

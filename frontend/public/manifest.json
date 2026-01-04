@@ -4,8 +4,8 @@
   "description": "Low-latency backend and systems engineer portfolio.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#0b1220",
+  "background_color": "#f8fafc",
+  "theme_color": "#f8fafc",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -6,9 +6,9 @@ const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
-const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & C++ / quant dev`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds AI infrastructure and latency-first C++ systems for markets and quant dev teams, focused on measurable SLOs, clean data paths, and production-ready reliability.`
-const OG_IMAGE = `${SITE_URL}/og.png`
+const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & low-latency C++ systems`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds AI infrastructure and low-latency C++ systems for market data teams, with an interest in quant systems, focused on measurable SLOs, clean data paths, and production-ready reliability.`
+const OG_IMAGE = `${SITE_URL}/og.jpg`
 
 const sectionMeta = {
   top: {
@@ -16,14 +16,14 @@ const sectionMeta = {
     description: BASE_DESCRIPTION
   },
   about: {
-    title: `About | ${BRAND_NAME}`,
+    title: `How I Work | ${BRAND_NAME}`,
     description:
-      'Background across fintech, telecom, and research labs, with a focus on end-to-end data paths and operational clarity.'
+      'Clear goals, simple metrics, and reliable handoffs.'
   },
   services: {
-    title: `Services | ${BRAND_NAME}`,
+    title: `Results | ${BRAND_NAME}`,
     description:
-      'Services across ingestion pipelines, low-latency C++ backends, retrieval infrastructure, and production hardening.'
+      'Selected outcomes across latency, funding, and delivery.'
   },
   experience: {
     title: `Experience | ${BRAND_NAME}`,
@@ -190,7 +190,7 @@ const schemaData = {
       disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'AI infrastructure and C++ / quant developer',
+      jobTitle: 'AI infrastructure and low-latency C++ systems engineer',
       knowsAbout: [
         'Low-latency C++',
         'Market data infrastructure',
@@ -238,7 +238,7 @@ const schemaData = {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: `${BRAND_NAME} | AI infrastructure & C++ / quant dev`,
+      name: BASE_TITLE,
       description: BASE_DESCRIPTION,
       primaryImageOfPage: {
         '@type': 'ImageObject',
@@ -493,9 +493,8 @@ function App() {
     setMetaTag('name', 'author', BRAND_NAME)
     setMetaTag('name', 'robots', 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1')
     setLinkTag('canonical', SITE_URL)
-    // hreflang tags for multi-region targeting
+    // hreflang tags for primary + default language targeting
     setLinkTag('alternate', SITE_URL, { hreflang: 'en-US' })
-    setLinkTag('alternate', SITE_URL, { hreflang: 'en-HK' })
     setLinkTag('alternate', SITE_URL, { hreflang: 'x-default' })
     setMetaTag('property', 'og:title', activeMeta.title)
     setMetaTag('property', 'og:site_name', BRAND_NAME)
@@ -505,7 +504,6 @@ function App() {
     setMetaTag('property', 'og:image', OG_IMAGE)
     setMetaTag('property', 'og:image:alt', `${BRAND_NAME} portfolio preview`)
     setMetaTag('property', 'og:locale', 'en_US')
-    setMetaTag('property', 'og:locale:alternate', 'en_HK')
     setMetaTag('name', 'twitter:card', 'summary_large_image')
     setMetaTag('name', 'twitter:title', activeMeta.title)
     setMetaTag('name', 'twitter:url', SITE_URL)
@@ -530,7 +528,7 @@ function App() {
               </a>
             </h1>
             <p className="hero-role">
-              AI Infrastructure / C++ Developer
+              AI Infrastructure / C++ — interested in quant systems & market data
             </p>
           </div>
         </div>
@@ -538,12 +536,25 @@ function App() {
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              I am happiest close to the systems layer: profiling, trimming latency, and making data paths readable.
-              I like owning the full lifecycle so I can explain performance and make failures debuggable. That mindset
-              is why I keep shipping AI infrastructure and C++ systems that teams can trust.
+              I build fast, reliable data systems. I turn vague asks into clear targets and make performance easy to
+              explain.
             </p>
+            <div className="signal-grid">
+              <div className="signal-card">
+                <span className="signal-label">Comms</span>
+                <span className="signal-value">Short RFCs, diagrams, clear handoffs.</span>
+              </div>
+              <div className="signal-card">
+                <span className="signal-label">Learning</span>
+                <span className="signal-value">Prototype fast, test, then harden.</span>
+              </div>
+              <div className="signal-card">
+                <span className="signal-label">Team</span>
+                <span className="signal-value">Share context, unblock early, pair often.</span>
+              </div>
+            </div>
             <div className="hero-meta">
-              <span>Seeking AI infrastructure, C++ dev, or quant dev roles</span>
+              <span>Seeking AI infrastructure or C++ roles (quant systems focus welcome)</span>
               <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
           </div>
@@ -562,27 +573,27 @@ function App() {
       <main className="main">
         <section className="section" id="about">
           <div className="section-heading">
-            <h2>About</h2>
+            <h2>How I work</h2>
           </div>
           <div className="card about-card">
             <div className="about-grid">
               <div className="about-copy">
                 <p>
-                  A professional developer with a strong theoretical foundation and extensive hands-on experience who
-                  has shipped systems in fintech, telecom, and research labs across Hong Kong and the US, thriving in
-                  both startups and large corporations.
+                  I start by agreeing on the goal and assumptions, then ship with simple benchmarks and logs we can
+                  trust.
                 </p>
-                <p>
-                  Focused on AI infrastructure (retrieval, evaluation, production hardening) and latency-first C++
-                  backends for market-facing systems, with measurable SLOs and operational clarity.
-                </p>
+                <ul>
+                  <li>Measure first, then tune.</li>
+                  <li>Ship small, learn fast.</li>
+                  <li>Leave a clear handoff.</li>
+                </ul>
               </div>
               <div className="about-side">
-                <h3>Track record</h3>
+                <h3>Working rules</h3>
                 <ul>
-                  <li>Achieved &lt;10ms P99 reads at 100k+ events/sec for analytics workloads.</li>
-                  <li>Secured HKD 250k in education funding for a GenAI learning platform.</li>
-                  <li>Built a market intelligence SaaS that supported HKD 1M in startup funding.</li>
+                  <li>Prefer predictable systems.</li>
+                  <li>Explain the why, not just the what.</li>
+                  <li>Write it down once.</li>
                 </ul>
               </div>
             </div>
@@ -591,21 +602,23 @@ function App() {
 
         <section className="section" id="services">
           <div className="section-heading">
-            <h2>Services</h2>
+            <h2>Results</h2>
           </div>
           <div className="card">
-            <p>
-              I help teams turn high-volume data and model outputs into reliable products, from core backends to the
-              tooling that keeps them maintainable.
-            </p>
-            <ul>
-              <li>Market data ingestion, normalization, and distribution pipelines</li>
-              <li>Low-latency C++ services and concurrency tuning</li>
-              <li>Retrieval infrastructure (pgvector, vector search, ranking)</li>
-              <li>AI platform tooling and evaluation workflows</li>
-              <li>Internal dashboards, automation, and developer experience</li>
-              <li>Capacity planning and performance diagnostics</li>
-            </ul>
+            <div className="stats-grid">
+              <div className="stat-card">
+                <div className="stat-value">P99 &lt; 10ms</div>
+                <div className="stat-label">Read path @ 100k+ events/sec</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">HKD 250k</div>
+                <div className="stat-label">GenAI platform funding</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-value">HKD 1M</div>
+                <div className="stat-label">Market intelligence SaaS backing</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -614,49 +627,55 @@ function App() {
             <h2>Experience</h2>
           </div>
           <div className="card-stack">
-            {experiences.map((item) => (
-              <article className="card" key={`${item.org}-${item.role}`}>
-                <div className="card-header">
-                  <div>
-                    <h3>{item.role}</h3>
-                    <p className="card-subtitle">
-                      {item.orgUrl ? (
-                        <a
-                          className="org-link"
-                          href={item.orgUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${item.org} website`}
-                          title={`Visit ${item.org}`}
-                        >
-                          <span>{item.org}</span>
-                          <span className="org-link-hint">site</span>
-                        </a>
-                      ) : (
-                        item.org
-                      )}{' '}
-                      · {item.location}
-                    </p>
+            {experiences.map((item) => {
+              const [primaryBullet, ...restBullets] = item.bullets
+              const extraDetails = item.details?.length ? item.details : []
+              const moreBullets = [...restBullets, ...extraDetails]
+
+              return (
+                <article className="card" key={`${item.org}-${item.role}`}>
+                  <div className="card-header">
+                    <div>
+                      <h3>{item.role}</h3>
+                      <p className="card-subtitle">
+                        {item.orgUrl ? (
+                          <a
+                            className="org-link"
+                            href={item.orgUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${item.org} website`}
+                            title={`Visit ${item.org}`}
+                          >
+                            <span>{item.org}</span>
+                            <span className="org-link-hint">site</span>
+                          </a>
+                        ) : (
+                          item.org
+                        )}{' '}
+                        · {item.location}
+                      </p>
+                    </div>
+                    <span className="card-date">{item.dates}</span>
                   </div>
-                  <span className="card-date">{item.dates}</span>
-                </div>
-                <ul>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-                {item.details?.length ? (
-                  <details className="experience-details">
-                    <summary>More impact</summary>
+                  {primaryBullet ? (
                     <ul>
-                      {item.details.map((detail) => (
-                        <li key={detail}>{detail}</li>
-                      ))}
+                      <li>{primaryBullet}</li>
                     </ul>
-                  </details>
-                ) : null}
-              </article>
-            ))}
+                  ) : null}
+                  {moreBullets.length ? (
+                    <details className="experience-details">
+                      <summary>More impact</summary>
+                      <ul>
+                        {moreBullets.map((detail) => (
+                          <li key={detail}>{detail}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  ) : null}
+                </article>
+              )
+            })}
           </div>
         </section>
 
@@ -795,9 +814,6 @@ function App() {
             <div className="footer-block">
               <h4>Contact</h4>
               <ul>
-                <li>
-                  <a href={SITE_URL}>Website</a>
-                </li>
                 <li>
                   <a className="footer-email" href="mailto:ho.chak@northeastern.edu">
                     ho.chak@northeastern.edu

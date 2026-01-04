@@ -3,6 +3,10 @@
   background: var(--paper);
   color: var(--ink);
   position: relative;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .App > * {
@@ -51,6 +55,9 @@
 .hero-role {
   color: var(--muted);
   font-size: 0.8rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 .hero-links {
@@ -89,11 +96,11 @@
 }
 
 .hero-summary {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--ink-soft);
-  max-width: 34rem;
-  padding-left: 0.65rem;
-  border-left: 2px solid var(--line);
+  max-width: 36rem;
+  padding-left: 0;
+  border-left: none;
   line-height: 1.55;
 }
 
@@ -102,12 +109,42 @@
   font-weight: 600;
 }
 
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.4rem;
+}
+
+.signal-card {
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 0.45rem 0.6rem;
+  display: grid;
+  gap: 0.2rem;
+  border-left: 2px solid var(--accent-2);
+}
+
+.signal-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.signal-value {
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem 0.5rem;
   color: var(--muted);
   font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-meta span {
@@ -116,7 +153,8 @@
 }
 
 .hero-meta .hero-meta-highlight {
-  color: #000000;
+  color: var(--accent-2);
+  font-weight: 600;
 }
 
 .hero-meta span + span::before {
@@ -130,7 +168,7 @@
   align-self: start;
   margin-top: -3rem;
   padding: 2px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--panel);
   border: 1px solid var(--line);
   box-shadow: none;
@@ -141,7 +179,7 @@
   width: clamp(120px, 18vw, 150px);
   height: auto;
   max-width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   filter: none;
 }
@@ -172,8 +210,11 @@
 }
 
 .section-heading h2 {
-  font-size: 1.02rem;
+  font-size: 0.72rem;
   color: var(--ink);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
 .performance-grid {
@@ -224,12 +265,14 @@
   padding: 0.6rem 0.75rem;
   border-radius: 6px;
   border: 1px solid var(--line);
+  border-left: 2px solid var(--accent-2);
 }
 
 .stat-value {
   font-family: var(--font-mono);
   font-size: 0.94rem;
   color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
@@ -244,7 +287,7 @@
 
 .card {
   background: var(--panel);
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--line);
   padding: 0.75rem 0.85rem;
 }
@@ -301,6 +344,7 @@
 .card-date {
   font-size: 0.76rem;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .org-link {

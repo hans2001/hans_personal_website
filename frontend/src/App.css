@@ -16,7 +16,7 @@
 }
 
 .hero {
-  padding: 1.35rem 0 1rem;
+  padding: 1rem 0 0.8rem;
   background: transparent;
   color: var(--ink);
   border-bottom: 1px solid var(--line);
@@ -85,16 +85,18 @@
 }
 
 .hero-grid {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(0.6rem, 2vw, 1rem);
+  grid-template-columns: minmax(170px, 230px) minmax(0, 1fr);
+  grid-template-areas: 'photo copy';
+  gap: clamp(0.4rem, 1vw, 0.75rem);
   align-items: start;
 }
 
 .hero-copy {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.4rem;
+  grid-area: copy;
 }
 
 .hero-summary {
@@ -114,7 +116,7 @@
 .signal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
 
 .signal-card {
@@ -143,7 +145,7 @@
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem 0.5rem;
+  gap: 0.18rem 0.4rem;
   color: var(--muted);
   font-size: 0.76rem;
   font-variant-numeric: tabular-nums;
@@ -166,14 +168,15 @@
 }
 
 .hero-portrait {
-  justify-self: end;
+  justify-self: start;
   align-self: start;
-  margin-top: -2.4rem;
+  grid-area: photo;
   padding: 2px;
   border-radius: 8px;
   background: var(--panel);
   border: 1px solid var(--line);
   box-shadow: none;
+  margin: 0;
 }
 
 .hero-portrait img {
@@ -950,6 +953,13 @@
     max-width: 200px;
   }
 
+  .hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'photo'
+      'copy';
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -978,6 +988,9 @@
 
   .hero-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'photo'
+      'copy';
     gap: 0.7rem;
   }
 

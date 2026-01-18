@@ -84,8 +84,8 @@ const projects = [
     group: 'featured'
   },
   {
-    title: 'Low-Power SRAM (TSMC 180nm)',
-    context: 'HKUST · Oct 2023 - May 2024',
+    title: 'Power-Gated 8kb SRAM Design',
+    context: 'Circuit design · Low-power ICs',
     description:
       'Designed a low-power SRAM using power gating, simulated in Cadence Virtuoso to reduce leakage and idle power while retaining data.',
     impact: 'Reduced leakage and idle power while retaining data.',
@@ -105,7 +105,7 @@ const projects = [
     highlight: 'Spark ETL + PySpark SQL with sentiment and pricing model comparisons.',
     tags: ['ETL', 'PySpark', 'Analytics'],
     repo: 'https://drive.google.com/file/d/1afxda583McI0Wp_UDlM5nYFmIQSaUDbV/view?usp=sharing',
-    linkLabel: 'Read report',
+    linkLabel: 'Project overview',
     group: 'academic'
   },
   {
@@ -117,12 +117,12 @@ const projects = [
     highlight: 'SimCLR pretraining + FixMatch-style pseudo-labeling with ResNet50.',
     tags: ['Deep Learning', 'SimCLR', 'FixMatch'],
     repo: 'https://drive.google.com/file/d/1pfVlWrskko6F7k7LXyLrlDSPqPVgoT6d/view?usp=sharing',
-    linkLabel: 'Read report',
+    linkLabel: 'Project overview',
     group: 'academic'
   },
   {
     title: 'Multi-Calendar App (MVC + GUI)',
-    context: 'Northeastern · Software design',
+    context: 'Northeastern · Productivity tooling',
     description:
       'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
     impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
@@ -249,7 +249,7 @@ const education = [
     dates: 'Sep 2025 - May 2027',
     gpa: '4.0 CGPA',
     coursework:
-      'OS Kernel Implementation, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems'
+      'OS Kernel Implementation, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems, Network Programming'
   },
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
@@ -468,7 +468,7 @@ const skillSets = {
     core: [
       {
         title: 'Systems & Backend',
-        items: ['Python', 'C++', 'FastAPI', 'Node.js', 'REST', 'GraphQL', 'WebSocket']
+        items: ['Python', 'TypeScript', 'FastAPI', 'Node.js', 'C++', 'REST', 'GraphQL', 'WebSocket']
       },
       {
         title: 'Data & Retrieval',
@@ -506,7 +506,7 @@ const skillSets = {
     core: [
       {
         title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'Python', 'SQL', 'Bash']
+        items: ['C++20 (STL, templates, RAII)', 'C', 'Python', 'SQL', 'Bash']
       },
       {
         title: 'Concurrency & Systems',
@@ -524,6 +524,10 @@ const skillSets = {
     ],
     supporting: [
       {
+        title: 'Python & Math',
+        items: ['PyTorch', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy', 'scikit-learn']
+      },
+      {
         title: 'Tools',
         items: [
           'gcc / clang',
@@ -533,7 +537,8 @@ const skillSets = {
           'valgrind',
           'Google Test',
           'Git',
-          'Unix/Linux'
+          'Unix/Linux',
+          'RISC-V'
         ]
       },
       {
@@ -551,9 +556,8 @@ const skillTracks = Object.keys(skillSets)
 function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
   const [activeSection, setActiveSection] = useState('top')
-  const [showAllAcademic, setShowAllAcademic] = useState(false)
   const [showAdditionalExperience, setShowAdditionalExperience] = useState(false)
-  const visibleAcademicProjects = showAllAcademic ? academicProjects : academicProjects.slice(0, 3)
+  const visibleAcademicProjects = academicProjects.slice(0, 4)
   const coreExperiences = experiences.filter((item) => item.group !== 'additional')
   const additionalExperiences = experiences.filter((item) => item.group === 'additional')
   const prerenderDispatched = useRef(false)
@@ -688,8 +692,10 @@ function App() {
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              I build low-latency C++ systems and AI infrastructure for market data teams. I focus on deterministic
-              pipelines, latency budgets, and production tooling for trading workflows.
+              I pursue low-latency C++ systems and AI infrastructure because deterministic pipelines and measurable
+              latency budgets unlock clearer, more trustable outcomes. I&rsquo;m curious about how high-frequency
+              market data and large-scale AI stacks weave together, and I prototype systems that keep performance
+              predictable while surfacing the story behind every packet and inference.
             </p>
             <div className="signal-grid">
               <div className="signal-card">
@@ -706,7 +712,7 @@ function App() {
               </div>
             </div>
             <div className="hero-meta">
-              <span>Seeking AI infrastructure or C++ roles (quant systems focus welcome)</span>
+              <span>Seeking AI infrastructure or C++ roles (quant system focus)</span>
               <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
           </div>
@@ -723,28 +729,6 @@ function App() {
       </header>
 
       <main className="main">
-        <section className="section" id="about">
-          <div className="section-heading">
-            <h2>How I work</h2>
-          </div>
-          <div className="card about-card">
-            <div className="about-grid">
-              <div className="about-copy">
-                <p>
-                  I build robust systems and sweat the details: profiling, refactoring, and hardening until the code is
-                  battle-survivable, scalable, and maintainable. Teammates call out strong product sense, system-level
-                  thinking, and good technical taste.
-                </p>
-                <ul>
-                  <li>Profile early and fix root causes.</li>
-                  <li>Refactor for long-term maintainability.</li>
-                  <li>Ship clean handoffs and clear docs.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="section" id="experience">
           <div className="section-heading">
             <h2>Experience</h2>
@@ -759,7 +743,7 @@ function App() {
                 className="toggle-button"
                 onClick={() => setShowAdditionalExperience((prev) => !prev)}
               >
-                {showAdditionalExperience ? 'Show fewer' : 'Show more experience'}
+                {showAdditionalExperience ? 'Show fewer' : 'Show more'}
               </button>
             </div>
           ) : null}
@@ -798,12 +782,14 @@ function App() {
                   ) : null}
                 </div>
                 <div className="project-footer">
-                  {project.repo ? (
+                  {project.repo && project.group === 'academic' ? (
                     <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
                       {project.linkLabel || 'View code'}
                     </a>
                   ) : (
-                    <span className="project-link project-link-muted">Project overview</span>
+                    <span className="project-link project-link-muted">
+                      {project.linkLabel || 'View code'}
+                    </span>
                   )}
                   <div className="tag-row">
                     {project.tags.slice(0, 3).map((tag) => (
@@ -861,17 +847,6 @@ function App() {
               </article>
             ))}
           </div>
-          {academicProjects.length > 3 ? (
-            <div className="project-toggle">
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setShowAllAcademic((prev) => !prev)}
-              >
-                {showAllAcademic ? 'Show fewer' : 'Show more'}
-              </button>
-            </div>
-          ) : null}
         </section>
 
         <section className="section" id="skills">

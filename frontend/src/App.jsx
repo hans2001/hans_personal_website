@@ -140,17 +140,17 @@ const academicProjects = projects.filter((project) => project.group === 'academi
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
   {
-    role: 'Software Engineer Intern (Volunteer)',
+    role: 'Remote Software Engineer Intern',
     org: 'Folio AI',
     orgUrl: 'https://gofolio.ai',
     location: 'San Jose, CA (Remote)',
-    dates: 'Sep 2025 - Dec 2025',
+    dates: 'Sep 2025 - Present',
     employmentType: 'Part-time',
     group: 'additional',
     bullets: [
-      'Delivering a low-latency read path for high-rate event analytics using FastAPI, PostgreSQL, and Redis.',
-      'Benchmarked and tuned read performance for predictable tail latency.',
-      'Improved burst stability with deterministic retries and backpressure.'
+      'Delivered <10ms P99 reads on a real-time financial backend using FastAPI + SQLAlchemy, PostgreSQL, and a Redis zset time-series store fed by 100k+ Yahoo Finance events.',
+      'Built fault-isolated WebSocket + Redis ingestion stages with deterministic retry and backpressure, improving stability by 60% under peak load.',
+      'Integrated LangGraph agentic workflows (Gemini + tool nodes) with Redis-backed retrieval to produce multi-step market/option insights, cutting analyst turnaround by 3×.'
     ]
   },
   {
@@ -161,24 +161,28 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Full-time',
     bullets: [
-      'Operationalized an internal GenAI platform with multi-model routing across cloud and on-prem.',
-      'Improved answer quality with structured prompting, evaluation loops, and context management.',
-      'Enabled compliance-safe usage with RAG document workflows and policy controls.',
-      'Automated Docker installs and VPN-tunneled container networking to unblock regional API access.'
+      'Built a company-wide GenAI platform by customizing Libre-chat/Open WebUI stacks with Node.js + React, deploying OpenAI, Gemini, and Llama3 via Ollama on-prem for 20+ internal teams.',
+      'Extended the codebase with LangChain to integrate a proprietary compliance-trained LLM through Azure API calls.',
+      'Created Next.js REST endpoints for a file management layer that handles uploads/retrievals/deletions, powering RAG document workflows.',
+      'Integrated OpenAI Assistants API for context-aware responses, lifting question-answer accuracy by ~30%.',
+      'Automated Docker-based platform installs across Windows/Linux via scripted tooling and orchestrated VPN-tunneled container networking with Docker Compose to bypass regional API blocks.',
+      'Refreshed Tap&Go wallet rewards with a Flutter-powered merchant search (brand/category/region filters) backed by local JSON data.',
+      'Built a Python automation pipeline that extracts Excel data, scripts Mermaid diagrams, and renders wireless on-site cell diagrams in minutes, cutting generation time 90%.'
     ]
   },
   {
-    role: 'Senior Developer Intern, Theoretical & Computational Chemistry Lab (Supervisor: Prof. Haibin Su)',
+    role: 'Tech Lead, Theoretical & Computational Chemistry Lab (Supervisor: Prof. Haibin Su)',
     org: 'Hong Kong University of Science and Technology',
     orgUrl: 'https://hkust.edu.hk',
     location: 'Hong Kong',
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built an AI-driven learning platform with Next.js, securing HKD 250k funding from HKUST Center for Education Innovation.',
-      'Designed a 3D virtual classroom with Babylon.js, Ammo.js, and Blender, enabling avatar control, spatial audio, and WebXR for Meta Quest 3.',
-      'Engineered a multimodal GenAI chat system with Whisper API, SSE streaming, and context-aware memory for voice + markdown output.',
-      'Developed real-time avatar networking with Colyseus on Fly.io, supporting 100+ concurrent users.'
+      'Built an AI-driven Next.js learning platform with HKUST Center for Education Innovation, securing HKD 250k funding.',
+      'Developed an immersive Babylon.js + Ammo.js virtual classroom with Blender assets, physics, drag-and-drop, avatar movement, spatial audio, and Meta Quest 3 WebXR controls.',
+      'Embedded multimedia video/audio playback, dynamic blackboards, and clickable shelves using TypeScript for richer interactions.',
+      'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming with token tracking/retry logic, Markdown/code-block rendering, and Redux-managed feedback.',
+      'Deployed a Colyseus-based avatar networking layer on Fly.io to coordinate 100+ concurrent users.'
     ]
   },
   {
@@ -189,9 +193,11 @@ const experiences = [
     dates: 'Oct 2023 - Jan 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built internal tools for market data usage monitoring and derivatives valuation.',
-      'Flagged anomalous spend patterns across departments with a real-time dashboard.',
-      'Delivered a valuation SaaS to meet regulatory requirements with typed UI + Excel export.'
+      'Built real-time Bloomberg Data License / B-PIPE monitoring dashboards with Node.js + Vue.js, flagging 15+ anomalous patterns across 7 departments.',
+      'Engineered Knex.js-backed REST query/mutation endpoints to process 100k+ Bloomberg invoice records in Oracle, providing schema management and transactional safety.',
+      'Delivered a TypeScript + React derivatives valuation SaaS to meet SFC compliance while automating data ingestion and reporting.',
+      'Crafted reusable UI components with TypeScript generics (conditional/indexed/mapped types) and generic parsing helpers with type guards to eliminate runtime validation failures.',
+      'Implemented a concurrent Excel export service with dynamic schemas, rate limiting, and paginated processing to bulk-export 10k+ rows without overloading downstream APIs.'
     ]
   },
   {
@@ -202,11 +208,14 @@ const experiences = [
     dates: 'Jun 2022 - Oct 2023',
     employmentType: 'Full-time',
     bullets: [
-      'Founding engineer who built the market intelligence SaaS platform from scratch, securing HKD 1M+ in VC funding.',
-      'Shipped production AWS infrastructure (EC2, S3/CloudFront, Nginx, PM2, SSL, load balancing).',
-      'Improved retrieval latency via MongoDB schema redesign and native driver migration.',
-      'Built high-volume browsing with React Window + GraphQL, reducing memory via chunking.',
-      'Reduced API overhead with a typed GraphQL API and caching.'
+      'Architected a real-time market intelligence SaaS with Node.js/React, driving 10+ product iterations and $1M HKD in HKSTP funding.',
+      'Built React Window + Infinite Loader components over paginated GraphQL to stream 5M+ historical records with real-time updates while chunking data to manage memory.',
+      'Redesigned protobuf/MongoDB schema, implemented indexes/aggregations, and profiled queries before migrating from Mongoose to the native driver, doubling retrieval speed.',
+      'Implemented a GraphQL API with Pothos, layered caching with GraphQL Yoga (configurable TTLs, session scoping, mutation invalidation), cutting endpoint overhead by 40%.',
+      'Delivered watchlist CRUD via Cloud Firestore tied to Firebase Auth for scalable tag-based company/industry tracking.',
+      'Centralized static assets on AWS S3 + CloudFront, enforced IP-restricted Nginx reverse proxies, and hosted separate Ubuntu EC2 instances for frontend/backend in UAT + production.',
+      'Selected t3.medium instances via local resource profiling, configured PM2 for backend resilience, and automated SSL renewals with Certbot.',
+      'Created GoDaddy DNS records + subdomains for load-balanced production and isolated UAT, wiring Nginx upstreams to distribute traffic securely.'
     ]
   },
   {
@@ -233,9 +242,10 @@ const experiences = [
     dates: 'Dec 2021 - Jan 2022',
     employmentType: 'Full-time',
     bullets: [
-      'Built mobile and desktop tools for transit operations using React Native and Electron.',
-      'Boosted UGC with an iOS/Android photo upload feature on Azure Functions.',
-      'Reduced image latency and storage with compression and S3-compatible object storage.'
+      'Rolled out the React Native EasyTransit photo upload experience for iOS/Android with a TypeScript Azure Functions backend, lifting UGC ~20%.',
+      'Built a Storj-integrated image pipeline with client compression, multipart parsing, and binary buffer conversion that shaved 300ms off responses and trimmed storage ~40%.',
+      'Structured Sequelize schemas to manage metadata and built signed-URL REST APIs for time-limited image access.',
+      'Delivered a Windows RollCall automation app with Electron + TypeScript, applying Lodash/FP helpers to automate attendance tracking and SQL Server reporting.'
     ]
   }
 ]

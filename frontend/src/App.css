@@ -517,7 +517,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
   gap: 0.35rem;
 }
 
@@ -981,6 +981,10 @@
   .hero-portrait img {
     max-width: 100%;
   }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
 }
 
 @media (max-width: 600px) {
@@ -1031,6 +1035,10 @@
 
   .footer-tagline {
     max-width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-meta {

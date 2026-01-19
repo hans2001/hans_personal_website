@@ -54,17 +54,19 @@ const sectionIds = [
 
 const projects = [
   {
-    title: 'Low-Latency Market Data Engine',
+    title: 'UDP Multicast L2 Order-Book Engine',
+    context: 'Network programming · Market data',
     description:
-      'Designed an in-memory L2 order book with contention-aware synchronization, deterministic replay, and a tail-latency harness.',
-    impact: 'Enabled repeatable tail-latency regression checks for tuning and correctness.',
-    highlight: 'Deterministic replay paired with contention-aware synchronization across the L2 pipeline.',
+      'Built a UDP multicast ingest + binary parser feeding an in-memory L2 order book with deterministic replay and a tail-latency harness.',
+    impact: 'Enabled repeatable tail-latency regression checks and order-book correctness under bursty feeds.',
+    highlight: 'Zero-copy ingest path with contention-aware synchronization across the L2 pipeline.',
     tags: ['C++20', 'Low Latency', 'Concurrency'],
     repo: 'https://github.com/hans2001/low-latency-market-data-engine',
     group: 'featured'
   },
   {
-    title: 'Work-Stealing Task Scheduler',
+    title: 'C++ Work-Stealing Thread Pool Scheduler',
+    context: 'Systems · Concurrency',
     description:
       'Built a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
     impact: 'Documented throughput tradeoffs under a bounded worker pool.',
@@ -74,17 +76,30 @@ const projects = [
     group: 'featured'
   },
   {
-    title: 'Deterministic Agent Framework',
+    title: 'C TCP/UDP Exchange Feed Gateway',
+    context: 'Network programming · Trading infra',
     description:
-      'Extended Open Interpreter with deterministic execution, policy-based tool access, and replayable audits.',
-    impact: 'Added policy gates and auditability for tool-using agents.',
-    highlight: 'Deterministic execution harness with policy-based tool access.',
-    tags: ['AI Infra', 'Determinism', 'Policy Engine'],
+      'Built a C-based market gateway that normalizes exchange feeds, maintains order-book snapshots, and forwards enriched ticks to downstream strategies.',
+    impact: 'Cut per-message processing overhead and improved jitter under bursty market data loads.',
+    highlight: 'Zero-copy ring buffer, SO_REUSEPORT fan-out, and lock-free hot path.',
+    tags: ['C', 'Network Programming', 'Low Latency'],
+    repo: 'https://github.com/hans2001',
+    linkLabel: 'Project overview',
+    group: 'featured'
+  },
+  {
+    title: 'LLM Evaluation + Regression Harness',
+    context: 'AI infra · Evaluation',
+    description:
+      'Built a repeatable evaluation pipeline for model prompts/tasks with scorecards, regressions, and deterministic reruns.',
+    impact: 'Tracked p50/p95 latency, token throughput, cost, and quality metrics across model/version changes.',
+    highlight: 'Deterministic runs with audit logs and structured eval outputs.',
+    tags: ['AI Infra', 'Evaluation', 'Benchmarking'],
     repo: 'https://github.com/hans2001',
     group: 'featured'
   },
   {
-    title: 'Power-Gated 8kb SRAM Design',
+    title: 'Power-Gated 8kb SRAM (TSMC 180nm)',
     context: 'Circuit design · Low-power ICs',
     description:
       'Designed a low-power SRAM using power gating, simulated in Cadence Virtuoso to reduce leakage and idle power while retaining data.',
@@ -97,8 +112,8 @@ const projects = [
     group: 'academic'
   },
   {
-    title: 'Airbnb Listings ETL + Market Insights',
-    context: 'HKUST · Data engineering',
+    title: 'Airbnb Listings ETL Pipeline (Spark)',
+    context: 'Data engineering · ETL',
     description:
       'Built an ETL pipeline over Inside Airbnb data to analyze pricing, amenities, and demand across 85 global regions.',
     impact: 'Processed 6–8GB of listings into parquet for consistent, faster analysis.',
@@ -109,8 +124,8 @@ const projects = [
     group: 'academic'
   },
   {
-    title: 'SimCLR + Skin Lesion Classifier',
-    context: 'HKUST · Deep learning',
+    title: 'SimCLR Skin Lesion Classifier (ResNet50)',
+    context: 'Deep learning · Vision',
     description:
       'Applied contrastive pretraining and semi-supervised learning with a ResNet50 encoder on the ISIC skin lesion datasets.',
     impact: 'Improved classification robustness over a supervised baseline on ISIC benchmarks.',
@@ -121,8 +136,8 @@ const projects = [
     group: 'academic'
   },
   {
-    title: 'Multi-Calendar App (MVC + GUI)',
-    context: 'Northeastern · Productivity tooling',
+    title: 'Multi-Calendar Scheduler (Java MVC + Swing)',
+    context: 'Java · MVC',
     description:
       'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
     impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
@@ -567,7 +582,10 @@ function App() {
   const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
   const [activeSection, setActiveSection] = useState('top')
   const [showAdditionalExperience, setShowAdditionalExperience] = useState(false)
-  const visibleAcademicProjects = academicProjects.slice(0, 4)
+  const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
+  const [showAllAcademicProjects, setShowAllAcademicProjects] = useState(false)
+  const visibleFeaturedProjects = showAllFeaturedProjects ? featuredProjects : featuredProjects.slice(0, 3)
+  const visibleAcademicProjects = showAllAcademicProjects ? academicProjects : academicProjects.slice(0, 3)
   const coreExperiences = experiences.filter((item) => item.group !== 'additional')
   const additionalExperiences = experiences.filter((item) => item.group === 'additional')
   const prerenderDispatched = useRef(false)
@@ -772,7 +790,7 @@ function App() {
             <h2>Selected projects</h2>
           </div>
           <div className="projects-grid">
-            {featuredProjects.map((project) => (
+            {visibleFeaturedProjects.map((project) => (
               <article className="project-card" key={project.title}>
                 <div className="project-content">
                   <h3>{project.title}</h3>
@@ -812,6 +830,17 @@ function App() {
               </article>
             ))}
           </div>
+          {featuredProjects.length > 3 ? (
+            <div className="project-toggle">
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setShowAllFeaturedProjects((prev) => !prev)}
+              >
+                {showAllFeaturedProjects ? 'Show fewer' : 'Show more'}
+              </button>
+            </div>
+          ) : null}
         </section>
 
         <section className="section">
@@ -857,6 +886,17 @@ function App() {
               </article>
             ))}
           </div>
+          {academicProjects.length > 3 ? (
+            <div className="project-toggle">
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setShowAllAcademicProjects((prev) => !prev)}
+              >
+                {showAllAcademicProjects ? 'Show fewer' : 'Show more'}
+              </button>
+            </div>
+          ) : null}
         </section>
 
         <section className="section" id="skills">
@@ -974,9 +1014,6 @@ function App() {
                   <a className="footer-email" href="mailto:ho.chak@northeastern.edu">
                     ho.chak@northeastern.edu
                   </a>
-                </li>
-                <li>
-                  <a href="tel:+19735171462">Phone</a>
                 </li>
                 <li>
                   <a

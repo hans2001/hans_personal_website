@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import useSWR from 'swr'
 import './App.css'
 
 const SITE_URL = 'https://chaksingho.com'
-const LEETCODE_USERNAME = 'justnotarandomkid'
 const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
@@ -11,32 +9,10 @@ const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
 const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & low-latency C++ systems`
 const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds low-latency C++ systems and AI infrastructure for market data teams, focused on deterministic performance, clean data paths, and production reliability.`
 const OG_IMAGE = `${SITE_URL}/og.jpg`
-const LEETCODE_API_URL = `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/contest`
-const LEETCODE_PROFILE_URL = `https://leetcode.com/${LEETCODE_USERNAME}/`
-
-const fetcher = async (url) => {
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error('LeetCode stats request failed')
-  }
-  return response.json()
-}
-
-const formatNumber = (value) => {
-  if (typeof value !== 'number') {
-    return value
-  }
-  return value.toLocaleString('en-US')
-}
-
 const sectionMeta = {
   top: {
     title: BASE_TITLE,
     description: BASE_DESCRIPTION
-  },
-  accomplishments: {
-    title: `Accomplishments | ${BRAND_NAME}`,
-    description: 'Highlights including contest performance and competitive programming milestones.'
   },
   about: {
     title: `How I Work | ${BRAND_NAME}`,
@@ -67,7 +43,6 @@ const sectionMeta = {
 
 const sectionIds = [
   'top',
-  'accomplishments',
   'about',
   'experience',
   'projects',
@@ -613,22 +588,6 @@ function App() {
   const coreExperiences = experiences.filter((item) => item.group !== 'additional')
   const additionalExperiences = experiences.filter((item) => item.group === 'additional')
   const prerenderDispatched = useRef(false)
-  const {
-    data: leetCodeStats,
-    error: leetCodeError,
-    isLoading: leetCodeLoading
-  } = useSWR(LEETCODE_API_URL, fetcher, {
-    refreshInterval: 1000 * 60 * 60 * 6,
-    revalidateOnFocus: false
-  })
-
-  const leetCodeContestRanking = leetCodeStats?.contestGlobalRanking
-  const leetCodeContestRating = leetCodeStats?.contestRating
-  const leetCodeContestTopPercentage = leetCodeStats?.contestTopPercentage
-  const hasLeetCodeContestRanking = typeof leetCodeContestRanking === 'number'
-  const hasLeetCodeContestRating = typeof leetCodeContestRating === 'number'
-  const hasLeetCodeContestTopPercentage = typeof leetCodeContestTopPercentage === 'number'
-
   const renderExperienceCard = (item) => {
     const [primaryBullet, ...restBullets] = item.bullets
     const extraDetails = item.details?.length ? item.details : []
@@ -1038,46 +997,6 @@ function App() {
                 <span className="education-date">{item.dates}</span>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="section" id="accomplishments">
-          <div className="section-heading">
-            <h2>Accomplishments</h2>
-          </div>
-          <div className="card-stack accomplishments-list">
-            <article className="card accomplishments-card">
-              <p>
-                LeetCode contest ranking:{' '}
-                {leetCodeLoading
-                  ? 'Loading...'
-                  : leetCodeError
-                    ? 'Unavailable'
-                    : hasLeetCodeContestRanking
-                      ? `#${formatNumber(leetCodeContestRanking)}`
-                      : 'Unavailable'}{' '}
-                · Rating:{' '}
-                {leetCodeLoading
-                  ? 'Loading...'
-                  : leetCodeError
-                    ? 'Unavailable'
-                    : hasLeetCodeContestRating
-                      ? leetCodeContestRating.toFixed(1)
-                      : 'Unavailable'}{' '}
-                · Top:{' '}
-                {leetCodeLoading
-                  ? 'Loading...'
-                  : leetCodeError
-                    ? 'Unavailable'
-                    : hasLeetCodeContestTopPercentage
-                      ? `${leetCodeContestTopPercentage.toFixed(1)}%`
-                      : 'Unavailable'}{' '}
-                ·{' '}
-                <a href={LEETCODE_PROFILE_URL} target="_blank" rel="noopener noreferrer">
-                  leetcode.com/{LEETCODE_USERNAME}
-                </a>
-              </p>
-            </article>
           </div>
         </section>
 

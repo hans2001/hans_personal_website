@@ -6,44 +6,38 @@ const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
-const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & low-latency C++ systems`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds low-latency C++ systems and AI infrastructure for market data teams, focused on deterministic performance, clean data paths, and production reliability.`
+const BASE_TITLE = `${BRAND_NAME} | Applied AI & AI infrastructure (HK/US)`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds applied AI systems and LLM infrastructure for client-facing deployments, turning prototypes into reliable, observable, production-grade services.`
 const OG_IMAGE = `${SITE_URL}/og.jpg`
 const sectionMeta = {
   top: {
     title: BASE_TITLE,
     description: BASE_DESCRIPTION
   },
-  about: {
-    title: `How I Work | ${BRAND_NAME}`,
-    description:
-      'Clear goals, simple metrics, and reliable handoffs.'
-  },
   experience: {
-    title: `Experience | ${BRAND_NAME}`,
-    description: 'Timeline of internships and leadership with measurable impact across fintech, AI, and research.'
+    title: `Applied AI Experience | ${BRAND_NAME}`,
+    description: 'Applied AI and infrastructure experience with measurable impact across production systems.'
   },
   projects: {
-    title: `Projects | ${BRAND_NAME}`,
-    description: 'Selected C++ systems, concurrency, and data-platform projects with open-source repos.'
+    title: `Open Source Contributions | ${BRAND_NAME}`,
+    description: 'Active open-source targets in LLM serving, observability, and production AI infrastructure.'
   },
   skills: {
-    title: `Skills | ${BRAND_NAME}`,
-    description: 'Skills across systems programming, data infrastructure, and platform tooling; organized by track.'
+    title: `Applied AI Skills | ${BRAND_NAME}`,
+    description: 'Applied AI and software engineering skills for building reliable, production AI systems.'
   },
   education: {
-    title: `Education | ${BRAND_NAME}`,
-    description: 'Education in computer science and electronic engineering across Hong Kong and the US.'
+    title: `Education & Foundations | ${BRAND_NAME}`,
+    description: 'Computer science education supporting applied AI systems engineering.'
   },
   contact: {
     title: `Contact | ${BRAND_NAME}`,
-    description: `Contact ${PRIMARY_NAME} (${ALT_NAME_EN} | ${ALT_NAME} | Hans) for low-latency backend and data infrastructure roles.`
+    description: `Contact ${PRIMARY_NAME} (${ALT_NAME_EN} | ${ALT_NAME} | Hans) for AI infrastructure and applied AI engineering roles.`
   }
 }
 
 const sectionIds = [
   'top',
-  'about',
   'experience',
   'projects',
   'skills',
@@ -53,62 +47,40 @@ const sectionIds = [
 
 const projects = [
   {
-    title: 'UDP Multicast L2 Order-Book Engine',
-    context: 'Network programming · Market data',
+    title: 'OpenTelemetry',
+    context: 'Observability · Tracing',
     description:
-      'Built a UDP multicast ingest + binary parser feeding an in-memory L2 order book with deterministic replay and a tail-latency harness.',
-    impact: 'Enabled repeatable tail-latency regression checks and order-book correctness under bursty feeds.',
-    highlight: 'Zero-copy ingest path with contention-aware synchronization across the L2 pipeline.',
-    tags: ['C++20', 'Low Latency', 'Concurrency'],
-    repo: 'https://github.com/hans2001/low-latency-market-data-engine',
+      'Active contribution target focused on LLM observability and production instrumentation.',
+    impact: 'Planned contributions: LLM semantic conventions, example SDK instrumentation, and Grafana dashboards.',
+    highlight: 'Scope: traces/metrics for prompts, model latency, token usage, and cost attribution.',
+    tags: ['OpenTelemetry', 'Tracing', 'Metrics'],
+    repo: 'https://github.com/open-telemetry/opentelemetry-collector',
+    linkLabel: 'Project home',
     group: 'featured'
   },
   {
-    title: 'C++ Work-Stealing Thread Pool Scheduler',
-    context: 'Systems · Concurrency',
+    title: 'vLLM',
+    context: 'Serving · High-throughput inference',
     description:
-      'Built a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
-    impact: 'Documented throughput tradeoffs under a bounded worker pool.',
-    highlight: 'Work-stealing queues with explicit lifetimes and a fixed-size runtime.',
-    tags: ['C++', 'Schedulers', 'Benchmarks'],
-    repo: 'https://github.com/hans2001/cpp-thread-pool',
+      'Active contribution target focused on inference performance and serving reliability.',
+    impact: 'Planned contributions: benchmark suite updates, batching configs, and integration examples.',
+    highlight: 'Scope: throughput/latency profiling, GPU utilization, and multi-tenant serving patterns.',
+    tags: ['vLLM', 'Serving', 'Performance'],
+    repo: 'https://github.com/vllm-project/vllm',
+    linkLabel: 'Project home',
     group: 'featured'
   },
   {
-    title: 'C TCP/UDP Exchange Feed Gateway',
-    context: 'Network programming · Trading infra',
+    title: 'Dagster',
+    context: 'Orchestration · Data pipelines',
     description:
-      'Built a C-based market gateway that normalizes exchange feeds, maintains order-book snapshots, and forwards enriched ticks to downstream strategies.',
-    impact: 'Cut per-message processing overhead and improved jitter under bursty market data loads.',
-    highlight: 'Zero-copy ring buffer, SO_REUSEPORT fan-out, and lock-free hot path.',
-    tags: ['C', 'Network Programming', 'Low Latency'],
-    repo: 'https://github.com/hans2001',
-    linkLabel: 'Project overview',
+      'Active contribution target focused on AI pipeline templates and operational metadata.',
+    impact: 'Planned contributions: RAG/eval pipeline templates, retries/alerts patterns, and asset metadata examples.',
+    highlight: 'Scope: asset lineage, materializations, and production-grade pipeline reliability.',
+    tags: ['Dagster', 'Orchestration', 'Reliability'],
+    repo: 'https://github.com/dagster-io/dagster',
+    linkLabel: 'Project home',
     group: 'featured'
-  },
-  {
-    title: 'LLM Evaluation + Regression Harness',
-    context: 'AI infra · Evaluation',
-    description:
-      'Built a repeatable evaluation pipeline for model prompts/tasks with scorecards, regressions, and deterministic reruns.',
-    impact: 'Tracked p50/p95 latency, token throughput, cost, and quality metrics across model/version changes.',
-    highlight: 'Deterministic runs with audit logs and structured eval outputs.',
-    tags: ['AI Infra', 'Evaluation', 'Benchmarking'],
-    repo: 'https://github.com/hans2001',
-    group: 'featured'
-  },
-  {
-    title: 'Power-Gated 8kb SRAM (TSMC 180nm)',
-    context: 'Circuit design · Low-power ICs',
-    description:
-      'Designed a low-power SRAM using power gating, simulated in Cadence Virtuoso to reduce leakage and idle power while retaining data.',
-    impact: 'Reduced leakage and idle power while retaining data.',
-    highlight: 'Power-gated SRAM simulated and validated in Cadence Virtuoso.',
-    tags: ['TSMC 180nm', 'Power Gating', 'SRAM'],
-    repo: 'https://drive.google.com/file/d/1UUswsKy2AfpEP6Ja7mSuGMwmd4cjCP03/view?usp=sharing',
-    linkLabel: 'Project overview',
-    schemaType: 'Project',
-    group: 'academic'
   },
   {
     title: 'Airbnb Listings ETL Pipeline (Spark)',
@@ -133,23 +105,29 @@ const projects = [
     repo: 'https://drive.google.com/file/d/1pfVlWrskko6F7k7LXyLrlDSPqPVgoT6d/view?usp=sharing',
     linkLabel: 'Project overview',
     group: 'academic'
-  },
-  {
-    title: 'Multi-Calendar Scheduler (Java MVC + Swing)',
-    context: 'Java · MVC',
-    description:
-      'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
-    impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
-    highlight: 'CLI + Swing GUI with iCal/CSV export support.',
-    repo: 'https://github.com/hans2001/CS5010--MultiCalendarApp',
-    linkLabel: 'Project overview',
-    tags: ['Java', 'MVC', 'Design Patterns'],
-    group: 'academic'
   }
 ]
 
 const featuredProjects = projects.filter((project) => project.group !== 'academic')
 const academicProjects = projects.filter((project) => project.group === 'academic')
+const generalSkillGroups = [
+  {
+    title: 'Backend Services',
+    items: ['Node.js', 'Java (Spring Boot)', 'FastAPI', 'Kafka', 'GraphQL', 'WebSocket']
+  },
+  {
+    title: 'Data Stores',
+    items: ['PostgreSQL', 'Redis', 'MongoDB', 'SQL']
+  },
+  {
+    title: 'Cloud & DevOps',
+    items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions']
+  },
+  {
+    title: 'Frontend',
+    items: ['TypeScript', 'React', 'Next.js', 'React Native']
+  }
+]
 
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
@@ -158,13 +136,12 @@ const experiences = [
     org: 'Folio AI',
     orgUrl: 'https://gofolio.ai',
     location: 'San Jose, CA (Remote)',
-    dates: 'Sep 2025 - Present',
+    dates: 'Aug 2025 - Dec 2025',
     employmentType: 'Part-time',
-    group: 'additional',
     bullets: [
-      'Delivered <10ms P99 reads on a real-time financial backend using FastAPI + SQLAlchemy, PostgreSQL, and a Redis zset time-series store fed by 100k+ Yahoo Finance events.',
-      'Built fault-isolated WebSocket + Redis ingestion stages with deterministic retry and backpressure, improving stability by 60% under peak load.',
-      'Integrated LangGraph agentic workflows (Gemini + tool nodes) with Redis-backed retrieval to produce multi-step market/option insights, cutting analyst turnaround by 3×.'
+      'Built a FastAPI service (SQLAlchemy/PostgreSQL/Redis zset) for real-time market data, delivering <10ms P99 reads across 100k+ events.',
+      'Designed resilient WebSocket ingestion with staged transforms, retries, and backpressure (Redis channels), improving peak-load stability by 60%.',
+      'Productionized LangGraph agents (Gemini + tools) with retrieval over market/options data, cutting analyst turnaround by 3×.'
     ]
   },
   {
@@ -175,13 +152,10 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Full-time',
     bullets: [
-      'Built a company-wide GenAI platform by customizing Libre-chat/Open WebUI stacks with Node.js + React, deploying OpenAI, Gemini, and Llama3 via Ollama on-prem for 20+ internal teams.',
-      'Extended the codebase with LangChain to integrate a proprietary compliance-trained LLM through Azure API calls.',
-      'Created Next.js REST endpoints for a file management layer that handles uploads/retrievals/deletions, powering RAG document workflows.',
-      'Integrated OpenAI Assistants API for context-aware responses, lifting question-answer accuracy by ~30%.',
-      'Automated Docker-based platform installs across Windows/Linux via scripted tooling and orchestrated VPN-tunneled container networking with Docker Compose to bypass regional API blocks.',
-      'Refreshed Tap&Go wallet rewards with a Flutter-powered merchant search (brand/category/region filters) backed by local JSON data.',
-      'Built a Python automation pipeline that extracts Excel data, scripts Mermaid diagrams, and renders wireless on-site cell diagrams in minutes, cutting generation time 90%.'
+      'Architected a multi-provider GenAI platform with an LLM adapter layer (token accounting, context assembly, provider switching), enabling secure access for 20+ teams.',
+      'Built modular LangChain workflows (routing + memory) for compliance Q&A and summarization, improving answer accuracy by 35%.',
+      'Delivered a production RAG service (FastAPI, pgvector, asyncpg) with bounded concurrency, cutting semantic retrieval latency by 5×.',
+      'Automated CI/CD and deployments (Docker Compose, GitHub Actions, VPN-secured environments), reducing setup time by 80%.'
     ]
   },
   {
@@ -192,11 +166,9 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built an AI-driven Next.js learning platform with HKUST Center for Education Innovation, securing HKD 250k funding.',
-      'Developed an immersive Babylon.js + Ammo.js virtual classroom with Blender assets, physics, drag-and-drop, avatar movement, spatial audio, and Meta Quest 3 WebXR controls.',
-      'Embedded multimedia video/audio playback, dynamic blackboards, and clickable shelves using TypeScript for richer interactions.',
-      'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming with token tracking/retry logic, Markdown/code-block rendering, and Redux-managed feedback.',
-      'Deployed a Colyseus-based avatar networking layer on Fly.io to coordinate 100+ concurrent users.'
+      'Built a WebXR virtual classroom (Next.js, Babylon.js) with physics and real-time collaboration for Meta Quest 3.',
+      'Shipped multimodal GenAI chat (Whisper STT, streaming responses, memory) to support interactive learning workflows.',
+      'Scaled live sessions with real-time networking, supporting 100+ concurrent users.'
     ]
   },
   {
@@ -207,11 +179,9 @@ const experiences = [
     dates: 'Oct 2023 - Jan 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built real-time Bloomberg Data License / B-PIPE monitoring dashboards with Node.js + Vue.js, flagging 15+ anomalous patterns across 7 departments.',
-      'Engineered Knex.js-backed REST query/mutation endpoints to process 100k+ Bloomberg invoice records in Oracle, providing schema management and transactional safety.',
-      'Delivered a TypeScript + React derivatives valuation SaaS to meet SFC compliance while automating data ingestion and reporting.',
-      'Crafted reusable UI components with TypeScript generics (conditional/indexed/mapped types) and generic parsing helpers with type guards to eliminate runtime validation failures.',
-      'Implemented a concurrent Excel export service with dynamic schemas, rate limiting, and paginated processing to bulk-export 10k+ rows without overloading downstream APIs.'
+      'Built real-time monitoring dashboards for Bloomberg Data License/B-PIPE usage (Node.js/Vue.js), flagging 15+ anomalous patterns across 7 departments.',
+      'Implemented Spring Boot controllers with schema validation and JUnit tests to improve backend reliability and release safety.',
+      'Designed an ETL pipeline converting 100k+ Bloomberg exports into normalized Oracle tables with stored procedures, triggers, and transactional routines.'
     ]
   },
   {
@@ -222,14 +192,10 @@ const experiences = [
     dates: 'Jun 2022 - Oct 2023',
     employmentType: 'Full-time',
     bullets: [
-      'Architected a real-time market intelligence SaaS with Node.js/React, driving 10+ product iterations and $1M HKD in HKSTP funding.',
-      'Built React Window + Infinite Loader components over paginated GraphQL to stream 5M+ historical records with real-time updates while chunking data to manage memory.',
-      'Redesigned protobuf/MongoDB schema, implemented indexes/aggregations, and profiled queries before migrating from Mongoose to the native driver, doubling retrieval speed.',
-      'Implemented a GraphQL API with Pothos, layered caching with GraphQL Yoga (configurable TTLs, session scoping, mutation invalidation), cutting endpoint overhead by 40%.',
-      'Delivered watchlist CRUD via Cloud Firestore tied to Firebase Auth for scalable tag-based company/industry tracking.',
-      'Centralized static assets on AWS S3 + CloudFront, enforced IP-restricted Nginx reverse proxies, and hosted separate Ubuntu EC2 instances for frontend/backend in UAT + production.',
-      'Selected t3.medium instances via local resource profiling, configured PM2 for backend resilience, and automated SSL renewals with Certbot.',
-      'Created GoDaddy DNS records + subdomains for load-balanced production and isolated UAT, wiring Nginx upstreams to distribute traffic securely.'
+      'Led development of a multi-tenant real-time market intelligence SaaS (Node.js/React/GraphQL), supporting 20+ iterations and securing HKD 1M funding.',
+      'Built Kafka streaming pipelines and a Node.js WebSocket gateway for live tenant-filtered updates, delivering 5M+ events.',
+      'Improved MongoDB throughput by 2× by replacing Mongoose with the native driver and redesigning indexes/aggregations.',
+      'Deployed to AWS (EC2, CloudFront) with Nginx and HTTPS to support stable multi-environment releases.'
     ]
   },
   {
@@ -241,11 +207,8 @@ const experiences = [
     employmentType: 'Part-time',
     group: 'additional',
     bullets: [
-      'Led platform architecture across core services to improve maintainability and delivery cycles.',
-      'Shipped feature roadmaps end-to-end, from technical design to production release.',
-      'Owned code reviews to keep quality and consistency high across teams.',
-      'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.',
-      'Trained and onboarded engineers with technical docs and hands-on sessions.'
+      'Led platform architecture and release practices to improve delivery speed and reliability across teams.',
+      'Owned code review standards and onboarding to increase consistency and maintainability.'
     ]
   },
   {
@@ -256,10 +219,9 @@ const experiences = [
     dates: 'Dec 2021 - Jan 2022',
     employmentType: 'Full-time',
     bullets: [
-      'Rolled out the React Native EasyTransit photo upload experience for iOS/Android with a TypeScript Azure Functions backend, lifting UGC ~20%.',
-      'Built a Storj-integrated image pipeline with client compression, multipart parsing, and binary buffer conversion that shaved 300ms off responses and trimmed storage ~40%.',
-      'Structured Sequelize schemas to manage metadata and built signed-URL REST APIs for time-limited image access.',
-      'Delivered a Windows RollCall automation app with Electron + TypeScript, applying Lodash/FP helpers to automate attendance tracking and SQL Server reporting.'
+      'Built a React Native upload flow with Azure Functions backend, lifting UGC by ~20%.',
+      'Reduced image pipeline latency by 300ms with compression and multipart parsing over Storj.',
+      'Implemented signed-URL REST APIs with Sequelize schemas for secure, time-limited media access.'
     ]
   }
 ]
@@ -273,17 +235,17 @@ const education = [
     dates: 'Sep 2025 - May 2027',
     gpa: '4.0 CGPA',
     coursework:
-      'OS Kernel Implementation, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems, Network Programming'
+      'OS Kernel Implementation, Programming Design Paradigm, Database Management Systems, Algorithms, Natural Language Processing, Foundations for Generative AI, Information Retrieval, Large-Scale Parallel Data Processing, Building Scalable Distributed Systems'
   },
   {
-    school: 'Hong Kong Univ. of Sci. & Tech.',
+    school: 'The Hong Kong University of Science and Technology',
     url: 'https://hkust.edu.hk/',
-    degree: 'B.Eng. Electronic Eng. (CS minor)',
+    degree: 'Bachelor of Engineering in Electronic Engineering (Computer Science minor)',
     location: 'Hong Kong',
     dates: 'Sep 2020 - May 2024',
     honor: 'Second Class Honors, Division I',
     coursework:
-      'Algorithms & Data Structures, Computer Organization, Computer Communication Networks, Discrete Math, Probability & Random Processes, Linear Algebra, C++ & OOP'
+      'Operating Systems, Design and Analysis of Algorithms, Cloud Computing and Big Data Systems, Artificial Intelligence Ethics, Artificial Intelligence for Medical Image Analysis, Computer Communication Networks, Probability and Random Processes in Engineering, Matrix Algebra and Applications'
   }
 ]
 
@@ -301,14 +263,16 @@ const schemaData = {
       disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'AI infrastructure and low-latency C++ systems engineer',
+      jobTitle: 'Applied AI and AI infrastructure engineer',
       knowsAbout: [
-        'Low-latency C++',
-        'Market data infrastructure',
         'AI infrastructure',
-        'Deterministic systems',
-        'Latency budgeting',
-        'Observability'
+        'LLM orchestration',
+        'LLM serving',
+        'Observability',
+        'Applied AI systems',
+        'Production AI services',
+        'Evaluation pipelines',
+        'Deployment automation'
       ],
       areaServed: ['Hong Kong', 'United States'],
       sameAs: [
@@ -376,7 +340,7 @@ const schemaData = {
       ]
     },
     ...projects.map((project, index) => {
-      const languages = project.tags.filter(tag => ['C++', 'C++20', 'Python', 'TypeScript', 'JavaScript'].includes(tag))
+      const languages = project.tags.filter(tag => ['Python', 'TypeScript', 'JavaScript'].includes(tag))
       const schemaType = project.schemaType || 'SoftwareApplication'
       const isSoftware = schemaType === 'SoftwareApplication'
       return {
@@ -488,89 +452,26 @@ const setJsonLd = (data) => {
 }
 
 const skillSets = {
-  'AI Infrastructure': {
+  'Applied AI Engineering (HK/US)': {
     core: [
       {
-        title: 'Systems & Backend',
-        items: ['Python', 'TypeScript', 'FastAPI', 'Node.js', 'C++', 'REST', 'GraphQL', 'WebSocket']
+        title: 'LLM Apps & APIs',
+        items: ['Python', 'FastAPI', 'REST APIs', 'LangChain / LangGraph']
       },
       {
-        title: 'Data & Retrieval',
-        items: ['PostgreSQL', 'MongoDB', 'Redis', 'pgvector', 'SQL', 'Mongoose', 'Sequelize', 'Knex']
+        title: 'RAG & Retrieval',
+        items: ['pgvector', 'PostgreSQL', 'Milvus / Pinecone', 'Redis']
       },
       {
-        title: 'Infra & Cloud',
-        items: ['Docker', 'Kubernetes', 'AWS (EC2/S3/CloudFront)', 'Nginx', 'Linux', 'GitHub Actions', 'Terraform']
+        title: 'LLM Ecosystem',
+        items: ['Hugging Face Transformers', 'PyTorch', 'NLP', 'LLM evaluation']
+      },
+      {
+        title: 'Infra, Observability & Orchestration',
+        items: ['AWS', 'Docker/Kubernetes', 'OpenTelemetry', 'Prometheus/Grafana', 'Dagster']
       }
     ],
     supporting: [
-      {
-        title: 'Frontend & UX',
-        items: ['React', 'Next.js', 'React Native', 'Electron', 'Vue.js', 'Vuetify', 'Chart.js', 'Babylon.js']
-      },
-      {
-        title: 'Languages & Tools',
-        items: [
-          'TypeScript',
-          'JavaScript',
-          'Java',
-          'C',
-          'MATLAB',
-          'Spark',
-          'GCP',
-          'Azure',
-          'Firebase',
-          'YAML',
-          'GoDaddy'
-        ]
-      }
-    ]
-  },
-  'C++ / Quant Dev': {
-    core: [
-      {
-        title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'C', 'Python', 'SQL', 'Bash']
-      },
-      {
-        title: 'Concurrency & Systems',
-        items: [
-          'Multithreading (std::thread, mutex)',
-          'Memory layout',
-          'Contention-aware design',
-          'Linux process & memory model'
-        ]
-      },
-      {
-        title: 'Networking',
-        items: ['TCP/IP', 'Streaming systems', 'WebSocket-style protocols']
-      }
-    ],
-    supporting: [
-      {
-        title: 'Python & Math',
-        items: ['PyTorch', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy', 'scikit-learn']
-      },
-      {
-        title: 'Tools',
-        items: [
-          'gcc / clang',
-          'CMake',
-          'gdb',
-          'perf',
-          'valgrind',
-          'Google Test',
-          'Git',
-          'Unix/Linux',
-          'RISC-V'
-        ]
-      },
-      {
-        title: 'Focus',
-        items: [
-          'This track reflects my interest in correctness under concurrency and predictable performance in high-stakes systems.'
-        ]
-      }
     ]
   }
 }
@@ -578,7 +479,7 @@ const skillSets = {
 const skillTracks = Object.keys(skillSets)
 
 function App() {
-  const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
+  const activeTrack = skillTracks[0]
   const [activeSection, setActiveSection] = useState('top')
   const [showAdditionalExperience, setShowAdditionalExperience] = useState(false)
   const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
@@ -711,36 +612,36 @@ function App() {
               </a>
             </h1>
             <p className="hero-role">
-              AI infrastructure &amp; low-latency systems developer
+              Applied AI &amp; AI infrastructure engineer for HK &amp; US deployments
             </p>
           </div>
         </div>
         <div className="hero-grid">
           <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
             <p className="hero-summary">
-              I pursue low-latency C++ systems and AI infrastructure because deterministic pipelines and measurable
-              latency budgets unlock clearer, more trustable outcomes. I&rsquo;m curious about how high-frequency
-              market data and large-scale AI stacks weave together, and I prototype systems that keep performance
-              predictable while surfacing the story behind every packet and inference.
+              I build applied AI systems that turn LLM prototypes into reliable, observable services for real client
+              deployments. My focus is on production-grade APIs, LLM serving, evaluation pipelines, and operational
+              tooling that let teams ship experiments safely and iterate fast across models, prompts, and workflows.
             </p>
             <div className="signal-grid">
               <div className="signal-card">
                 <span className="signal-label">Execution</span>
-                <span className="signal-value">Define scope, deliver milestones, and de-risk early.</span>
+                <span className="signal-value">Ship LLM services with clear SLIs, rollout plans, and measurable outcomes.</span>
               </div>
               <div className="signal-card">
                 <span className="signal-label">Reliability</span>
-                <span className="signal-value">Benchmark, monitor, and harden for predictable performance.</span>
+                <span className="signal-value">Observability-first systems with evals, guardrails, and safe fallbacks.</span>
               </div>
               <div className="signal-card">
                 <span className="signal-label">Collaboration</span>
-                <span className="signal-value">Share context, unblock early, and write it down.</span>
+                <span className="signal-value">Translate research into reusable templates and production playbooks.</span>
               </div>
             </div>
             <div className="hero-meta">
-              <span>Seeking AI infrastructure or C++ roles (quant system focus)</span>
+              <span>Seeking HK/US applied AI engineering roles</span>
               <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
+            <p className="section-subhead">Infra focus: LLM serving, observability, and pipeline reliability.</p>
           </div>
           <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
             <img
@@ -757,8 +658,9 @@ function App() {
       <main className="main">
         <section className="section" id="experience">
           <div className="section-heading">
-            <h2>Experience</h2>
+            <h2>Applied AI Experience</h2>
           </div>
+          <p className="section-subhead">Production ownership across LLM platforms, pipelines, observability, and deployment.</p>
           <div className="card-stack">
             {coreExperiences.map(renderExperienceCard)}
           </div>
@@ -785,8 +687,9 @@ function App() {
 
         <section className="section" id="projects">
           <div className="section-heading">
-            <h2>Selected projects</h2>
+            <h2>Open Source Contributions</h2>
           </div>
+          <p className="section-subhead">Active targets — planned upstream contributions (PRs, docs, and benchmarks).</p>
           <div className="projects-grid">
             {visibleFeaturedProjects.map((project) => (
               <article className="project-card" key={project.title}>
@@ -808,14 +711,12 @@ function App() {
                   ) : null}
                 </div>
                 <div className="project-footer">
-                  {project.repo && project.group === 'academic' ? (
+                  {project.repo ? (
                     <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                      {project.linkLabel || 'View code'}
+                      {project.linkLabel || 'Project home'}
                     </a>
                   ) : (
-                    <span className="project-link project-link-muted">
-                      {project.linkLabel || 'View code'}
-                    </span>
+                    <span className="project-link project-link-muted">{project.linkLabel || 'Project home'}</span>
                   )}
                   <div className="tag-row">
                     {project.tags.slice(0, 3).map((tag) => (
@@ -843,8 +744,9 @@ function App() {
 
         <section className="section">
           <div className="section-heading">
-            <h2>Research &amp; academic</h2>
+            <h2>Research &amp; Foundations</h2>
           </div>
+          <p className="section-subhead">Applied AI and data engineering projects that support production depth.</p>
           <div className="projects-grid">
             {visibleAcademicProjects.map((project) => (
               <article className="project-card" key={project.title}>
@@ -901,75 +803,50 @@ function App() {
           <div className="section-heading">
             <h2>Skills</h2>
           </div>
-          <div className="skills-toggle" role="tablist" aria-label="Skill track toggle">
-            {skillTracks.map((track) => (
-              <button
-                key={track}
-                type="button"
-                className={`toggle-button ${track === activeTrack ? 'active' : ''}`}
-                onClick={() => setActiveTrack(track)}
-                role="tab"
-                aria-selected={track === activeTrack}
-              >
-                {track}
-              </button>
-            ))}
-          </div>
-          <div className="skills-panels">
-            {skillTracks.map((track) => {
-              const skills = skillSets[track]
-              const isActive = track === activeTrack
-              return (
-                <div
-                  key={track}
-                  className={`skills-panel ${isActive ? 'is-active' : ''}`}
-                  role="tabpanel"
-                  aria-hidden={!isActive}
-                >
-                  <div className="skills-split">
-                    <div className="skills-column">
-                      <div className="skills-grid compact">
-                        {skills.core.map((group) => (
-                          <div className="skill-card" key={group.title}>
-                            <h3>{group.title}</h3>
-                            <div className="tag-row skill-tags">
-                              {group.items.map((item) => (
-                                <span className="tag" key={item}>
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="skills-column supporting">
-                      <div className="skills-grid compact">
-                        {skills.supporting.map((group) => (
-                          <div className="skill-card" key={group.title}>
-                            <h3>{group.title}</h3>
-                            <div className="tag-row skill-tags">
-                              {group.items.map((item) => (
-                                <span className="tag" key={item}>
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+          <p className="section-subhead">Applied AI depth paired with production infrastructure and reliable delivery.</p>
+          <div className="skills-split">
+            <div className="skills-column">
+              <p className="section-subhead">Applied AI</p>
+              <div className="skills-grid compact">
+                {skillSets[skillTracks[0]].core.map((group) => (
+                  <div className="skill-card" key={group.title}>
+                    <h3>{group.title}</h3>
+                    <div className="tag-row skill-tags">
+                      {group.items.map((item) => (
+                        <span className="tag" key={item}>
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                ))}
+              </div>
+            </div>
+            <div className="skills-column supporting">
+              <p className="section-subhead">General SWE</p>
+              <div className="skills-grid compact">
+                {generalSkillGroups.map((group) => (
+                  <div className="skill-card" key={group.title}>
+                    <h3>{group.title}</h3>
+                    <div className="tag-row skill-tags">
+                      {group.items.map((item) => (
+                        <span className="tag" key={item}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="section" id="education">
           <div className="section-heading">
-            <h2>Education</h2>
+            <h2>Education &amp; Foundations</h2>
           </div>
+          <p className="section-subhead">Graduate and undergraduate training in NLP, GenAI, IR, and scalable systems.</p>
           <div className="education-grid">
             {education.map((item) => (
               <div className="education-card" key={item.school}>
@@ -1037,7 +914,7 @@ function App() {
           </div>
         </div>
         <div className="footer-meta">
-          <span>Built for speed, clarity, and auditability.</span>
+          <span>Built for applied AI reliability, observability, and iteration speed.</span>
           <span>
             © {new Date().getFullYear()}{' '}
             <a href={SITE_URL} className="footer-site-link">

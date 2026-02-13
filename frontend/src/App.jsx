@@ -80,19 +80,19 @@ const projects = [
     tags: ['C', 'Network Programming', 'Low Latency'],
     metrics: ['Protocol support: TCP + UDP', 'Pipeline: normalize -> enrich', 'Hot path: lock-free + zero-copy'],
     repo: 'https://github.com/hans2001',
-    linkLabel: 'Project overview',
+    hideLink: true,
     group: 'featured'
   },
   {
-    title: 'LLM Evaluation + Regression Harness',
-    context: 'Performance · Reproducibility',
+    title: 'Distributed GPU-Accelerated LLM Inference',
+    context: 'AI infrastructure · Distributed systems',
     description:
-      'Built a repeatable evaluation harness for prompt/task suites with deterministic reruns, scorecards, and regression tracking. This makes model/version comparisons auditable instead of anecdotal.',
-    impact: 'Tracked p50/p95 latency, token throughput, cost, and quality metrics across model/version changes.',
-    highlight: 'Deterministic runs with audit logs and structured eval outputs.',
+      'Built a distributed LLM serving system with a FastAPI gateway, routing scheduler, and replicated vLLM GPU workers. Integrated LangGraph reasoning workflows to support concurrent inference with dynamic load balancing and automatic failover.',
+    impact: 'Optimized token-aware batching and queue-based scheduling with KV-cache management, achieving sub-second p95 latency and 2x token throughput under 50+ concurrent requests.',
+    highlight: 'Implemented end-to-end observability with OpenTelemetry to track latency, throughput, and error rates across load and failure testing.',
     tags: ['Performance', 'Evaluation', 'Benchmarking'],
-    metrics: ['Latency KPIs: p50/p95', 'Tracked dimensions: latency + cost + quality', 'Runs: deterministic replays'],
-    repo: 'https://github.com/hans2001',
+    metrics: ['Serving architecture: gateway + scheduler + replicated GPU workers', 'Latency: sub-second p95', 'Throughput: 2x', 'Load: 50+ concurrent requests'],
+    hideLink: true,
     group: 'featured'
   },
   {
@@ -254,7 +254,7 @@ const experiences = [
       'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.',
       'Trained and onboarded engineers with technical docs and hands-on sessions.'
     ],
-    metrics: ['Coordination scope: 3 teams (Web/Design/Marketing)', 'Leadership span: 2 years', 'Role: Web Team Lead']
+    metrics: ['Coordination scope: 3 teams (Web/Design/Backend)', 'Leadership span: 2 years', 'Role: Web Team Lead']
   },
   {
     role: 'Software Engineer Intern',
@@ -277,7 +277,7 @@ const education = [
   {
     school: 'Northeastern University',
     url: 'https://www.northeastern.edu/',
-    degree: 'M.S. Computer Science',
+    degree: 'M.S. Computer Science (Pursuing)',
     location: 'Boston, MA',
     dates: 'Sep 2025 - May 2027',
     gpa: '4.0 CGPA',
@@ -287,7 +287,7 @@ const education = [
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
     url: 'https://hkust.edu.hk/',
-    degree: 'B.Eng. Electronic Eng. (CS minor)',
+    degree: 'Bachelor of Engineering (B.Eng.) in Electronic Engineering, with a Minor in Information Technology (Computer Science)',
     location: 'Hong Kong',
     dates: 'Sep 2020 - May 2024',
     honor: 'Second Class Honors, Division I',
@@ -548,6 +548,8 @@ const financeConcepts = [
 ]
 
 const computerSideEeCourses = [
+  'VLSI circuit design (SRAM power-gating project)',
+  'Cache and memory hierarchy fundamentals',
   'Programming with C++',
   'Data Structures',
   'Operating Systems',
@@ -558,12 +560,12 @@ const computerSideEeCourses = [
   'Probability & Random Processes'
 ]
 
-const skillSets = {
+const rawSkillSets = {
   'Systems Performance (Core)': {
     core: [
       {
         title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'C', 'Python', 'CUDA', 'Bash']
+        items: ['C++20 (STL, templates, RAII)', 'Python', 'SQL', 'Bash', 'TypeScript', 'Java']
       },
       {
         title: 'Parallel + GPU',
@@ -571,13 +573,25 @@ const skillSets = {
       },
       {
         title: 'Systems + Performance',
-        items: ['Linux internals', 'Memory hierarchy', 'Concurrency', 'Latency + throughput tradeoffs']
+        items: [
+          'Multithreading',
+          'Memory layout',
+          'Cache hierarchy intuition (L1/L2/L3 and DRAM)',
+          'Contention-aware design',
+          'Linux process and memory model',
+          'Concurrency safety',
+          'Determinism'
+        ]
       }
     ],
     supporting: [
       {
+        title: 'Networking',
+        items: ['TCP/IP', 'Streaming systems', 'WebSocket-style protocols']
+      },
+      {
         title: 'Tooling',
-        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Git', 'Unix/Linux']
+        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Google Test', 'Git', 'Unix/Linux', 'RISC-V', 'QEMU', 'POSIX']
       },
       {
         title: 'Profiling + Optimization',
@@ -593,54 +607,136 @@ const skillSets = {
       {
         title: 'Applied Work',
         items: ['CUDA kernels', 'GPU-accelerated data pipelines', 'Low-level benchmarks']
+      },
+      {
+        title: 'Focus',
+        items: [
+          'Low-latency C++ systems for financial applications, emphasizing concurrency safety, determinism, and production performance.'
+        ]
       }
     ]
   },
-  'Systems Design': {
+  'Systems Design (Learning)': {
     core: [
       {
         title: 'Design Skills',
-        items: ['Latency budgeting', 'Throughput modeling', 'Backpressure', 'Failure isolation']
+        items: [
+          'Latency budgeting',
+          'Throughput modeling',
+          'Backpressure',
+          'Failure isolation',
+          'Idempotency design',
+          'State-machine thinking'
+        ]
       },
       {
-        title: 'Architecture',
-        items: ['Service boundaries', 'Data pipelines', 'Observability', 'SLOs and reliability']
+        title: 'Application Patterns',
+        items: [
+          'Layered and modular architecture',
+          'Domain boundaries and service decomposition',
+          'E-commerce flow design (catalog/cart/checkout/order)',
+          'Inventory and payment consistency patterns',
+          'Async job and workflow orchestration'
+        ]
+      },
+      {
+        title: 'Distributed Systems',
+        items: [
+          'Pub/sub and stream processing patterns',
+          'Partitioning and sharding basics',
+          'Retry/backoff/circuit-breaker patterns',
+          'At-least-once and exactly-once tradeoffs',
+          'Consistency vs availability'
+        ]
       },
       {
         title: 'Tradeoffs',
-        items: ['Cost vs performance', 'Consistency vs availability', 'Batch vs streaming']
+        items: ['Cost vs performance', 'Batch vs streaming', 'Operational simplicity vs flexibility']
       }
     ],
     supporting: [
       {
         title: 'Data Systems',
-        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies']
+        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies', 'Data retention and replay strategy']
       },
       {
-        title: 'Infra',
-        items: ['Docker', 'Kubernetes', 'Linux', 'CI/CD', 'Cloud fundamentals']
+        title: 'Cloud-Native + Infra',
+        items: [
+          'Container-first service design',
+          'Kubernetes workload patterns',
+          'CI/CD and progressive delivery',
+          'Infrastructure as code basics',
+          'Service observability and SLO-driven operations'
+        ]
+      },
+      {
+        title: 'Virtualization + Runtime',
+        items: ['VM and container isolation basics', 'QEMU workflows', 'Resource limits and scheduling behavior']
+      },
+      {
+        title: 'AI Infra Patterns',
+        items: [
+          'Model gateway + worker pool pattern',
+          'Queue-based batching and scheduling',
+          'Online/offline pipeline separation',
+          'Tracing and metrics for model serving'
+        ]
       }
     ]
   },
   'AI Infrastructure + Full-Stack': {
     core: [
       {
-        title: 'AI + Data',
-        items: ['PyTorch', 'NumPy', 'Pandas', 'scikit-learn', 'Vector search basics']
+        title: 'Programming',
+        items: [
+          'Python',
+          'TypeScript/JavaScript',
+          'C++20 (STL, templates)',
+          'Java (JVM, Collections)',
+          'SQL',
+          'Bash',
+          'YAML',
+          'MATLAB'
+        ]
       },
       {
-        title: 'Backend',
-        items: ['Python', 'FastAPI', 'Node.js', 'REST', 'WebSocket', 'PostgreSQL', 'Redis']
+        title: 'Backend & Data',
+        items: [
+          'Redis',
+          'Kafka',
+          'GraphQL',
+          'WebSocket',
+          'PostgreSQL',
+          'MongoDB',
+          'pgvector',
+          'Pandas',
+          'NumPy',
+          'Grafana',
+          'PySpark'
+        ]
       },
       {
-        title: 'Frontend',
-        items: ['React', 'Next.js', 'TypeScript', 'UI systems']
+        title: 'AI & Infra',
+        items: [
+          'LangChain',
+          'Docker',
+          'AWS',
+          'Terraform',
+          'Git',
+          'vLLM',
+          'Kubernetes',
+          'Unix',
+          'Pinecone',
+          'Dagster',
+          'OpenTelemetry',
+          'PyTorch'
+        ]
       }
     ],
     supporting: [
       {
-        title: 'Ops',
-        items: ['Docker', 'Nginx', 'AWS basics', 'Monitoring']
+        title: 'APIs & Web',
+        items: ['FastAPI', 'Spring Boot', 'Node.js', 'React.js', 'Next.js', 'Electron', 'Vue.js', 'HTML/CSS']
       },
       {
         title: 'Focus',
@@ -675,6 +771,41 @@ const skillSets = {
   
 }
 
+const normalizeSkill = (value) => value.toLowerCase().replace(/\s+/g, ' ').trim()
+
+const buildUniqueSkillSets = (sets) => {
+  const seen = new Set()
+  const result = {}
+
+  for (const [track, groups] of Object.entries(sets)) {
+    const dedupeGroup = (group) => {
+      const uniqueItems = []
+      for (const item of group.items) {
+        const key = normalizeSkill(item)
+        if (seen.has(key)) {
+          continue
+        }
+        seen.add(key)
+        uniqueItems.push(item)
+      }
+      if (!uniqueItems.length) {
+        return null
+      }
+      return { ...group, items: uniqueItems }
+    }
+
+    const core = groups.core.map(dedupeGroup).filter(Boolean)
+    const supporting = groups.supporting.map(dedupeGroup).filter(Boolean)
+
+    if (core.length || supporting.length) {
+      result[track] = { core, supporting }
+    }
+  }
+
+  return result
+}
+
+const skillSets = buildUniqueSkillSets(rawSkillSets)
 const skillTracks = Object.keys(skillSets)
 
 function App() {
@@ -744,12 +875,12 @@ function App() {
         </div>
       ) : null}
       <div className="project-footer">
-        {project.repo ? (
-          <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-            {project.linkLabel || 'View code'}
-          </a>
+        {project.hideLink || !project.repo ? (
+          <span className="project-link project-link-muted">Project overview</span>
         ) : (
-          <span className="project-link project-link-muted">{project.linkLabel || 'View code'}</span>
+          <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+            Project overview
+          </a>
         )}
         <div className="tag-row">
           {project.tags.slice(0, 4).map((tag) => (
@@ -998,7 +1129,8 @@ function App() {
                 <p>
                   I keep the computer-systems part of my EE background visible because it directly supports systems
                   software work: architecture-aware performance decisions, networking intuition, and quantitative
-                  reasoning in design tradeoffs.
+                  reasoning in design tradeoffs. This includes practical intuition from VLSI/SRAM design and cache-level
+                  behavior (L1/L2/L3 to DRAM) when analyzing performance bottlenecks.
                 </p>
                 <ul className="plain-list">
                   {computerSideEeCourses.map((course) => (

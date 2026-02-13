@@ -20,7 +20,7 @@
   --font-display: 'IBM Plex Sans', sans-serif;
   --font-body: 'IBM Plex Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
-  --content-max-width: min(1200px, 100%);
+  --content-max-width: min(1400px, 100%);
 
   font-family: var(--font-body);
   line-height: 1.35;
@@ -36,6 +36,10 @@
 body {
   min-height: 100vh;
   background-color: var(--paper);
+}
+
+html {
+  overflow-y: scroll;
 }
 
 a {

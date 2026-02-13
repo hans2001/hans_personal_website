@@ -6,60 +6,55 @@ const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
-const BASE_TITLE = `${BRAND_NAME} | AI infrastructure & low-latency C++ systems`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) builds low-latency C++ systems and AI infrastructure for market data teams, focused on deterministic performance, clean data paths, and production reliability.`
+const BASE_TITLE = `${BRAND_NAME} | GPU systems + performance engineer`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) focuses on systems and performance engineering across GPU compute, low-latency market infrastructure, and production reliability.`
 const OG_IMAGE = `${SITE_URL}/og.jpg`
 const sectionMeta = {
   top: {
     title: BASE_TITLE,
     description: BASE_DESCRIPTION
   },
-  about: {
-    title: `How I Work | ${BRAND_NAME}`,
-    description:
-      'Clear goals, simple metrics, and reliable handoffs.'
+  overview: {
+    title: `Focus | ${BRAND_NAME}`,
+    description: 'Current technical focus, in-progress builds, and open-source targets.'
   },
   experience: {
     title: `Experience | ${BRAND_NAME}`,
-    description: 'Timeline of internships and leadership with measurable impact across fintech, AI, and research.'
+    description: 'Timeline of internships and leadership with measurable impact across systems, performance, and research.'
   },
   projects: {
     title: `Projects | ${BRAND_NAME}`,
-    description: 'Selected C++ systems, concurrency, and data-platform projects with open-source repos.'
+    description: 'Selected systems, performance, and hardware-adjacent projects with open-source repos.'
   },
-  skills: {
-    title: `Skills | ${BRAND_NAME}`,
-    description: 'Skills across systems programming, data infrastructure, and platform tooling; organized by track.'
-  },
-  education: {
-    title: `Education | ${BRAND_NAME}`,
-    description: 'Education in computer science and electronic engineering across Hong Kong and the US.'
+  profile: {
+    title: `Profile | ${BRAND_NAME}`,
+    description: 'Technical profile covering systems design, skills, and education.'
   },
   contact: {
     title: `Contact | ${BRAND_NAME}`,
-    description: `Contact ${PRIMARY_NAME} (${ALT_NAME_EN} | ${ALT_NAME} | Hans) for low-latency backend and data infrastructure roles.`
+    description: `Contact ${PRIMARY_NAME} (${ALT_NAME_EN} | ${ALT_NAME} | Hans) for systems, performance, and low-latency infrastructure roles.`
   }
 }
 
-const sectionIds = [
-  'top',
-  'about',
-  'experience',
-  'projects',
-  'skills',
-  'education',
-  'contact'
-]
+const sectionIds = ['profile', 'projects', 'experience', 'overview', 'contact']
+const sectionLabels = {
+  overview: 'Focus',
+  experience: 'Experience',
+  projects: 'Projects',
+  profile: 'Profile',
+  contact: 'Contact'
+}
 
 const projects = [
   {
     title: 'UDP Multicast L2 Order-Book Engine',
-    context: 'Network programming · Market data',
+    context: 'Low-level systems · Deterministic pipelines',
     description:
-      'Built a UDP multicast ingest + binary parser feeding an in-memory L2 order book with deterministic replay and a tail-latency harness.',
+      'Built a UDP multicast ingest pipeline and binary protocol parser feeding an in-memory L2 order book, with deterministic replay for correctness checks. The project focuses on predictable behavior under bursty market traffic.',
     impact: 'Enabled repeatable tail-latency regression checks and order-book correctness under bursty feeds.',
     highlight: 'Zero-copy ingest path with contention-aware synchronization across the L2 pipeline.',
     tags: ['C++20', 'Low Latency', 'Concurrency'],
+    metrics: ['Protocol feed: UDP multicast', 'Data model: L2 order book', 'Latency tracking: tail regressions'],
     repo: 'https://github.com/hans2001/low-latency-market-data-engine',
     group: 'featured'
   },
@@ -67,33 +62,36 @@ const projects = [
     title: 'C++ Work-Stealing Thread Pool Scheduler',
     context: 'Systems · Concurrency',
     description:
-      'Built a fixed-size scheduler with work-stealing queues, explicit lifetimes, and throughput benchmarks vs std::async.',
+      'Built a fixed-size scheduler with work-stealing queues and explicit task lifetimes to study practical concurrency tradeoffs. Benchmarked against std::async to quantify throughput and overhead differences.',
     impact: 'Documented throughput tradeoffs under a bounded worker pool.',
     highlight: 'Work-stealing queues with explicit lifetimes and a fixed-size runtime.',
     tags: ['C++', 'Schedulers', 'Benchmarks'],
+    metrics: ['Runtime: fixed-size worker pool', 'Baseline: std::async', 'Focus: throughput under contention'],
     repo: 'https://github.com/hans2001/cpp-thread-pool',
     group: 'featured'
   },
   {
     title: 'C TCP/UDP Exchange Feed Gateway',
-    context: 'Network programming · Trading infra',
+    context: 'Systems · Networking',
     description:
-      'Built a C-based market gateway that normalizes exchange feeds, maintains order-book snapshots, and forwards enriched ticks to downstream strategies.',
+      'Built a C-based market data gateway that normalizes TCP/UDP exchange feeds, maintains order-book snapshots, and emits enriched ticks to downstream services. The design prioritizes low jitter and minimal copy overhead.',
     impact: 'Cut per-message processing overhead and improved jitter under bursty market data loads.',
     highlight: 'Zero-copy ring buffer, SO_REUSEPORT fan-out, and lock-free hot path.',
     tags: ['C', 'Network Programming', 'Low Latency'],
+    metrics: ['Protocol support: TCP + UDP', 'Pipeline: normalize -> enrich', 'Hot path: lock-free + zero-copy'],
     repo: 'https://github.com/hans2001',
     linkLabel: 'Project overview',
     group: 'featured'
   },
   {
     title: 'LLM Evaluation + Regression Harness',
-    context: 'AI infra · Evaluation',
+    context: 'Performance · Reproducibility',
     description:
-      'Built a repeatable evaluation pipeline for model prompts/tasks with scorecards, regressions, and deterministic reruns.',
+      'Built a repeatable evaluation harness for prompt/task suites with deterministic reruns, scorecards, and regression tracking. This makes model/version comparisons auditable instead of anecdotal.',
     impact: 'Tracked p50/p95 latency, token throughput, cost, and quality metrics across model/version changes.',
     highlight: 'Deterministic runs with audit logs and structured eval outputs.',
-    tags: ['AI Infra', 'Evaluation', 'Benchmarking'],
+    tags: ['Performance', 'Evaluation', 'Benchmarking'],
+    metrics: ['Latency KPIs: p50/p95', 'Tracked dimensions: latency + cost + quality', 'Runs: deterministic replays'],
     repo: 'https://github.com/hans2001',
     group: 'featured'
   },
@@ -101,10 +99,11 @@ const projects = [
     title: 'Power-Gated 8kb SRAM (TSMC 180nm)',
     context: 'Circuit design · Low-power ICs',
     description:
-      'Designed a low-power SRAM using power gating, simulated in Cadence Virtuoso to reduce leakage and idle power while retaining data.',
+      'Designed a low-power 8kb SRAM with power-gating controls in Cadence Virtuoso (TSMC 180nm). The goal was reducing leakage and idle power while preserving state and validating behavior through simulation.',
     impact: 'Reduced leakage and idle power while retaining data.',
     highlight: 'Power-gated SRAM simulated and validated in Cadence Virtuoso.',
     tags: ['TSMC 180nm', 'Power Gating', 'SRAM'],
+    metrics: ['Memory size: 8kb', 'Process node: TSMC 180nm', 'Target: lower leakage + idle power'],
     repo: 'https://drive.google.com/file/d/1UUswsKy2AfpEP6Ja7mSuGMwmd4cjCP03/view?usp=sharing',
     linkLabel: 'Project overview',
     schemaType: 'Project',
@@ -114,10 +113,11 @@ const projects = [
     title: 'Airbnb Listings ETL Pipeline (Spark)',
     context: 'Data engineering · ETL',
     description:
-      'Built an ETL pipeline over Inside Airbnb data to analyze pricing, amenities, and demand across 85 global regions.',
+      'Built a Spark-based ETL pipeline over Inside Airbnb data to transform noisy listing records into analytics-ready parquet datasets. Used the pipeline to compare pricing, amenities, and demand patterns across 85 global regions.',
     impact: 'Processed 6–8GB of listings into parquet for consistent, faster analysis.',
     highlight: 'Spark ETL + PySpark SQL with sentiment and pricing model comparisons.',
     tags: ['ETL', 'PySpark', 'Analytics'],
+    metrics: ['Dataset size: 6-8GB', 'Geographies: 85 regions', 'Output format: parquet'],
     repo: 'https://drive.google.com/file/d/1afxda583McI0Wp_UDlM5nYFmIQSaUDbV/view?usp=sharing',
     linkLabel: 'Project overview',
     group: 'academic'
@@ -126,10 +126,11 @@ const projects = [
     title: 'SimCLR Skin Lesion Classifier (ResNet50)',
     context: 'Deep learning · Vision',
     description:
-      'Applied contrastive pretraining and semi-supervised learning with a ResNet50 encoder on the ISIC skin lesion datasets.',
+      'Applied SimCLR-style contrastive pretraining and semi-supervised learning with a ResNet50 backbone on ISIC skin-lesion datasets. The project explored stronger representation learning under limited labels.',
     impact: 'Improved classification robustness over a supervised baseline on ISIC benchmarks.',
     highlight: 'SimCLR pretraining + FixMatch-style pseudo-labeling with ResNet50.',
     tags: ['Deep Learning', 'SimCLR', 'FixMatch'],
+    metrics: ['Backbone: ResNet50', 'Setup: SimCLR + semi-supervised', 'Dataset family: ISIC benchmarks'],
     repo: 'https://drive.google.com/file/d/1pfVlWrskko6F7k7LXyLrlDSPqPVgoT6d/view?usp=sharing',
     linkLabel: 'Project overview',
     group: 'academic'
@@ -138,12 +139,13 @@ const projects = [
     title: 'Multi-Calendar Scheduler (Java MVC + Swing)',
     context: 'Java · MVC',
     description:
-      'Built a multi-calendar app with per-calendar timezones, event copy across ranges, and iCal/CSV export via CLI + Swing GUI.',
+      'Built a multi-calendar scheduling app with per-calendar timezone handling, range-based event copy, and iCal/CSV export. Delivered both CLI and Swing GUI workflows with MVC structure.',
     impact: 'Enabled cross-calendar event copying with timezone-aware scheduling.',
     highlight: 'CLI + Swing GUI with iCal/CSV export support.',
     repo: 'https://github.com/hans2001/CS5010--MultiCalendarApp',
     linkLabel: 'Project overview',
     tags: ['Java', 'MVC', 'Design Patterns'],
+    metrics: ['Interfaces: CLI + Swing GUI', 'Export formats: iCal + CSV', 'Feature: timezone-aware copy'],
     group: 'academic'
   }
 ]
@@ -158,14 +160,15 @@ const experiences = [
     org: 'Folio AI',
     orgUrl: 'https://gofolio.ai',
     location: 'San Jose, CA (Remote)',
-    dates: 'Sep 2025 - Present',
+    dates: 'Sep 2025 - Nov 2025',
     employmentType: 'Part-time',
     group: 'additional',
     bullets: [
       'Delivered <10ms P99 reads on a real-time financial backend using FastAPI + SQLAlchemy, PostgreSQL, and a Redis zset time-series store fed by 100k+ Yahoo Finance events.',
       'Built fault-isolated WebSocket + Redis ingestion stages with deterministic retry and backpressure, improving stability by 60% under peak load.',
       'Integrated LangGraph agentic workflows (Gemini + tool nodes) with Redis-backed retrieval to produce multi-step market/option insights, cutting analyst turnaround by 3×.'
-    ]
+    ],
+    metrics: ['P99 read latency: <10ms', 'Ingestion events: 100k+', 'Stability gain: +60%', 'Turnaround: 3x faster']
   },
   {
     role: 'Software Engineer Intern (Innovation Lab)',
@@ -182,7 +185,8 @@ const experiences = [
       'Automated Docker-based platform installs across Windows/Linux via scripted tooling and orchestrated VPN-tunneled container networking with Docker Compose to bypass regional API blocks.',
       'Refreshed Tap&Go wallet rewards with a Flutter-powered merchant search (brand/category/region filters) backed by local JSON data.',
       'Built a Python automation pipeline that extracts Excel data, scripts Mermaid diagrams, and renders wireless on-site cell diagrams in minutes, cutting generation time 90%.'
-    ]
+    ],
+    metrics: ['Adoption scope: 20+ teams', 'Answer quality: +~30%', 'Diagram generation time: -90%']
   },
   {
     role: 'Tech Lead, Theoretical & Computational Chemistry Lab (Supervisor: Prof. Haibin Su)',
@@ -197,7 +201,8 @@ const experiences = [
       'Embedded multimedia video/audio playback, dynamic blackboards, and clickable shelves using TypeScript for richer interactions.',
       'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming with token tracking/retry logic, Markdown/code-block rendering, and Redux-managed feedback.',
       'Deployed a Colyseus-based avatar networking layer on Fly.io to coordinate 100+ concurrent users.'
-    ]
+    ],
+    metrics: ['Funding secured: HKD 250k', 'Concurrent users: 100+', 'Delivery: immersive WebXR classroom']
   },
   {
     role: 'Information Technology Intern',
@@ -212,7 +217,8 @@ const experiences = [
       'Delivered a TypeScript + React derivatives valuation SaaS to meet SFC compliance while automating data ingestion and reporting.',
       'Crafted reusable UI components with TypeScript generics (conditional/indexed/mapped types) and generic parsing helpers with type guards to eliminate runtime validation failures.',
       'Implemented a concurrent Excel export service with dynamic schemas, rate limiting, and paginated processing to bulk-export 10k+ rows without overloading downstream APIs.'
-    ]
+    ],
+    metrics: ['Anomalies flagged: 15+', 'Departments supported: 7', 'Invoice rows: 100k+', 'Bulk export: 10k+ rows']
   },
   {
     role: 'Software Engineer Intern',
@@ -230,7 +236,8 @@ const experiences = [
       'Centralized static assets on AWS S3 + CloudFront, enforced IP-restricted Nginx reverse proxies, and hosted separate Ubuntu EC2 instances for frontend/backend in UAT + production.',
       'Selected t3.medium instances via local resource profiling, configured PM2 for backend resilience, and automated SSL renewals with Certbot.',
       'Created GoDaddy DNS records + subdomains for load-balanced production and isolated UAT, wiring Nginx upstreams to distribute traffic securely.'
-    ]
+    ],
+    metrics: ['Funding impact: HKD 1M', 'Product iterations: 10+', 'Record scale: 5M+', 'Retrieval speed: 2x', 'API overhead: -40%']
   },
   {
     role: 'Senior Software Engineer, Web Team Lead',
@@ -246,7 +253,8 @@ const experiences = [
       'Owned code reviews to keep quality and consistency high across teams.',
       'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.',
       'Trained and onboarded engineers with technical docs and hands-on sessions.'
-    ]
+    ],
+    metrics: ['Coordination scope: 3 teams (Web/Design/Marketing)', 'Leadership span: 2 years', 'Role: Web Team Lead']
   },
   {
     role: 'Software Engineer Intern',
@@ -260,7 +268,8 @@ const experiences = [
       'Built a Storj-integrated image pipeline with client compression, multipart parsing, and binary buffer conversion that shaved 300ms off responses and trimmed storage ~40%.',
       'Structured Sequelize schemas to manage metadata and built signed-URL REST APIs for time-limited image access.',
       'Delivered a Windows RollCall automation app with Electron + TypeScript, applying Lodash/FP helpers to automate attendance tracking and SQL Server reporting.'
-    ]
+    ],
+    metrics: ['UGC improvement: ~20%', 'Response time: -300ms', 'Storage footprint: ~40% lower']
   }
 ]
 
@@ -283,7 +292,7 @@ const education = [
     dates: 'Sep 2020 - May 2024',
     honor: 'Second Class Honors, Division I',
     coursework:
-      'Algorithms & Data Structures, Computer Organization, Computer Communication Networks, Discrete Math, Probability & Random Processes, Linear Algebra, C++ & OOP'
+      'Programming with C++, Data Structures, Operating Systems, Algorithms, Cloud Computing, Computer Organization, Computer Networks, Probability & Random Processes'
   }
 ]
 
@@ -301,14 +310,15 @@ const schemaData = {
       disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'AI infrastructure and low-latency C++ systems engineer',
+      jobTitle: 'GPU systems and performance engineer',
       knowsAbout: [
-        'Low-latency C++',
-        'Market data infrastructure',
-        'AI infrastructure',
-        'Deterministic systems',
+        'GPU programming',
+        'CUDA',
+        'Low-level performance',
+        'Parallel computing',
+        'C++ systems',
         'Latency budgeting',
-        'Observability'
+        'Profiling and benchmarking'
       ],
       areaServed: ['Hong Kong', 'United States'],
       sameAs: [
@@ -487,186 +497,276 @@ const setJsonLd = (data) => {
   script.textContent = JSON.stringify(data)
 }
 
+const positioningHighlights = [
+  'Repositioning away from AI-infra roles toward GPU systems, parallel computing, and low-level performance engineering.',
+  'Comfortable at the C/C++ level, focused on latency budgets, memory behavior, and end-to-end determinism.',
+  'Drawn to compilers, developer tooling, and the hardware/software boundary (kernels, drivers, runtime).'
+]
+
+const overlapSkills = [
+  'C/C++ and Python for performance-critical systems and tooling.',
+  'Low-latency networking fundamentals (TCP/UDP, socket programming, feed handling).',
+  'Concurrency and synchronization (threading, contention control, lock-aware design).',
+  'CUDA + GPU programming fundamentals (threads, blocks, warps, memory hierarchy).',
+  'Parallel programming models and concurrency.',
+  'Computer architecture fundamentals (CPU/GPU memory, caches, interconnects).',
+  'Linux systems knowledge and debugging/profiling.'
+]
+
+const openSourceTargets = [
+  'CUTLASS (CUDA templates for GEMM kernels)',
+  'CUDA Samples (learning + optimization baselines)',
+  'RAPIDS (GPU data science stack)',
+  'LLVM/MLIR (compiler foundations)',
+  'Triton (GPU kernel DSL)'
+]
+
+const currentFocus = [
+  'Low-latency systems design: predictable pipelines, bounded queues, and backpressure-aware services.',
+  'Market data style ingestion: high-throughput feed processing, order-book style state handling, and deterministic replay.',
+  'Performance profiling from software to hardware: perf/Nsight traces, cache behavior, and tail-latency analysis.'
+]
+
+const currentBuilds = [
+  'Microbenchmarks for concurrency, networking hot paths, and memory behavior.',
+  'Deterministic performance regression harness with repeatable traces and baseline comparisons.',
+  'Hands-on study notes on computer architecture, networking, and low-latency design patterns.'
+]
+
+const professionalSignals = [
+  'Evidence-driven performance tuning with reproducible results.',
+  'Systems thinking across kernels, compilers, runtime behavior, and production operations.',
+  'Clear communication of bottlenecks, design tradeoffs, and reliability risks.'
+]
+
+const financeConcepts = [
+  'Market microstructure basics: limit order books, spread, depth, and queue position',
+  'Execution quality concepts: slippage, fill probability, latency, and transaction costs',
+  'Derivative fundamentals: options pricing intuition, Greeks, and volatility surface basics',
+  'Risk and portfolio basics: exposure, drawdown, and position sizing',
+  'Data reliability concepts for trading systems: timestamp integrity, replayability, and feed consistency'
+]
+
+const computerSideEeCourses = [
+  'Programming with C++',
+  'Data Structures',
+  'Operating Systems',
+  'Algorithms',
+  'Cloud Computing',
+  'Computer Organization',
+  'Computer Networks',
+  'Probability & Random Processes'
+]
+
 const skillSets = {
-  'AI Infrastructure': {
-    core: [
-      {
-        title: 'Systems & Backend',
-        items: ['Python', 'TypeScript', 'FastAPI', 'Node.js', 'C++', 'REST', 'GraphQL', 'WebSocket']
-      },
-      {
-        title: 'Data & Retrieval',
-        items: ['PostgreSQL', 'MongoDB', 'Redis', 'pgvector', 'SQL', 'Mongoose', 'Sequelize', 'Knex']
-      },
-      {
-        title: 'Infra & Cloud',
-        items: ['Docker', 'Kubernetes', 'AWS (EC2/S3/CloudFront)', 'Nginx', 'Linux', 'GitHub Actions', 'Terraform']
-      }
-    ],
-    supporting: [
-      {
-        title: 'Frontend & UX',
-        items: ['React', 'Next.js', 'React Native', 'Electron', 'Vue.js', 'Vuetify', 'Chart.js', 'Babylon.js']
-      },
-      {
-        title: 'Languages & Tools',
-        items: [
-          'TypeScript',
-          'JavaScript',
-          'Java',
-          'C',
-          'MATLAB',
-          'Spark',
-          'GCP',
-          'Azure',
-          'Firebase',
-          'YAML',
-          'GoDaddy'
-        ]
-      }
-    ]
-  },
-  'C++ / Quant Dev': {
+  'Systems Performance (Core)': {
     core: [
       {
         title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'C', 'Python', 'SQL', 'Bash']
+        items: ['C++20 (STL, templates, RAII)', 'C', 'Python', 'CUDA', 'Bash']
       },
       {
-        title: 'Concurrency & Systems',
-        items: [
-          'Multithreading (std::thread, mutex)',
-          'Memory layout',
-          'Contention-aware design',
-          'Linux process & memory model'
-        ]
+        title: 'Parallel + GPU',
+        items: ['SIMD/SIMT mental model', 'Thread blocks & warps', 'Shared memory', 'Memory coalescing']
       },
       {
-        title: 'Networking',
-        items: ['TCP/IP', 'Streaming systems', 'WebSocket-style protocols']
+        title: 'Systems + Performance',
+        items: ['Linux internals', 'Memory hierarchy', 'Concurrency', 'Latency + throughput tradeoffs']
       }
     ],
     supporting: [
       {
-        title: 'Python & Math',
-        items: ['PyTorch', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy', 'scikit-learn']
+        title: 'Tooling',
+        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Git', 'Unix/Linux']
       },
       {
-        title: 'Tools',
+        title: 'Profiling + Optimization',
         items: [
-          'gcc / clang',
-          'CMake',
-          'gdb',
-          'perf',
-          'valgrind',
-          'Google Test',
-          'Git',
-          'Unix/Linux',
-          'RISC-V'
+          'Benchmarking harnesses',
+          'Cache locality',
+          'Nsight Systems/Compute',
+          'Flame graphs',
+          'CPU/GPU timelines',
+          'Vectorization and kernel tuning'
         ]
+      },
+      {
+        title: 'Applied Work',
+        items: ['CUDA kernels', 'GPU-accelerated data pipelines', 'Low-level benchmarks']
+      }
+    ]
+  },
+  'Systems Design': {
+    core: [
+      {
+        title: 'Design Skills',
+        items: ['Latency budgeting', 'Throughput modeling', 'Backpressure', 'Failure isolation']
+      },
+      {
+        title: 'Architecture',
+        items: ['Service boundaries', 'Data pipelines', 'Observability', 'SLOs and reliability']
+      },
+      {
+        title: 'Tradeoffs',
+        items: ['Cost vs performance', 'Consistency vs availability', 'Batch vs streaming']
+      }
+    ],
+    supporting: [
+      {
+        title: 'Data Systems',
+        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies']
+      },
+      {
+        title: 'Infra',
+        items: ['Docker', 'Kubernetes', 'Linux', 'CI/CD', 'Cloud fundamentals']
+      }
+    ]
+  },
+  'AI Infrastructure + Full-Stack': {
+    core: [
+      {
+        title: 'AI + Data',
+        items: ['PyTorch', 'NumPy', 'Pandas', 'scikit-learn', 'Vector search basics']
+      },
+      {
+        title: 'Backend',
+        items: ['Python', 'FastAPI', 'Node.js', 'REST', 'WebSocket', 'PostgreSQL', 'Redis']
+      },
+      {
+        title: 'Frontend',
+        items: ['React', 'Next.js', 'TypeScript', 'UI systems']
+      }
+    ],
+    supporting: [
+      {
+        title: 'Ops',
+        items: ['Docker', 'Nginx', 'AWS basics', 'Monitoring']
+      },
+      {
+        title: 'Focus',
+        items: ['Strong competency shipping AI infrastructure end-to-end, from backend services to production operations.']
+      }
+    ]
+  },
+  'Systems Internals (Learning)': {
+    core: [
+      {
+        title: 'Runtime internals',
+        items: ['Memory allocators', 'Process/thread model', 'Calling conventions', 'Linking + binary formats']
+      },
+      {
+        title: 'Toolchain basics',
+        items: ['Compiler flags and optimization levels', 'IR awareness (basic)', 'Symbol/debug info basics']
+      }
+    ],
+    supporting: [
+      {
+        title: 'Languages',
+        items: ['C++', 'C', 'Python', 'Rust (learning)', 'Assembly (reading)']
       },
       {
         title: 'Focus',
         items: [
-          'This track reflects my interest in correctness under concurrency and predictable performance in high-stakes systems.'
+          'Supporting skillset to reason about low-level behavior and performance regressions.'
         ]
       }
     ]
-  }
+  },
+  
 }
 
 const skillTracks = Object.keys(skillSets)
 
 function App() {
-  const [activeTrack, setActiveTrack] = useState('AI Infrastructure')
-  const [activeSection, setActiveSection] = useState('top')
-  const [showAdditionalExperience, setShowAdditionalExperience] = useState(false)
-  const [showAllFeaturedProjects, setShowAllFeaturedProjects] = useState(false)
-  const [showAllAcademicProjects, setShowAllAcademicProjects] = useState(false)
-  const visibleFeaturedProjects = showAllFeaturedProjects ? featuredProjects : featuredProjects.slice(0, 3)
-  const visibleAcademicProjects = showAllAcademicProjects ? academicProjects : academicProjects.slice(0, 3)
-  const coreExperiences = experiences.filter((item) => item.group !== 'additional')
-  const additionalExperiences = experiences.filter((item) => item.group === 'additional')
+  const [activeSection, setActiveSection] = useState('profile')
   const prerenderDispatched = useRef(false)
-  const renderExperienceCard = (item) => {
-    const [primaryBullet, ...restBullets] = item.bullets
-    const extraDetails = item.details?.length ? item.details : []
-    const moreBullets = [...restBullets, ...extraDetails]
-
-    return (
-      <article className="card" key={`${item.org}-${item.role}`}>
-        <div className="card-header">
-          <div>
-            <h3>{item.role}</h3>
-            <p className="card-subtitle">
-              {item.orgUrl ? (
-                <a
-                  className="org-link"
-                  href={item.orgUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${item.org} website`}
-                  title={`Visit ${item.org}`}
-                >
-                  <span>{item.org}</span>
-                </a>
-              ) : (
-                item.org
-              )}{' '}
-              · {item.location}
-            </p>
-          </div>
-          <div className="card-meta">
-            <span className="card-date">{item.dates}</span>
-            {item.employmentType ? <span className="card-type">{item.employmentType}</span> : null}
-          </div>
+  const renderExperienceCard = (item) => (
+    <article className="panel experience-panel" key={`${item.org}-${item.role}`}>
+      <h3>{item.role}</h3>
+      <p className="card-subtitle">
+        {item.orgUrl ? (
+          <a
+            className="org-link"
+            href={item.orgUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${item.org} website`}
+            title={`Visit ${item.org}`}
+          >
+            <span>{item.org}</span>
+          </a>
+        ) : (
+          item.org
+        )}{' '}
+        · <span className="exp-location">{item.location}</span> · <span className="exp-date">{item.dates}</span>
+      </p>
+      <ul className="plain-list">
+        {item.bullets.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>
+      {item.metrics?.length ? (
+        <div className="metric-row">
+          {item.metrics.map((metric) => (
+            <span className="metric-pill" key={metric}>
+              {metric}
+            </span>
+          ))}
         </div>
-        {primaryBullet ? (
-          <ul>
-            <li>{primaryBullet}</li>
-          </ul>
-        ) : null}
-        {moreBullets.length ? (
-          <details className="experience-details">
-            <summary>More impact</summary>
-            <ul>
-              {moreBullets.map((detail) => (
-                <li key={detail}>{detail}</li>
-              ))}
-            </ul>
-          </details>
-        ) : null}
-      </article>
-    )
-  }
+      ) : null}
+    </article>
+  )
+
+  const renderProjectCard = (project) => (
+    <article className="panel project-panel" key={project.title}>
+      <h3>{project.title}</h3>
+      {project.context ? <p className="project-context">{project.context}</p> : null}
+      <p>{project.description}</p>
+      {project.impact ? (
+        <p className="project-detail">
+          <span className="project-label">Impact</span>
+          {project.impact}
+        </p>
+      ) : null}
+      {project.highlight ? (
+        <p className="project-detail">
+          <span className="project-label">Technical highlight</span>
+          {project.highlight}
+        </p>
+      ) : null}
+      {project.metrics?.length ? (
+        <div className="metric-row">
+          {project.metrics.map((metric) => (
+            <span className="metric-pill" key={metric}>
+              {metric}
+            </span>
+          ))}
+        </div>
+      ) : null}
+      <div className="project-footer">
+        {project.repo ? (
+          <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+            {project.linkLabel || 'View code'}
+          </a>
+        ) : (
+          <span className="project-link project-link-muted">{project.linkLabel || 'View code'}</span>
+        )}
+        <div className="tag-row">
+          {project.tags.slice(0, 4).map((tag) => (
+            <span className="tag-text" key={tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  )
 
   useEffect(() => {
-    const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
-    if (!elements.length) {
-      return undefined
+    if (!sectionIds.includes(activeSection)) {
+      setActiveSection('profile')
     }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((entry) => entry.isIntersecting)
-        if (!visibleEntries.length) {
-          return
-        }
-        const [primary] = visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (primary?.target?.id) {
-          setActiveSection(primary.target.id)
-        }
-      },
-      {
-        rootMargin: '0px 0px -45% 0px',
-        threshold: [0.25, 0.5, 0.75]
-      },
-    )
-
-    elements.forEach((element) => observer.observe(element))
-
-    return () => observer.disconnect()
-  }, [])
+  }, [activeSection])
 
   const activeMeta = sectionMeta[activeSection] || sectionMeta.top
 
@@ -703,303 +803,290 @@ function App() {
   return (
     <div className="App">
       <header className="hero" id="top">
-        <div className="hero-top reveal" style={{ '--delay': '60ms' }}>
-          <div>
+        <div className="hero-top hero-layout">
+          <div className="hero-main">
             <h1>
               <a href={SITE_URL} className="hero-brand-link" aria-label="Home">
                 {PRIMARY_NAME} | Hans
               </a>
             </h1>
-            <p className="hero-role">
-              AI infrastructure &amp; low-latency systems developer
-            </p>
-          </div>
-        </div>
-        <div className="hero-grid">
-          <div className="hero-copy reveal" style={{ '--delay': '140ms' }}>
+            <p className="hero-role">Systems &amp; performance engineering</p>
             <p className="hero-summary">
-              I pursue low-latency C++ systems and AI infrastructure because deterministic pipelines and measurable
-              latency budgets unlock clearer, more trustable outcomes. I&rsquo;m curious about how high-frequency
-              market data and large-scale AI stacks weave together, and I prototype systems that keep performance
-              predictable while surfacing the story behind every packet and inference.
+              I build deterministic C/C++ systems and profile for hardware bottlenecks across memory, concurrency, and
+              throughput. My technical direction is performance-focused systems work at the hardware/software boundary:
+              kernels, compilers/toolchains, and measurable latency behavior in production environments.
             </p>
-            <div className="signal-grid">
-              <div className="signal-card">
-                <span className="signal-label">Execution</span>
-                <span className="signal-value">Define scope, deliver milestones, and de-risk early.</span>
-              </div>
-              <div className="signal-card">
-                <span className="signal-label">Reliability</span>
-                <span className="signal-value">Benchmark, monitor, and harden for predictable performance.</span>
-              </div>
-              <div className="signal-card">
-                <span className="signal-label">Collaboration</span>
-                <span className="signal-value">Share context, unblock early, and write it down.</span>
-              </div>
-            </div>
             <div className="hero-meta">
-              <span>Seeking AI infrastructure or C++ roles (quant system focus)</span>
+              <span>Open to systems, platform, backend, performance, and market-infrastructure engineering roles</span>
               <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
           </div>
-          <div className="hero-portrait reveal" style={{ '--delay': '200ms' }}>
-            <img
-              src="/hans.jpeg"
-              alt={`${PRIMARY_NAME} (${ALT_NAME} | Hans) portrait`}
-              loading="eager"
-              decoding="async"
-            />
+          <div className="hero-side">
+            <p className="hero-side-title">Breadth</p>
+            <p className="hero-side-line">Full-stack: React, Next.js, Node.js, TypeScript</p>
+            <p className="hero-side-line">AI/Python: PyTorch, NumPy, Pandas, FastAPI</p>
+            <p className="hero-side-line">Systems design: backpressure, reliability, SLO-driven design</p>
+            <p className="hero-side-line">Market infra interest: exchange connectivity, market data, and execution reliability</p>
+            <div className="hero-links">
+              <a href="mailto:ho.chak@northeastern.edu">Email</a>
+              <a href="https://linkedin.com/in/chaksingho/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+              <a href="https://github.com/hans2001" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <a href="https://leetcode.com/justnotarandomkid/" target="_blank" rel="noopener noreferrer">
+                LeetCode
+              </a>
+            </div>
           </div>
         </div>
-
       </header>
 
+      <div className="tab-dock">
+        <nav className="tab-bar" aria-label="Primary sections">
+          {sectionIds.map((sectionId) => (
+            <button
+              key={sectionId}
+              type="button"
+              className={`tab-button ${activeSection === sectionId ? 'active' : ''}`}
+              onClick={() => setActiveSection(sectionId)}
+            >
+              {sectionLabels[sectionId]}
+            </button>
+          ))}
+        </nav>
+      </div>
+
       <main className="main">
-        <section className="section" id="experience">
-          <div className="section-heading">
-            <h2>Experience</h2>
-          </div>
-          <div className="card-stack">
-            {coreExperiences.map(renderExperienceCard)}
-          </div>
-          {additionalExperiences.length ? (
-            <div className="experience-toggle">
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setShowAdditionalExperience((prev) => !prev)}
-              >
-                {showAdditionalExperience ? 'Show fewer' : 'Show more'}
-              </button>
-            </div>
-          ) : null}
-          {showAdditionalExperience ? (
-            <>
-              <p className="section-subhead">Additional experience</p>
-              <div className="card-stack">
-                {additionalExperiences.map(renderExperienceCard)}
-              </div>
-            </>
-          ) : null}
-        </section>
 
-        <section className="section" id="projects">
-          <div className="section-heading">
-            <h2>Selected projects</h2>
-          </div>
-          <div className="projects-grid">
-            {visibleFeaturedProjects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <div className="project-content">
-                  <h3>{project.title}</h3>
-                  {project.context ? <p className="project-context">{project.context}</p> : null}
-                  <p>{project.description}</p>
-                  {project.impact ? (
-                    <p className="project-impact">
-                      <span className="project-label">Impact</span>
-                      {project.impact}
-                    </p>
-                  ) : null}
-                  {project.highlight ? (
-                    <p className="project-highlight">
-                      <span className="project-label">Highlight</span>
-                      {project.highlight}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="project-footer">
-                  {project.repo && project.group === 'academic' ? (
-                    <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                      {project.linkLabel || 'View code'}
-                    </a>
-                  ) : (
-                    <span className="project-link project-link-muted">
-                      {project.linkLabel || 'View code'}
-                    </span>
-                  )}
-                  <div className="tag-row">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span className="tag-text" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+        {activeSection === 'overview' ? (
+          <section className="section" id="overview">
+            <div className="section-heading">
+              <h2>Focus</h2>
+            </div>
+            <div className="panel-grid">
+              <article className="panel">
+                <h3>Current technical focus</h3>
+                <ul className="plain-list">
+                  {currentFocus.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </article>
-            ))}
-          </div>
-          {featuredProjects.length > 3 ? (
-            <div className="project-toggle">
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setShowAllFeaturedProjects((prev) => !prev)}
-              >
-                {showAllFeaturedProjects ? 'Show fewer' : 'Show more'}
-              </button>
-            </div>
-          ) : null}
-        </section>
-
-        <section className="section">
-          <div className="section-heading">
-            <h2>Research &amp; academic</h2>
-          </div>
-          <div className="projects-grid">
-            {visibleAcademicProjects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <div className="project-content">
-                  <h3>{project.title}</h3>
-                  {project.context ? <p className="project-context">{project.context}</p> : null}
-                  <p>{project.description}</p>
-                  {project.impact ? (
-                    <p className="project-impact">
-                      <span className="project-label">Impact</span>
-                      {project.impact}
-                    </p>
-                  ) : null}
-                  {project.highlight ? (
-                    <p className="project-highlight">
-                      <span className="project-label">Highlight</span>
-                      {project.highlight}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="project-footer">
-                  {project.repo ? (
-                    <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-                      {project.linkLabel || 'View code'}
-                    </a>
-                  ) : (
-                    <span className="project-link project-link-muted">Project overview</span>
-                  )}
-                  <div className="tag-row">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span className="tag-text" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <article className="panel">
+                <h3>In-progress builds</h3>
+                <ul className="plain-list">
+                  {currentBuilds.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </article>
-            ))}
-          </div>
-          {academicProjects.length > 3 ? (
-            <div className="project-toggle">
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setShowAllAcademicProjects((prev) => !prev)}
-              >
-                {showAllAcademicProjects ? 'Show fewer' : 'Show more'}
-              </button>
+              <article className="panel">
+                <h3>Open-source targets</h3>
+                <ul className="plain-list">
+                  {openSourceTargets.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>Engineering principles</h3>
+                <ul className="plain-list">
+                  {professionalSignals.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>Core overlap skills</h3>
+                <ul className="plain-list">
+                  {overlapSkills.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>Target role direction</h3>
+                <ul className="plain-list">
+                  <li>Primary fit: systems and performance engineering where reliability and latency matter.</li>
+                  <li>Also open: platform, backend, and infrastructure roles with strong technical ownership.</li>
+                  <li>Domain interests: financial markets, market data quality, and low-latency execution reliability.</li>
+                </ul>
+              </article>
             </div>
-          ) : null}
-        </section>
+          </section>
+        ) : null}
 
-        <section className="section" id="skills">
-          <div className="section-heading">
-            <h2>Skills</h2>
-          </div>
-          <div className="skills-toggle" role="tablist" aria-label="Skill track toggle">
-            {skillTracks.map((track) => (
-              <button
-                key={track}
-                type="button"
-                className={`toggle-button ${track === activeTrack ? 'active' : ''}`}
-                onClick={() => setActiveTrack(track)}
-                role="tab"
-                aria-selected={track === activeTrack}
-              >
-                {track}
-              </button>
-            ))}
-          </div>
-          <div className="skills-panels">
-            {skillTracks.map((track) => {
-              const skills = skillSets[track]
-              const isActive = track === activeTrack
-              return (
-                <div
-                  key={track}
-                  className={`skills-panel ${isActive ? 'is-active' : ''}`}
-                  role="tabpanel"
-                  aria-hidden={!isActive}
-                >
-                  <div className="skills-split">
-                    <div className="skills-column">
-                      <div className="skills-grid compact">
-                        {skills.core.map((group) => (
-                          <div className="skill-card" key={group.title}>
-                            <h3>{group.title}</h3>
-                            <div className="tag-row skill-tags">
-                              {group.items.map((item) => (
-                                <span className="tag" key={item}>
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="skills-column supporting">
-                      <div className="skills-grid compact">
-                        {skills.supporting.map((group) => (
-                          <div className="skill-card" key={group.title}>
-                            <h3>{group.title}</h3>
-                            <div className="tag-row skill-tags">
-                              {group.items.map((item) => (
-                                <span className="tag" key={item}>
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </section>
+        {activeSection === 'experience' ? (
+          <section className="section" id="experience">
+            <div className="section-heading">
+              <h2>Experience (prior)</h2>
+            </div>
+            <div className="panel-grid dense tab-panel">
+              {experiences.map(renderExperienceCard)}
+            </div>
+          </section>
+        ) : null}
 
-        <section className="section" id="education">
-          <div className="section-heading">
-            <h2>Education</h2>
-          </div>
-          <div className="education-grid">
-            {education.map((item) => (
-              <div className="education-card" key={item.school}>
-                <h3>
-                  {item.url ? (
-                    <a
-                      className="education-link"
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.school}
-                    </a>
-                  ) : (
-                    item.school
-                  )}
-                </h3>
-                <p className="education-degree">{item.degree}</p>
-                <p className="education-meta">
-                  {item.location}
-                  {item.gpa ? ` · ${item.gpa}` : ''}
-                  {item.honor ? ` · ${item.honor}` : ''}
+        {activeSection === 'projects' ? (
+          <section className="section" id="projects">
+            <div className="section-heading">
+              <h2>Projects</h2>
+            </div>
+            <p className="group-subtitle">Systems &amp; applied projects</p>
+            <div className="panel-grid tab-panel">
+              {featuredProjects.map(renderProjectCard)}
+            </div>
+            <p className="group-subtitle">Academic &amp; research projects</p>
+            <div className="panel-grid tab-panel">
+              {academicProjects.map(renderProjectCard)}
+            </div>
+          </section>
+        ) : null}
+
+        {activeSection === 'profile' ? (
+          <section className="section" id="profile">
+            <div className="section-heading">
+              <h2>Profile</h2>
+            </div>
+            <div className="panel-grid">
+              <article className="panel">
+                <h3>Positioning</h3>
+                <p>
+                  I focus on systems performance and reliability, with strong overlap across low-level engineering,
+                  end-to-end platform delivery, and production-minded system design. I am also interested in applying
+                  these skills to market infrastructure problems in quant and crypto environments. I keep my positioning
+                  intentionally broad enough to contribute across different product domains where systems quality is a core requirement.
                 </p>
-                {item.coursework ? <p className="education-coursework">{item.coursework}</p> : null}
-                <span className="education-date">{item.dates}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+                <ul className="plain-list">
+                  {positioningHighlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>What I deliver</h3>
+                <ul className="plain-list">
+                  <li>Performance-first system design with explicit latency and throughput targets.</li>
+                  <li>Production-ready services across backend, data pipelines, and observability.</li>
+                  <li>Evidence-driven optimization with benchmarks, profiling traces, and regression checks.</li>
+                  <li>Low-latency engineering mindset applicable to market data, execution infrastructure, and other real-time systems.</li>
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>Financial concepts I work with</h3>
+                <ul className="plain-list">
+                  {financeConcepts.map((concept) => (
+                    <li key={concept}>{concept}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="panel">
+                <h3>Competitive programming</h3>
+                <p>
+                  Active in timed problem-solving with a focus on algorithms, data structures, and implementation speed.
+                </p>
+                <div className="hero-links">
+                  <a href="https://leetcode.com/justnotarandomkid/" target="_blank" rel="noopener noreferrer">
+                    LeetCode profile
+                  </a>
+                </div>
+              </article>
+              <article className="panel">
+                <h3>Computer-side EE foundation</h3>
+                <p>
+                  I keep the computer-systems part of my EE background visible because it directly supports systems
+                  software work: architecture-aware performance decisions, networking intuition, and quantitative
+                  reasoning in design tradeoffs.
+                </p>
+                <ul className="plain-list">
+                  {computerSideEeCourses.map((course) => (
+                    <li key={course}>{course}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
 
+            <p className="group-subtitle">Skills by category</p>
+            <div className="stacked-groups">
+              {skillTracks.map((track) => {
+                const groups = skillSets[track]
+                if (!groups) {
+                  return null
+                }
+                return (
+                  <article className="panel grouped-panel" key={track}>
+                    <h3>{track}</h3>
+                    {groups.core.map((group) => (
+                      <p className="plain-inline" key={`${track}-${group.title}-core`}>
+                        <span className="inline-label">{group.title}:</span> {group.items.join(', ')}
+                      </p>
+                    ))}
+                    {groups.supporting.map((group) => (
+                      <p className="plain-inline" key={`${track}-${group.title}-support`}>
+                        <span className="inline-label">{group.title}:</span> {group.items.join(', ')}
+                      </p>
+                    ))}
+                  </article>
+                )
+              })}
+            </div>
+
+            <p className="group-subtitle">Education</p>
+            <div className="education-stack">
+              {education.map((item) => (
+                <article className="panel grouped-panel" key={item.school}>
+                  <h3>
+                    {item.url ? (
+                      <a className="education-link" href={item.url} target="_blank" rel="noopener noreferrer">
+                        {item.school}
+                      </a>
+                    ) : (
+                      item.school
+                    )}
+                  </h3>
+                  <p className="education-degree">{item.degree}</p>
+                  <p className="education-meta">
+                    {item.location}
+                    {item.gpa ? ` · ${item.gpa}` : ''}
+                    {item.honor ? ` · ${item.honor}` : ''}
+                  </p>
+                  {item.coursework ? <p className="education-coursework">{item.coursework}</p> : null}
+                  <span className="education-date">{item.dates}</span>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {activeSection === 'contact' ? (
+          <section className="section" id="contact">
+            <div className="section-heading">
+              <h2>Contact</h2>
+            </div>
+            <div className="panel-grid">
+              <article className="panel">
+                <p>
+                  Reach me for systems, platform, backend, infrastructure, or performance-oriented engineering work.
+                  I am open to multiple role shapes as long as the work emphasizes strong engineering fundamentals and measurable outcomes.
+                </p>
+                <div className="hero-links">
+                  <a href="mailto:ho.chak@northeastern.edu">ho.chak@northeastern.edu</a>
+                  <a href="https://linkedin.com/in/chaksingho/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                  <a href="https://github.com/hans2001" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                  <a href="https://leetcode.com/justnotarandomkid/" target="_blank" rel="noopener noreferrer">
+                    LeetCode
+                  </a>
+                </div>
+              </article>
+            </div>
+          </section>
+        ) : null}
       </main>
 
       <footer className="footer" id="contact">
@@ -1037,7 +1124,7 @@ function App() {
           </div>
         </div>
         <div className="footer-meta">
-          <span>Built for speed, clarity, and auditability.</span>
+          <span>Built for performance, determinism, and systems clarity.</span>
           <span>
             © {new Date().getFullYear()}{' '}
             <a href={SITE_URL} className="footer-site-link">

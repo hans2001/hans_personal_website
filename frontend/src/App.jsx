@@ -6,8 +6,8 @@ const PRIMARY_NAME = 'Chak Sing Ho'
 const ALT_NAME = 'Ho Chak Sing'
 const ALT_NAME_EN = 'Hans Ho'
 const BRAND_NAME = `${PRIMARY_NAME} | ${ALT_NAME_EN} | ${ALT_NAME} | Hans`
-const BASE_TITLE = `${BRAND_NAME} | GPU systems + performance engineer`
-const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) focuses on systems and performance engineering across GPU compute, low-latency market infrastructure, and production reliability.`
+const BASE_TITLE = `${BRAND_NAME} | ML systems, GPU runtime, and performance engineer`
+const BASE_DESCRIPTION = `${PRIMARY_NAME} (also known as ${ALT_NAME_EN}, ${ALT_NAME}, or Hans) focuses on ML systems, GPU runtime engineering, low-latency infrastructure, and performance-critical software at the hardware/software boundary.`
 const OG_IMAGE = `${SITE_URL}/og.jpg`
 const sectionMeta = {
   top: {
@@ -15,8 +15,8 @@ const sectionMeta = {
     description: BASE_DESCRIPTION
   },
   overview: {
-    title: `Focus | ${BRAND_NAME}`,
-    description: 'Current technical focus, in-progress builds, and open-source targets.'
+    title: `Overview | ${BRAND_NAME}`,
+    description: 'Recruiter-facing overview of role fit, technical direction, and current build themes.'
   },
   experience: {
     title: `Experience | ${BRAND_NAME}`,
@@ -38,7 +38,7 @@ const sectionMeta = {
 
 const sectionIds = ['profile', 'projects', 'experience', 'overview', 'contact']
 const sectionLabels = {
-  overview: 'Focus',
+  overview: 'Overview',
   experience: 'Experience',
   projects: 'Projects',
   profile: 'Profile',
@@ -46,6 +46,20 @@ const sectionLabels = {
 }
 
 const projects = [
+  {
+    title: 'EGOS-2000 Network Stack (CS 6640)',
+    context: 'OS + networking internals · DMA/interrupt path',
+    description:
+      'Implemented the Ethernet/UDP send path in EGOS-2000 against an emulated Intel E1000 NIC, tracing packet flow from software descriptors into device-visible DMA buffers and transmit queue state.',
+    impact: 'Established a concrete systems project centered on hardware-facing I/O mechanics instead of application-layer networking abstractions.',
+    highlight: 'Focused on descriptor ring management, DMA ownership transfer, and interrupt-driven completion handling in the emulated NIC path.',
+    tags: ['C', 'Network Stack', 'DMA', 'Interrupts'],
+    metrics: ['Platform: EGOS-2000', 'Device model: emulated E1000', 'Path: Ethernet/UDP transmit'],
+    demoUrl: 'https://www.youtube.com/watch?v=SMzsY9ywQT0&t=1s',
+    demoLabel: 'Demo video',
+    hideLink: true,
+    group: 'featured'
+  },
   {
     title: 'UDP Multicast L2 Order-Book Engine',
     context: 'Low-level systems · Deterministic pipelines',
@@ -71,27 +85,26 @@ const projects = [
     group: 'featured'
   },
   {
-    title: 'C TCP/UDP Exchange Feed Gateway',
-    context: 'Systems · Networking',
+    title: 'Tiny Tensor Compiler MVP',
+    context: 'Compiler/runtime systems · ML execution',
     description:
-      'Built a C-based market data gateway that normalizes TCP/UDP exchange feeds, maintains order-book snapshots, and emits enriched ticks to downstream services. The design prioritizes low jitter and minimal copy overhead.',
-    impact: 'Cut per-message processing overhead and improved jitter under bursty market data loads.',
-    highlight: 'Zero-copy ring buffer, SO_REUSEPORT fan-out, and lock-free hot path.',
-    tags: ['C', 'Network Programming', 'Low Latency'],
-    metrics: ['Protocol support: TCP + UDP', 'Pipeline: normalize -> enrich', 'Hot path: lock-free + zero-copy'],
-    repo: 'https://github.com/hans2001',
+      'Building a small compiler pipeline for tensor-style expressions to deepen compiler fundamentals through a project directly connected to ML systems. The scope includes parsing, AST construction, IR lowering, simple optimization passes, and a NumPy-backed execution path.',
+    impact: 'Turns compiler study into a concrete systems project with direct relevance to ML runtimes, graph execution, and future compiler/runtime engineering work.',
+    highlight: 'Planned passes include constant folding, dead-code elimination, shape-aware execution planning, and simple operator fusion over a tiny tensor IR.',
+    tags: ['Python', 'Compiler', 'IR', 'ML Systems'],
+    metrics: ['Pipeline: parse -> AST -> IR -> optimize -> execute', 'Backend: NumPy', 'Focus: compiler fundamentals + runtime intuition'],
     hideLink: true,
     group: 'featured'
   },
   {
-    title: 'Distributed GPU-Accelerated LLM Inference',
-    context: 'AI infrastructure · Distributed systems',
+    title: 'Mini Effect Engine',
+    context: 'Graphics systems · OpenGL',
     description:
-      'Built a distributed LLM serving system with a FastAPI gateway, routing scheduler, and replicated vLLM GPU workers. Integrated LangGraph reasoning workflows to support concurrent inference with dynamic load balancing and automatic failover.',
-    impact: 'Optimized token-aware batching and queue-based scheduling with KV-cache management, achieving sub-second p95 latency and 2x token throughput under 50+ concurrent requests.',
-    highlight: 'Implemented end-to-end observability with OpenTelemetry to track latency, throughput, and error rates across load and failure testing.',
-    tags: ['Performance', 'Evaluation', 'Benchmarking'],
-    metrics: ['Serving architecture: gateway + scheduler + replicated GPU workers', 'Latency: sub-second p95', 'Throughput: 2x', 'Load: 50+ concurrent requests'],
+      'Building a small C++ OpenGL effect-engine skeleton to prepare for graphics and AR tooling work. The current implementation sets up an OpenGL 3.3 core-profile render loop with GLFW/GLAD, shader compilation/linking, texture upload, and fullscreen-quad rendering.',
+    impact: 'Turns graphics preparation into a concrete systems project instead of treating rendering APIs as resume keywords.',
+    highlight: 'Implements the foundational graphics path directly: context creation, GPU buffer setup with VAO/VBO/EBO, shader program management, and texture sampling through a simple rendering pipeline.',
+    tags: ['C++', 'OpenGL', 'Graphics', 'GLFW'],
+    metrics: ['Graphics stack: OpenGL 3.3 + GLFW + GLAD', 'Current scope: shaders + textures + render loop', 'Direction: effect-engine / AR tooling fundamentals'],
     hideLink: true,
     group: 'featured'
   },
@@ -156,19 +169,18 @@ const academicProjects = projects.filter((project) => project.group === 'academi
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
   {
-    role: 'Remote Software Engineer Intern',
-    org: 'Folio AI',
-    orgUrl: 'https://gofolio.ai',
-    location: 'San Jose, CA (Remote)',
-    dates: 'Sep 2025 - Nov 2025',
+    role: 'Incoming Summer Intern, Intelligent Creation (Effect House)',
+    org: 'TikTok',
+    orgUrl: 'https://effecthouse.tiktok.com/',
+    location: 'Summer 2026 internship',
+    dates: 'Summer 2026 · 12 weeks',
     employmentType: 'Part-time',
-    group: 'additional',
     bullets: [
-      'Delivered <10ms P99 reads on a real-time financial backend using FastAPI + SQLAlchemy, PostgreSQL, and a Redis zset time-series store fed by 100k+ Yahoo Finance events.',
-      'Built fault-isolated WebSocket + Redis ingestion stages with deterministic retry and backpressure, improving stability by 60% under peak load.',
-      'Integrated LangGraph agentic workflows (Gemini + tool nodes) with Redis-backed retrieval to produce multi-step market/option insights, cutting analyst turnaround by 3×.'
+      'Joining TikTok\'s Intelligent Creation team to work on Effect House, the company\'s official AR creation tool for building interactive effects.',
+      'The role is centered on creator-facing tooling, editing workflows, and core technology for immersive effect development rather than generic product engineering.',
+      'It aligns directly with my interest in graphics/interactive systems, native programming, real-time rendering, and GPU-adjacent platform work; project details will be updated once public.'
     ],
-    metrics: ['P99 read latency: <10ms', 'Ingestion events: 100k+', 'Stability gain: +60%', 'Turnaround: 3x faster']
+    metrics: ['Program: 12-week internship', 'Area: Effect House / AR creation tooling', 'Focus: editor workflows + core technology']
   },
   {
     role: 'Software Engineer Intern (Innovation Lab)',
@@ -178,10 +190,10 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Full-time',
     bullets: [
-      'Built a company-wide GenAI platform by customizing Libre-chat/Open WebUI stacks with Node.js + React, deploying OpenAI, Gemini, and Llama3 via Ollama on-prem for 20+ internal teams.',
-      'Extended the codebase with LangChain to integrate a proprietary compliance-trained LLM through Azure API calls.',
-      'Created Next.js REST endpoints for a file management layer that handles uploads/retrievals/deletions, powering RAG document workflows.',
-      'Integrated OpenAI Assistants API for context-aware responses, lifting question-answer accuracy by ~30%.',
+      'Built a company-wide GenAI platform for 20+ internal teams, deploying OpenAI, Gemini, and Llama3 via Ollama and adapting the stack for internal agentic workflows.',
+      'Integrated proprietary compliance-tuned LLMs and agent/tool orchestration paths for multi-step retrieval and enterprise reasoning flows.',
+      'Implemented the document and retrieval layer behind RAG-style workflows, including upload/retrieval/delete paths and context assembly for LLM execution.',
+      'Integrated OpenAI Assistants-style context handling for agentic responses, lifting question-answer accuracy by ~30%.',
       'Automated Docker-based platform installs across Windows/Linux via scripted tooling and orchestrated VPN-tunneled container networking with Docker Compose to bypass regional API blocks.',
       'Refreshed Tap&Go wallet rewards with a Flutter-powered merchant search (brand/category/region filters) backed by local JSON data.',
       'Built a Python automation pipeline that extracts Excel data, scripts Mermaid diagrams, and renders wireless on-site cell diagrams in minutes, cutting generation time 90%.'
@@ -196,10 +208,10 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built an AI-driven Next.js learning platform with HKUST Center for Education Innovation, securing HKD 250k funding.',
+      'Built an AI-driven platform with HKUST Center for Education Innovation, securing HKD 250k funding.',
       'Developed an immersive Babylon.js + Ammo.js virtual classroom with Blender assets, physics, drag-and-drop, avatar movement, spatial audio, and Meta Quest 3 WebXR controls.',
       'Embedded multimedia video/audio playback, dynamic blackboards, and clickable shelves using TypeScript for richer interactions.',
-      'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming with token tracking/retry logic, Markdown/code-block rendering, and Redux-managed feedback.',
+      'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming, token tracking/retry logic, and LLM-backed interaction flows.',
       'Deployed a Colyseus-based avatar networking layer on Fly.io to coordinate 100+ concurrent users.'
     ],
     metrics: ['Funding secured: HKD 250k', 'Concurrent users: 100+', 'Delivery: immersive WebXR classroom']
@@ -214,7 +226,7 @@ const experiences = [
     bullets: [
       'Built real-time Bloomberg Data License / B-PIPE monitoring dashboards with Node.js + Vue.js, flagging 15+ anomalous patterns across 7 departments.',
       'Engineered Knex.js-backed REST query/mutation endpoints to process 100k+ Bloomberg invoice records in Oracle, providing schema management and transactional safety.',
-      'Delivered a TypeScript + React derivatives valuation SaaS to meet SFC compliance while automating data ingestion and reporting.',
+      'Delivered derivatives valuation tooling to meet SFC compliance while automating data ingestion and reporting flows.',
       'Crafted reusable UI components with TypeScript generics (conditional/indexed/mapped types) and generic parsing helpers with type guards to eliminate runtime validation failures.',
       'Implemented a concurrent Excel export service with dynamic schemas, rate limiting, and paginated processing to bulk-export 10k+ rows without overloading downstream APIs.'
     ],
@@ -228,8 +240,8 @@ const experiences = [
     dates: 'Jun 2022 - Oct 2023',
     employmentType: 'Full-time',
     bullets: [
-      'Architected a real-time market intelligence SaaS with Node.js/React, driving 10+ product iterations and $1M HKD in HKSTP funding.',
-      'Built React Window + Infinite Loader components over paginated GraphQL to stream 5M+ historical records with real-time updates while chunking data to manage memory.',
+      'Architected a real-time market intelligence platform, driving 10+ product iterations and $1M HKD in HKSTP funding.',
+      'Built high-scale data delivery paths over paginated GraphQL to stream 5M+ historical records with real-time updates while controlling memory growth.',
       'Redesigned protobuf/MongoDB schema, implemented indexes/aggregations, and profiled queries before migrating from Mongoose to the native driver, doubling retrieval speed.',
       'Implemented a GraphQL API with Pothos, layered caching with GraphQL Yoga (configurable TTLs, session scoping, mutation invalidation), cutting endpoint overhead by 40%.',
       'Delivered watchlist CRUD via Cloud Firestore tied to Firebase Auth for scalable tag-based company/industry tracking.',
@@ -282,7 +294,7 @@ const education = [
     dates: 'Sep 2025 - May 2027',
     gpa: '4.0 CGPA',
     coursework:
-      'OS Kernel Implementation, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems, Network Programming'
+      'OS Kernel Implementation, Agentic AI, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems, Network Programming'
   },
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
@@ -310,7 +322,7 @@ const schemaData = {
       disambiguatingDescription: 'Also known as Ho Chak Sing or Hans Ho.',
       url: SITE_URL,
       image: OG_IMAGE,
-      jobTitle: 'GPU systems and performance engineer',
+      jobTitle: 'ML systems, GPU runtime, and performance engineer',
       knowsAbout: [
         'GPU programming',
         'CUDA',
@@ -498,45 +510,35 @@ const setJsonLd = (data) => {
 }
 
 const positioningHighlights = [
-  'Repositioning away from AI-infra roles toward GPU systems, parallel computing, and low-level performance engineering.',
-  'Comfortable at the C/C++ level, focused on latency budgets, memory behavior, and end-to-end determinism.',
-  'Drawn to compilers, developer tooling, and the hardware/software boundary (kernels, drivers, runtime).'
+  'I am most interested in the execution layer of modern compute: inference runtimes, GPU systems, and hardware-aware C++.',
+  'My longer-term direction includes AI compiler/runtime work and kernel-level optimization.',
+  'I care about latency budgets, memory behavior, determinism, and measurable performance under real system constraints.',
+  'I am especially drawn to compilers, developer tooling, and the hardware/software boundary.'
 ]
 
-const overlapSkills = [
-  'C/C++ and Python for performance-critical systems and tooling.',
-  'Low-latency networking fundamentals (TCP/UDP, socket programming, feed handling).',
-  'Concurrency and synchronization (threading, contention control, lock-aware design).',
-  'CUDA + GPU programming fundamentals (threads, blocks, warps, memory hierarchy).',
-  'Parallel programming models and concurrency.',
-  'Computer architecture fundamentals (CPU/GPU memory, caches, interconnects).',
-  'Linux systems knowledge and debugging/profiling.'
+const recruiterSummary = [
+  'I work on performance-oriented systems, ML runtime-adjacent software, and agentic infrastructure.',
+  'My strongest areas are C/C++ systems thinking, deterministic execution, and hardware-aware software design.',
+  'I also have meaningful overlap with graphics and interactive tooling through OpenGL, Babylon.js, and immersive-system work.'
 ]
 
-const openSourceTargets = [
-  'CUTLASS (CUDA templates for GEMM kernels)',
-  'CUDA Samples (learning + optimization baselines)',
-  'RAPIDS (GPU data science stack)',
-  'LLVM/MLIR (compiler foundations)',
-  'Triton (GPU kernel DSL)'
+const bestFitRoles = [
+  'ML systems / inference runtime engineering',
+  'GPU compute and kernel-optimization engineering',
+  'Low-latency infrastructure and market-data systems',
+  'Graphics / interactive tooling and engine-adjacent platform work'
 ]
 
-const currentFocus = [
-  'Low-latency systems design: predictable pipelines, bounded queues, and backpressure-aware services.',
-  'Market data style ingestion: high-throughput feed processing, order-book style state handling, and deterministic replay.',
-  'Performance profiling from software to hardware: perf/Nsight traces, cache behavior, and tail-latency analysis.'
+const credibilitySignals = [
+  'Projects here cover networking hot paths, schedulers, DMA/interrupt handling, OpenGL rendering, and compiler/runtime fundamentals.',
+  'My internship work spans agentic AI tooling, LLM workflow infrastructure, immersive platforms, and upcoming AR creation tooling at TikTok Effect House.',
+  'The common thread is execution quality: systems that need to be explainable, measurable, and close to the runtime behavior underneath them.'
 ]
 
-const currentBuilds = [
-  'Microbenchmarks for concurrency, networking hot paths, and memory behavior.',
-  'Deterministic performance regression harness with repeatable traces and baseline comparisons.',
-  'Hands-on study notes on computer architecture, networking, and low-latency design patterns.'
-]
-
-const professionalSignals = [
-  'Evidence-driven performance tuning with reproducible results.',
-  'Systems thinking across kernels, compilers, runtime behavior, and production operations.',
-  'Clear communication of bottlenecks, design tradeoffs, and reliability risks.'
+const futureDirection = [
+  'I am continuing deeper into compiler/runtime systems, GPU execution, and kernel-level optimization.',
+  'That direction builds naturally on my current work in systems performance, ML infrastructure, and graphics/tooling foundations.',
+  'The goal is to stay close to the execution layer rather than drift toward generic application engineering.'
 ]
 
 const financeConcepts = [
@@ -561,62 +563,52 @@ const computerSideEeCourses = [
 ]
 
 const rawSkillSets = {
-  'Systems Performance (Core)': {
+  'Core Systems & GPU': {
     core: [
       {
         title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'Python', 'SQL', 'Bash', 'TypeScript', 'Java']
+        items: ['C++20 (STL, templates, RAII)', 'Python', 'C', 'SQL', 'Bash']
       },
       {
-        title: 'Parallel + GPU',
-        items: ['SIMD/SIMT mental model', 'Thread blocks & warps', 'Shared memory', 'Memory coalescing']
-      },
-      {
-        title: 'Systems + Performance',
+        title: 'Performance Fundamentals',
         items: [
           'Multithreading',
           'Memory layout',
-          'Cache hierarchy intuition (L1/L2/L3 and DRAM)',
+          'Cache hierarchy (L1/L2/L3 and DRAM)',
           'Contention-aware design',
-          'Linux process and memory model',
           'Concurrency safety',
           'Determinism'
+        ]
+      },
+      {
+        title: 'GPU & Parallel Compute',
+        items: [
+          'CUDA',
+          'SIMD/SIMT mental model',
+          'Thread blocks & warps',
+          'Shared memory',
+          'Memory coalescing',
+          'GPU-accelerated pipelines',
+          'Low-level benchmarks'
         ]
       }
     ],
     supporting: [
       {
         title: 'Networking',
-        items: ['TCP/IP', 'Streaming systems', 'WebSocket-style protocols']
+        items: ['TCP/IP', 'Streaming systems', 'Deterministic replay', 'Feed handling']
       },
       {
-        title: 'Tooling',
-        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Google Test', 'Git', 'Unix/Linux', 'RISC-V', 'QEMU', 'POSIX']
+        title: 'Systems Tooling',
+        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Nsight Systems/Compute', 'Google Test', 'Git', 'Unix/Linux', 'POSIX']
       },
       {
-        title: 'Profiling + Optimization',
-        items: [
-          'Benchmarking harnesses',
-          'Cache locality',
-          'Nsight Systems/Compute',
-          'Flame graphs',
-          'CPU/GPU timelines',
-          'Vectorization and kernel tuning'
-        ]
-      },
-      {
-        title: 'Applied Work',
-        items: ['CUDA kernels', 'GPU-accelerated data pipelines', 'Low-level benchmarks']
-      },
-      {
-        title: 'Focus',
-        items: [
-          'Low-latency C++ systems for financial applications, emphasizing concurrency safety, determinism, and production performance.'
-        ]
+        title: 'Profiling & Optimization',
+        items: ['Benchmarking harnesses', 'Cache locality', 'Flame graphs', 'CPU/GPU timelines', 'Vectorization and kernel tuning']
       }
     ]
   },
-  'Systems Design (Learning)': {
+  'Distributed & AI Runtime Systems': {
     core: [
       {
         title: 'Design Skills',
@@ -630,69 +622,81 @@ const rawSkillSets = {
         ]
       },
       {
-        title: 'Application Patterns',
+        title: 'Distributed Systems',
         items: [
           'Layered and modular architecture',
           'Domain boundaries and service decomposition',
-          'E-commerce flow design (catalog/cart/checkout/order)',
-          'Inventory and payment consistency patterns',
-          'Async job and workflow orchestration'
-        ]
-      },
-      {
-        title: 'Distributed Systems',
-        items: [
           'Pub/sub and stream processing patterns',
           'Partitioning and sharding basics',
           'Retry/backoff/circuit-breaker patterns',
           'At-least-once and exactly-once tradeoffs',
-          'Consistency vs availability'
+          'Consistency vs availability',
+          'Async job and workflow orchestration'
         ]
-      },
-      {
-        title: 'Tradeoffs',
-        items: ['Cost vs performance', 'Batch vs streaming', 'Operational simplicity vs flexibility']
       }
     ],
     supporting: [
       {
-        title: 'Data Systems',
-        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies', 'Data retention and replay strategy']
+        title: 'Data & Infra',
+        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies', 'Data retention and replay strategy', 'Kubernetes', 'CI/CD', 'Service observability']
       },
       {
-        title: 'Cloud-Native + Infra',
+        title: 'AI Runtime Patterns',
         items: [
-          'Container-first service design',
-          'Kubernetes workload patterns',
-          'CI/CD and progressive delivery',
-          'Infrastructure as code basics',
-          'Service observability and SLO-driven operations'
-        ]
-      },
-      {
-        title: 'Virtualization + Runtime',
-        items: ['VM and container isolation basics', 'QEMU workflows', 'Resource limits and scheduling behavior']
-      },
-      {
-        title: 'AI Infra Patterns',
-        items: [
+          'PyTorch',
+          'vLLM',
           'Model gateway + worker pool pattern',
           'Queue-based batching and scheduling',
           'Online/offline pipeline separation',
           'Tracing and metrics for model serving'
         ]
+      },
+      {
+        title: 'Agentic / LLM Systems',
+        items: [
+          'LangChain',
+          'LangGraph',
+          'OpenAI Assistants API',
+          'Tool orchestration',
+          'RAG pipelines',
+          'Context assembly'
+        ]
       }
     ]
   },
-  'AI Infrastructure + Full-Stack': {
+  'Graphics & Interactive Systems': {
     core: [
       {
-        title: 'Programming',
+        title: 'Applied Graphics',
+        items: ['Babylon.js', 'WebGL', 'WebXR', 'Meta Quest 3', 'Blender asset pipelines']
+      },
+      {
+        title: 'APIs & Engines',
         items: [
+          'OpenGL',
+          'Vulkan',
+          'Metal',
+          'Unity',
+          'Effect House'
+        ]
+      }
+    ],
+    supporting: [
+      {
+        title: 'Interactive Systems',
+        items: ['Real-time rendering intuition', 'Scene graph thinking', 'Physics-integrated interaction', 'Spatial audio integration', 'Avatar / immersive environments']
+      }
+    ]
+  },
+  'Application & Product Engineering': {
+    core: [
+      {
+        title: 'Languages',
+        items: [
+          'TypeScript',
+          'JavaScript',
           'Python',
-          'TypeScript/JavaScript',
-          'C++20 (STL, templates)',
-          'Java (JVM, Collections)',
+          'Java',
           'SQL',
           'Bash',
           'YAML',
@@ -700,112 +704,97 @@ const rawSkillSets = {
         ]
       },
       {
-        title: 'Backend & Data',
+        title: 'Frontend',
         items: [
-          'Redis',
-          'Kafka',
-          'GraphQL',
-          'WebSocket',
-          'PostgreSQL',
-          'MongoDB',
-          'pgvector',
-          'Pandas',
-          'NumPy',
-          'Grafana',
-          'PySpark'
-        ]
-      },
-      {
-        title: 'AI & Infra',
-        items: [
-          'LangChain',
-          'Docker',
-          'AWS',
-          'Terraform',
-          'Git',
-          'vLLM',
-          'Kubernetes',
-          'Unix',
-          'Pinecone',
-          'Dagster',
-          'OpenTelemetry',
-          'PyTorch'
+          'React.js',
+          'Next.js',
+          'Vue.js',
+          'React Native',
+          'HTML/CSS',
+          'Redux',
+          'Flutter',
+          'Electron',
+          'Swing'
         ]
       }
     ],
     supporting: [
       {
-        title: 'APIs & Web',
-        items: ['FastAPI', 'Spring Boot', 'Node.js', 'React.js', 'Next.js', 'Electron', 'Vue.js', 'HTML/CSS']
+        title: 'Backend & APIs',
+        items: [
+          'Node.js',
+          'FastAPI',
+          'Spring Boot',
+          'GraphQL',
+          'GraphQL Yoga',
+          'Pothos',
+          'WebSocket',
+          'SSE',
+          'REST API design',
+          'Knex.js',
+          'SQLAlchemy',
+          'Azure Functions'
+        ]
       },
       {
-        title: 'Focus',
-        items: ['Strong competency shipping AI infrastructure end-to-end, from backend services to production operations.']
+        title: 'Data & Storage',
+        items: [
+          'PostgreSQL',
+          'MongoDB',
+          'Oracle',
+          'Redis',
+          'Kafka',
+          'Pandas',
+          'NumPy',
+          'PySpark',
+          'Cloud Firestore'
+        ]
+      },
+      {
+        title: 'Infra & Delivery',
+        items: [
+          'Docker',
+          'Docker Compose',
+          'Kubernetes',
+          'AWS',
+          'Terraform',
+          'Nginx',
+          'PM2',
+          'Certbot',
+          'Fly.io',
+          'OpenTelemetry',
+          'Grafana',
+          'Dagster'
+        ]
       }
     ]
   },
-  'Systems Internals (Learning)': {
+  'Supporting Internals & Tools': {
     core: [
       {
-        title: 'Runtime internals',
+        title: 'Runtime Internals',
         items: ['Memory allocators', 'Process/thread model', 'Calling conventions', 'Linking + binary formats']
       },
       {
-        title: 'Toolchain basics',
+        title: 'Toolchain Basics',
         items: ['Compiler flags and optimization levels', 'IR awareness (basic)', 'Symbol/debug info basics']
       }
     ],
     supporting: [
       {
         title: 'Languages',
-        items: ['C++', 'C', 'Python', 'Rust (learning)', 'Assembly (reading)']
+        items: ['C++', 'C', 'Python', 'Rust', 'Assembly (reading)']
       },
       {
-        title: 'Focus',
-        items: [
-          'Supporting skillset to reason about low-level behavior and performance regressions.'
-        ]
+        title: 'Platform Exposure',
+        items: ['RISC-V', 'QEMU', 'VM and container isolation basics', 'Resource limits and scheduling behavior', 'Infrastructure as code basics']
       }
     ]
   },
   
 }
 
-const normalizeSkill = (value) => value.toLowerCase().replace(/\s+/g, ' ').trim()
-
-const buildUniqueSkillSets = (sets) => {
-  const seen = new Set()
-  const result = {}
-
-  for (const [track, groups] of Object.entries(sets)) {
-    const dedupeGroup = (group) => {
-      const uniqueItems = []
-      for (const item of group.items) {
-        const key = normalizeSkill(item)
-        if (seen.has(key)) {
-          continue
-        }
-        seen.add(key)
-        uniqueItems.push(item)
-      }
-      if (!uniqueItems.length) {
-        return null
-      }
-      return { ...group, items: uniqueItems }
-    }
-
-    const core = groups.core.map(dedupeGroup).filter(Boolean)
-    const supporting = groups.supporting.map(dedupeGroup).filter(Boolean)
-
-    if (core.length || supporting.length) {
-      result[track] = { core, supporting }
-    }
-  }
-
-  return result
-}
-
-const skillSets = buildUniqueSkillSets(rawSkillSets)
+const skillSets = rawSkillSets
 const skillTracks = Object.keys(skillSets)
 
 function App() {
@@ -852,21 +841,23 @@ function App() {
     <article className="panel project-panel" key={project.title}>
       <h3>{project.title}</h3>
       {project.context ? <p className="project-context">{project.context}</p> : null}
-      <p>{project.description}</p>
-      {project.impact ? (
-        <p className="project-detail">
-          <span className="project-label">Impact</span>
-          {project.impact}
-        </p>
-      ) : null}
-      {project.highlight ? (
-        <p className="project-detail">
-          <span className="project-label">Technical highlight</span>
-          {project.highlight}
-        </p>
-      ) : null}
+      <div className="project-body">
+        <p className="project-summary">{project.description}</p>
+        {project.impact ? (
+          <p className="project-detail">
+            <span className="project-label">Impact</span>
+            {project.impact}
+          </p>
+        ) : null}
+        {project.highlight ? (
+          <p className="project-detail">
+            <span className="project-label">Technical highlight</span>
+            {project.highlight}
+          </p>
+        ) : null}
+      </div>
       {project.metrics?.length ? (
-        <div className="metric-row">
+        <div className="metric-row project-metrics">
           {project.metrics.map((metric) => (
             <span className="metric-pill" key={metric}>
               {metric}
@@ -875,14 +866,21 @@ function App() {
         </div>
       ) : null}
       <div className="project-footer">
-        {project.hideLink || !project.repo ? (
-          <span className="project-link project-link-muted">Project overview</span>
-        ) : (
-          <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
-            Project overview
-          </a>
-        )}
-        <div className="tag-row">
+        <div className="project-links">
+          {project.hideLink || !project.repo ? (
+            <span className="project-link project-link-muted">Project overview</span>
+          ) : (
+            <a className="project-link" href={project.repo} target="_blank" rel="noopener noreferrer">
+              {project.linkLabel || 'Project overview'}
+            </a>
+          )}
+          {project.demoUrl ? (
+            <a className="project-link" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+              {project.demoLabel || 'Demo video'}
+            </a>
+          ) : null}
+        </div>
+        <div className="tag-row project-tags">
           {project.tags.slice(0, 4).map((tag) => (
             <span className="tag-text" key={tag}>
               {tag}
@@ -941,23 +939,23 @@ function App() {
                 {PRIMARY_NAME} | Hans
               </a>
             </h1>
-            <p className="hero-role">Systems &amp; performance engineering</p>
+            <p className="hero-role">Systems, runtime, and performance engineering</p>
             <p className="hero-summary">
-              I build deterministic C/C++ systems and profile for hardware bottlenecks across memory, concurrency, and
-              throughput. My technical direction is performance-focused systems work at the hardware/software boundary:
-              kernels, compilers/toolchains, and measurable latency behavior in production environments.
+              I build performance-oriented C/C++ systems and care about how software behaves close to the machine:
+              memory, concurrency, latency, and runtime efficiency. My strongest traits are systems thinking,
+              execution-focused engineering, and a willingness to work at the hardware/software boundary, with growing
+              overlap in graphics tooling, GPU-adjacent work, and developer-facing infrastructure.
             </p>
             <div className="hero-meta">
-              <span>Open to systems, platform, backend, performance, and market-infrastructure engineering roles</span>
+              <span>Focused on deterministic systems, runtime behavior, and performance-critical software.</span>
               <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
             </div>
           </div>
           <div className="hero-side">
             <p className="hero-side-title">Breadth</p>
-            <p className="hero-side-line">Full-stack: React, Next.js, Node.js, TypeScript</p>
-            <p className="hero-side-line">AI/Python: PyTorch, NumPy, Pandas, FastAPI</p>
-            <p className="hero-side-line">Systems design: backpressure, reliability, SLO-driven design</p>
-            <p className="hero-side-line">Market infra interest: exchange connectivity, market data, and execution reliability</p>
+            <p className="hero-side-line">Low-Latency &amp; Determinism: C++20, TCP/IP bypass, zero-allocation critical paths.</p>
+            <p className="hero-side-line">Hardware-Aware Compute: CUDA, SIMD/SIMT, memory coalescing, cache hierarchy optimization.</p>
+            <p className="hero-side-line">Systems Infrastructure: Linux internals, distributed consensus, streaming architectures.</p>
             <div className="hero-links">
               <a href="mailto:ho.chak@northeastern.edu">Email</a>
               <a href="https://linkedin.com/in/chaksingho/" target="_blank" rel="noopener noreferrer">
@@ -994,55 +992,39 @@ function App() {
         {activeSection === 'overview' ? (
           <section className="section" id="overview">
             <div className="section-heading">
-              <h2>Focus</h2>
+              <h2>Overview</h2>
             </div>
             <div className="panel-grid">
               <article className="panel">
-                <h3>Current technical focus</h3>
+                <h3>Who I am</h3>
                 <ul className="plain-list">
-                  {currentFocus.map((item) => (
+                  {recruiterSummary.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </article>
               <article className="panel">
-                <h3>In-progress builds</h3>
+                <h3>Best-fit roles</h3>
                 <ul className="plain-list">
-                  {currentBuilds.map((item) => (
+                  {bestFitRoles.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </article>
               <article className="panel">
-                <h3>Open-source targets</h3>
+                <h3>Why this is credible</h3>
                 <ul className="plain-list">
-                  {openSourceTargets.map((item) => (
+                  {credibilitySignals.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </article>
               <article className="panel">
-                <h3>Engineering principles</h3>
+                <h3>Where I am going</h3>
                 <ul className="plain-list">
-                  {professionalSignals.map((item) => (
+                  {futureDirection.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
-                </ul>
-              </article>
-              <article className="panel">
-                <h3>Core overlap skills</h3>
-                <ul className="plain-list">
-                  {overlapSkills.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-              <article className="panel">
-                <h3>Target role direction</h3>
-                <ul className="plain-list">
-                  <li>Primary fit: systems and performance engineering where reliability and latency matter.</li>
-                  <li>Also open: platform, backend, and infrastructure roles with strong technical ownership.</li>
-                  <li>Domain interests: financial markets, market data quality, and low-latency execution reliability.</li>
                 </ul>
               </article>
             </div>
@@ -1085,10 +1067,10 @@ function App() {
               <article className="panel">
                 <h3>Positioning</h3>
                 <p>
-                  I focus on systems performance and reliability, with strong overlap across low-level engineering,
-                  end-to-end platform delivery, and production-minded system design. I am also interested in applying
-                  these skills to market infrastructure problems in quant and crypto environments. I keep my positioning
-                  intentionally broad enough to contribute across different product domains where systems quality is a core requirement.
+                  I am primarily targeting ML systems, GPU runtime, and low-latency engineering roles. My background
+                  combines C/C++ systems work, agentic AI infrastructure, and performance-focused software where memory
+                  behavior, concurrency, and runtime efficiency matter. I also have solid overlap with graphics and
+                  immersive-system tooling, which makes graphics-oriented platform roles a natural adjacent fit.
                 </p>
                 <ul className="plain-list">
                   {positioningHighlights.map((item) => (
@@ -1096,13 +1078,29 @@ function App() {
                   ))}
                 </ul>
               </article>
+              <article className="panel ee-panel">
+                <h3>Computer-side EE foundation</h3>
+                <p>
+                  My EE background matters because it gives me a better feel for how software interacts with the
+                  machine underneath it. That shows up in how I think about cache and memory behavior, networking,
+                  performance bottlenecks, and hardware-aware tradeoffs. It also includes hands-on VLSI/SRAM work and
+                  computer-organization fundamentals that support lower-level systems and runtime engineering.
+                </p>
+                <ul className="plain-list">
+                  {computerSideEeCourses.map((course) => (
+                    <li key={course}>{course}</li>
+                  ))}
+                </ul>
+              </article>
               <article className="panel">
                 <h3>What I deliver</h3>
                 <ul className="plain-list">
                   <li>Performance-first system design with explicit latency and throughput targets.</li>
-                  <li>Production-ready services across backend, data pipelines, and observability.</li>
                   <li>Evidence-driven optimization with benchmarks, profiling traces, and regression checks.</li>
-                  <li>Low-latency engineering mindset applicable to market data, execution infrastructure, and other real-time systems.</li>
+                  <li>Agentic workflow engineering across retrieval, tool use, orchestration, and production constraints.</li>
+                  <li>Hardware-conscious implementation decisions across concurrency, memory movement, and critical-path allocation.</li>
+                  <li>Graphics and interactive-system fluency across Babylon.js, immersive runtime behavior, and engine-adjacent tooling.</li>
+                  <li>Low-latency engineering mindset applicable to market data, execution infrastructure, and GPU-serving systems.</li>
                 </ul>
               </article>
               <article className="panel">
@@ -1124,23 +1122,13 @@ function App() {
                   </a>
                 </div>
               </article>
-              <article className="panel">
-                <h3>Computer-side EE foundation</h3>
-                <p>
-                  I keep the computer-systems part of my EE background visible because it directly supports systems
-                  software work: architecture-aware performance decisions, networking intuition, and quantitative
-                  reasoning in design tradeoffs. This includes practical intuition from VLSI/SRAM design and cache-level
-                  behavior (L1/L2/L3 to DRAM) when analyzing performance bottlenecks.
-                </p>
-                <ul className="plain-list">
-                  {computerSideEeCourses.map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-              </article>
             </div>
 
             <p className="group-subtitle">Skills by category</p>
+            <p className="plain-summary">
+              Strongest areas: systems performance, distributed/agentic AI infrastructure, and GPU/runtime-adjacent
+              engineering. Additional experience spans graphics tooling, interactive systems, and full-stack product delivery.
+            </p>
             <div className="stacked-groups">
               {skillTracks.map((track) => {
                 const groups = skillSets[track]
@@ -1200,8 +1188,8 @@ function App() {
             <div className="panel-grid">
               <article className="panel">
                 <p>
-                  Reach me for systems, platform, backend, infrastructure, or performance-oriented engineering work.
-                  I am open to multiple role shapes as long as the work emphasizes strong engineering fundamentals and measurable outcomes.
+                  Reach me for ML systems, GPU runtime, graphics/tooling, low-latency infrastructure, or performance-oriented engineering work.
+                  The best fit is work that values strong systems fundamentals, measurable performance, and hardware-aware software decisions.
                 </p>
                 <div className="hero-links">
                   <a href="mailto:ho.chak@northeastern.edu">ho.chak@northeastern.edu</a>

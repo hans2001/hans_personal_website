@@ -109,6 +109,18 @@ const projects = [
     group: 'featured'
   },
   {
+    title: 'TTEH AI Harness Layer',
+    context: 'Agentic developer tooling · Evaluation infrastructure',
+    description:
+      'Built and maintained a repo-local AI engineering harness for TTEH workstreams, covering linked consumer bootstrap, task routing, worktree isolation, eval/holdout execution, run-artifact validation, and live Effect House verification workflows.',
+    impact: 'Turned agent-assisted engineering from ad hoc prompts into a repeatable workflow with explicit routing, evidence capture, and validation gates.',
+    highlight: 'Ran a daemonized flywheel loop (`measure → triage → improve`) in an isolated service worktree, with 8 concurrent lanes, 30s monitoring, and source-of-truth artifacts such as run.json, verification.md, runtime traces, and diffs.',
+    tags: ['Python', 'Bash', 'Agentic Tooling', 'Eval Harness'],
+    metrics: ['8 structure playbooks promoted', 'Projected scale: ~4,000 runs', 'Projected coverage: ~200 analyzed assets'],
+    hideLink: true,
+    group: 'featured'
+  },
+  {
     title: 'Power-Gated 8kb SRAM (TSMC 180nm)',
     context: 'Circuit design · Low-power ICs',
     description:
@@ -169,18 +181,23 @@ const academicProjects = projects.filter((project) => project.group === 'academi
 // Note: experiences and education are defined later in the file but moved here for schemaData reference
 const experiences = [
   {
-    role: 'Incoming Summer Intern, Intelligent Creation (Effect House)',
+    role: 'Summer Intern, Intelligent Creation (Effect House)',
     org: 'TikTok',
     orgUrl: 'https://effecthouse.tiktok.com/',
     location: 'Summer 2026 internship',
     dates: 'Summer 2026 · 12 weeks',
     employmentType: 'Part-time',
     bullets: [
-      'Joining TikTok\'s Intelligent Creation team to work on Effect House, the company\'s official AR creation tool for building interactive effects.',
-      'The role is centered on creator-facing tooling, editing workflows, and core technology for immersive effect development rather than generic product engineering.',
-      'It aligns directly with my interest in graphics/interactive systems, native programming, real-time rendering, and GPU-adjacent platform work; project details will be updated once public.'
+      'Worked with TikTok\'s Intelligent Creation team on Effect House, the company\'s official AR creation tool, during a 12-week summer internship.',
+      'Contributed to 6 core harness areas around TTEH development: linked consumer bootstrap, task routing, host-adapter skills, eval/holdout workflows, repo-native verification, and live effect validation.',
+      'Built 5 workflow guardrails for agent-assisted engineering: summary-first context loading, isolated worktree rules, run-artifact checks, runtime log feedback, and device/runtime evidence capture.',
+      'Promoted 8 structure playbooks into the team repo so repeated fixes could be reused instead of rediscovered by every teammate.',
+      'Packed the harness into repo-native `tteh-ai` commands and docs, giving the team a single adoption path instead of ad hoc prompting.',
+      'Backed the workflow with dashboard telemetry at team scale, with the expected internship target landing around 4,000 runs and nearly 200 analyzed assets.',
+      'Made productivity measurable in the dashboard through human baseline minutes, agent turns, elapsed_ms, and the derived efficiency_ratio on each run row.',
+      'Anchored validation on 3 concrete evidence types: run.json, verification.md, and runtime traces.'
     ],
-    metrics: ['Program: 12-week internship', 'Area: Effect House / AR creation tooling', 'Focus: editor workflows + core technology']
+    metrics: ['Program: 12-week internship', '8 promoted structure playbooks', 'Target scale: ~4,000 runs', 'Target coverage: ~200 analyzed assets', 'Dashboard lift: human baseline vs agent telemetry']
   },
   {
     role: 'Software Engineer Intern (Innovation Lab)',
@@ -519,7 +536,7 @@ const positioningHighlights = [
 const recruiterSummary = [
   'I work on performance-oriented systems, ML runtime-adjacent software, and agentic infrastructure.',
   'My strongest areas are C/C++ systems thinking, deterministic execution, and hardware-aware software design.',
-  'I also have meaningful overlap with graphics and interactive tooling through OpenGL, Babylon.js, and immersive-system work.'
+  'I also have meaningful overlap with graphics, interactive tooling, and AI developer infrastructure through OpenGL, Babylon.js, Effect House/TTEH harness work, and immersive-system projects.'
 ]
 
 const bestFitRoles = [
@@ -531,7 +548,8 @@ const bestFitRoles = [
 
 const credibilitySignals = [
   'Projects here cover networking hot paths, schedulers, DMA/interrupt handling, OpenGL rendering, and compiler/runtime fundamentals.',
-  'My internship work spans agentic AI tooling, LLM workflow infrastructure, immersive platforms, and upcoming AR creation tooling at TikTok Effect House.',
+  'My internship work spans agentic AI tooling, LLM workflow infrastructure, immersive platforms, and AI harness/runtime-verification work around TikTok Effect House.',
+  'The TTEH harness work turned repeated guidance into a shared repo-native workflow, with promoted playbooks and a daemonized flywheel that other team members could adopt instead of re-discovering the same fixes.',
   'The common thread is execution quality: systems that need to be explainable, measurable, and close to the runtime behavior underneath them.'
 ]
 
@@ -604,7 +622,7 @@ const rawSkillSets = {
       },
       {
         title: 'Profiling & Optimization',
-        items: ['Benchmarking harnesses', 'Cache locality', 'Flame graphs', 'CPU/GPU timelines', 'Vectorization and kernel tuning']
+        items: ['Eval and verification harnesses', 'Cache locality', 'Flame graphs', 'CPU/GPU timelines', 'Vectorization and kernel tuning']
       }
     ]
   },
@@ -658,6 +676,7 @@ const rawSkillSets = {
           'LangGraph',
           'OpenAI Assistants API',
           'Tool orchestration',
+          'Agent routing and eval harnesses',
           'RAG pipelines',
           'Context assembly'
         ]

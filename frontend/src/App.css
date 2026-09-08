@@ -156,6 +156,22 @@
   color: var(--ink);
 }
 
+.hero-proof {
+  margin: 0.15rem 0 0;
+  padding: 0.45rem 0.6rem;
+  border-left: 2px solid var(--ink);
+  background: rgba(15, 23, 42, 0.035);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.hero-proof strong {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -819,6 +835,31 @@
   gap: 0.42rem;
   padding-top: 0.35rem;
   border-top: 1px solid var(--line);
+}
+
+.status-tag {
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.status-tag--shipped {
+  color: var(--ink-soft);
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.status-tag--building {
+  color: #92400e;
+  border-color: rgba(146, 64, 14, 0.35);
+  background: rgba(217, 119, 6, 0.09);
 }
 
 .experience-panel--featured {

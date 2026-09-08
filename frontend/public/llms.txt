@@ -1,16 +1,23 @@
-Site: Ho Chak Sing | Hans - Low-latency backend & systems engineer
+Site: Ho Chak Sing | Hans - AI infrastructure & distributed systems engineer
 URL: https://chaksingho.com/
-Preferred citation: "Ho Chak Sing | Hans, Low-latency backend & systems engineer, https://chaksingho.com/"
+Preferred citation: "Ho Chak Sing | Hans, AI infrastructure & distributed systems engineer, https://chaksingho.com/"
 Contact: ho.chak@northeastern.edu
 Name: Ho Chak Sing | Hans
 
 Summary:
-Portfolio for a low-latency backend and systems engineer focused on market data, observability, deterministic execution, and AI infrastructure.
+Portfolio for an engineer who builds AI infrastructure and distributed evaluation systems: distributed control planes,
+lease-based work claiming, state machines and crash recovery, closed-book agent evaluation harnesses, runtime
+verification, and the C++/Python systems performance work underneath them.
 
 Topics:
-- low-latency systems
-- C++ performance engineering
-- market data pipelines
-- observability and tracing
-- deterministic execution
-- AI infrastructure
+- distributed control planes and worker lifecycle
+- lease-based claiming, generation fencing, crash-safe recovery
+- AI agent evaluation infrastructure and falsifiable oracles
+- runtime verification and anti-fake-green verdicts
+- MCP servers and agentic tool orchestration
+- C++ systems performance and deterministic execution
+
+Notable result:
+Holding an evaluation pipeline fixed and swapping only the author of the grading test moved the measured pass rate
+from 27.5% (tests written by the original human developer) to 65.6% (tests the agent wrote for itself), meaning
+self-authored benchmarks overstate agent performance by roughly 2.4x. Reproduced across two data generations.

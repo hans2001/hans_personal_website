@@ -821,6 +821,10 @@
   border-top: 1px solid var(--line);
 }
 
+.experience-panel--featured {
+  grid-column: 1 / -1;
+}
+
 .experience-panel,
 .project-panel {
   padding: 0.25rem 0 0.65rem;
@@ -1140,7 +1144,8 @@
     padding-top: 0.65rem;
   }
 
-  .panel-grid {
+  .panel-grid,
+  .panel-grid.dense {
     grid-template-columns: 1fr;
   }
 

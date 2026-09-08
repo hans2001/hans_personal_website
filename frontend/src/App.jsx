@@ -113,10 +113,10 @@ const projects = [
     context: 'Agentic developer tooling · Evaluation infrastructure',
     description:
       'Built and maintained a repo-local AI engineering harness for TTEH workstreams, covering linked consumer bootstrap, task routing, worktree isolation, eval/holdout execution, run-artifact validation, and live Effect House verification workflows.',
-    impact: 'Turned agent-assisted engineering from ad hoc prompts into a repeatable workflow with explicit routing, evidence capture, and validation gates.',
-    highlight: 'Ran a daemonized flywheel loop (`measure → triage → improve`) in an isolated service worktree, with 8 concurrent lanes, 30s monitoring, and source-of-truth artifacts such as run.json, verification.md, runtime traces, and diffs.',
+    impact: 'Turned agent-assisted engineering from ad hoc prompts into a measured workflow: explicit routing, closed-book evaluation, and verdicts backed by evidence rather than by a diff that merely looks plausible.',
+    highlight: 'Ran a daemonized flywheel (`measure → triage → improve`) as a supervised nightly service over 32 shards and 12 concurrent lanes in isolated worktrees, with run.json, verification.md, runtime traces, and diffs as the source of truth behind every verdict.',
     tags: ['Python', 'Bash', 'Agentic Tooling', 'Eval Harness'],
-    metrics: ['8 structure playbooks promoted', 'Projected scale: ~4,000 runs', 'Projected coverage: ~200 analyzed assets'],
+    metrics: ['14,328 scored eval runs', 'Nightly: 32 shards / 12 lanes', 'Self-tests: 165 pass / 0 fail'],
     hideLink: true,
     group: 'featured'
   },
@@ -184,20 +184,23 @@ const experiences = [
     role: 'Summer Intern, Intelligent Creation (Effect House)',
     org: 'TikTok',
     orgUrl: 'https://effecthouse.tiktok.com/',
-    location: 'Summer 2026 internship',
-    dates: 'Summer 2026 · 12 weeks',
-    employmentType: 'Part-time',
+    location: 'San Jose, CA',
+    dates: 'May 11, 2026 - Sep 8, 2026',
+    employmentType: 'Full-time',
+    featured: true,
     bullets: [
-      'Worked with TikTok\'s Intelligent Creation team on Effect House, the company\'s official AR creation tool, during a 12-week summer internship.',
-      'Contributed to 6 core harness areas around TTEH development: linked consumer bootstrap, task routing, host-adapter skills, eval/holdout workflows, repo-native verification, and live effect validation.',
-      'Built 5 workflow guardrails for agent-assisted engineering: summary-first context loading, isolated worktree rules, run-artifact checks, runtime log feedback, and device/runtime evidence capture.',
-      'Promoted 8 structure playbooks into the team repo so repeated fixes could be reused instead of rediscovered by every teammate.',
-      'Packed the harness into repo-native `tteh-ai` commands and docs, giving the team a single adoption path instead of ad hoc prompting.',
-      'Backed the workflow with dashboard telemetry at team scale, with the expected internship target landing around 4,000 runs and nearly 200 analyzed assets.',
-      'Made productivity measurable in the dashboard through human baseline minutes, agent turns, elapsed_ms, and the derived efficiency_ratio on each run row.',
-      'Anchored validation on 3 concrete evidence types: run.json, verification.md, and runtime traces.'
+      'Worked with TikTok\'s Intelligent Creation team on Effect House, the company\'s official AR creation tool, building three systems on top of the TTEH desktop codebase: an overnight agent-evaluation flywheel, a runtime verifier, and an MCP performance agent for creators.',
+      'Flywheel · Built a distributed control plane on a single host — supervisor, nightly controller, per-lane daemons, eval children, and capture workers that share no call stack and never fail together. Task ownership is a SQLite transaction plus a TTL lease rather than a boolean flag, so two pickers can never claim the same task and a crashed worker\'s lease expires into someone else\'s hands instead of stranding the work.',
+      'Flywheel · Made recovery safe with a composite identity — task id, run id, controller generation, lane id, owner token, pinned revision, worktree — compared together, so a worker resurrected from an older generation cannot write into state it no longer owns. Shared JSON is published by temp file, fsync, and atomic replace, and corrupt ledgers fail closed rather than reading as empty and silently re-running work that already landed.',
+      'Flywheel · Designed the lock taxonomy (supervisor singleton flock, lease lock, eval admission slot, reentrant ledger lock, telemetry append/rotate lock, single distill-compiler lock) under one rule: a lock must span the entire read-decide-write, because locking only the final write still loses updates. Parallel lanes avoid contending on shared knowledge files altogether by writing content-addressed fragments that one compiler folds together.',
+      'Flywheel · Ran the supervisor as a pure state machine over collected facts — hold, restart, repair, stop — behind a restart circuit breaker, with a hard line between a broken road that self-heals (worktree gone, process dead) and a pulled stop gate that must never auto-clear.',
+      'Flywheel · Ran it as a multi-agent system where roles are separated by context, not just by name: a blind fixer agent that cannot see the grader, a reviewer fed only a summary of the previous attempt, a scheduler choosing the next task, and producers minting tasks and reaping dead worktrees. ~18 worker loops over roughly 6 concurrent model slots, 32 nightly shards across 12 lanes, 14,328 scored runs.',
+      'Flywheel · The hardest problem was diagnostic rather than functional: twelve distinct failures — a runaway process escaping its cgroup, a service booting from a tree with no modules, timeouts reporting success as failure, one lane killing another lane\'s editor through a default port fallback — all surfaced as the same symptom, "the editor is flaky." Introduced a shared failure-layer vocabulary so every refusal names its own layer and no layer may report another layer\'s failure as its own.',
+      'Flywheel · Produced the program\'s most transferable result by holding the pipeline fixed and swapping only the source of the grading test: agent fixes passed 27.5% (n=578) against tests written by the original human developer versus 65.6% (n=276) against tests the agent wrote for itself — a ~2.4x overestimate, reproduced twice. A follow-up audit of the instrumentation found 48.6% of prompts silently carrying the previous attempt\'s verdict while the run records reported none of it.',
+      'Runtime verifier · Built the behavioral ground truth the flywheel lacked, as a TypeScript job shell over a Python decision kernel: PASS only when the same oracle genuinely fails on the baseline build and passes on the candidate, UNPROVEN when evidence is missing. The contended resources here are physical — one build checkout, one single-instance editor holding a port and the GPU — so serialization is a correctness precondition, enforced by non-blocking flocks that make the design deadlock-free by construction, over a filesystem queue where every transition is a single atomic rename.',
+      'Perf MCP · Built an MCP server exposing 31 governed tools that lets a creator\'s agent optimize a live effect project as a typed state machine — PolicyDecision, Measurement{ok|invalid}, Suspect[], Transaction, Verdict{pass|fail|invalid} — attributing cost through JS profiling, scene objects, GPU telemetry, and hierarchical ablation, then writing fixes back inside a transaction that re-measures on the same workload and restores the creator\'s tree on failure.'
     ],
-    metrics: ['Program: 12-week internship', '8 promoted structure playbooks', 'Target scale: ~4,000 runs', 'Target coverage: ~200 analyzed assets', 'Dashboard lift: human baseline vs agent telemetry']
+    metrics: ['Program: 17 weeks (May 11 - Sep 8, 2026)', '3 systems: flywheel / verifier / perf MCP', '14,328 scored eval runs', 'Nightly: 32 shards / 12 lanes', 'Test-source bias: 27.5% vs 65.6%', 'Perf MCP: 31 governed tools']
   },
   {
     role: 'Software Engineer Intern (Innovation Lab)',
@@ -549,7 +552,7 @@ const bestFitRoles = [
 const credibilitySignals = [
   'Projects here cover networking hot paths, schedulers, DMA/interrupt handling, OpenGL rendering, and compiler/runtime fundamentals.',
   'My internship work spans agentic AI tooling, LLM workflow infrastructure, immersive platforms, and AI harness/runtime-verification work around TikTok Effect House.',
-  'The TTEH harness work turned repeated guidance into a shared repo-native workflow, with promoted playbooks and a daemonized flywheel that other team members could adopt instead of re-discovering the same fixes.',
+  'The TTEH harness work turned repeated guidance into a shared repo-native workflow, and paired it with an overnight evaluation flywheel that measures whether a given intervention actually helps before the team adopts it.',
   'The common thread is execution quality: systems that need to be explainable, measurable, and close to the runtime behavior underneath them.'
 ]
 
@@ -820,7 +823,10 @@ function App() {
   const [activeSection, setActiveSection] = useState('profile')
   const prerenderDispatched = useRef(false)
   const renderExperienceCard = (item) => (
-    <article className="panel experience-panel" key={`${item.org}-${item.role}`}>
+    <article
+      className={`panel experience-panel${item.featured ? ' experience-panel--featured' : ''}`}
+      key={`${item.org}-${item.role}`}
+    >
       <h3>{item.role}</h3>
       <p className="card-subtitle">
         {item.orgUrl ? (

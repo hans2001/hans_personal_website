@@ -1,16 +1,61 @@
-Site: Ho Chak Sing | Hans - Low-latency backend & systems engineer
-URL: https://chaksingho.com/
-Preferred citation: "Ho Chak Sing | Hans, Low-latency backend & systems engineer, https://chaksingho.com/"
+# Chak Sing Ho (Hans Ho)
+
+> Software engineer building agentic AI systems and the infrastructure they run on:
+> multi-agent orchestration, MCP tool interfaces, RAG and retrieval, and evaluation
+> harnesses - backed by distributed systems depth and graphics engineering.
+
+Site: https://chaksingho.com/
+Name: Chak Sing Ho
+Also known as: Hans Ho, Ho Chak Sing, Hans
 Contact: ho.chak@northeastern.edu
-Name: Ho Chak Sing | Hans
+Location: Boston, MA, United States
+Preferred citation: "Chak Sing Ho (Hans Ho), software engineer - agentic AI systems and LLM infrastructure, https://chaksingho.com/"
 
-Summary:
-Portfolio for a low-latency backend and systems engineer focused on market data, observability, deterministic execution, and AI infrastructure.
+## Current
 
-Topics:
-- low-latency systems
-- C++ performance engineering
-- market data pipelines
-- observability and tracing
-- deterministic execution
-- AI infrastructure
+- Software Engineer Intern, Intelligent Creation (Effect House) at TikTok, San Jose, CA (May-Sep 2026).
+  Built an overnight agent-evaluation flywheel, a runtime verifier, and an MCP performance
+  agent for creators on the TikTok Effect House desktop codebase.
+- M.S. Computer Science, Northeastern University (expected May 2027). 4.0 CGPA.
+  Coursework: Information Retrieval, Building Distributed Systems, OS Kernel Implementation,
+  Agentic AI, Programming Language Principles, Database Management Systems, Network Programming.
+- B.Eng. Electronic Engineering, HKUST (2020-2024), Second Class Honours Division I.
+
+## Focus areas
+
+- Agentic AI systems: multi-agent orchestration, tool and function calling, MCP (Model Context
+  Protocol) servers, agent routing and scheduling, agent-callable automation.
+- LLM infrastructure: multi-provider gateways (OpenAI, Azure OpenAI, Gemini, Llama 3 via Ollama),
+  on-prem model serving, streaming responses, token accounting, compliance-constrained deployment.
+- Retrieval: RAG pipelines, document ingestion and chunking, embeddings and vector search,
+  context assembly and budgeting.
+- Evaluation: graded eval harnesses, held-out oracles, grading rubrics, instrumentation audits,
+  regression tracking across runs.
+- Distributed systems: TTL leases and state ownership, lock taxonomies, atomic state publication,
+  failure isolation, idempotent crash recovery, state-machine control.
+- Graphics and interactive systems: Effect House AR tooling, Babylon.js, WebGL, WebXR,
+  Meta Quest 3, OpenGL render pipelines, Blender asset pipelines.
+
+## Technologies
+
+LangChain, LangGraph, MCP, OpenAI Assistants API, PyTorch, Hugging Face Transformers, vLLM,
+Ollama, Whisper, TypeScript, Python, C++20, C, React.js, Next.js, Node.js, GraphQL, SQLite,
+MongoDB, PostgreSQL, Redis, Kafka, Docker, Kubernetes, AWS, Nginx, Babylon.js, OpenGL, CUDA.
+
+## Prior experience
+
+- Hong Kong Telecom (HKT), Innovation Lab - company-wide internal GenAI platform for 20+ teams.
+- HKUST Theoretical & Computational Chemistry Lab - tech lead, GenAI learning platform (HKD 250k funded).
+- China International Capital Corporation (CICC) - Bloomberg data monitoring and derivatives valuation tooling.
+- Midas Analytics - architected a real-time market intelligence platform (HKD 1M HKSTP funded).
+- USThing (HKUST) - web team lead.
+- SOCIF Limited - React Native and cloud image pipeline work.
+
+## Availability
+
+Open to software engineering roles in agentic AI systems, LLM infrastructure, developer tooling,
+and graphics/interactive platform engineering. Reachable at ho.chak@northeastern.edu.
+
+## Pages
+
+- https://chaksingho.com/ - full portfolio: profile, experience, projects, skills, education, contact.

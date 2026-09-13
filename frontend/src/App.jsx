@@ -200,6 +200,7 @@ const experiences = [
       'Runtime verifier · Built the behavioral ground truth the flywheel lacked, as a TypeScript job shell over a Python decision kernel: PASS only when the same oracle genuinely fails on the baseline build and passes on the candidate, UNPROVEN when evidence is missing. The contended resources here are physical — one build checkout, one single-instance editor holding a port and the GPU — so serialization is a correctness precondition, enforced by non-blocking flocks that make the design deadlock-free by construction, over a filesystem queue where every transition is a single atomic rename.',
       'Perf MCP · Built an MCP server exposing 31 governed tools that lets a creator\'s agent optimize a live effect project as a typed state machine — PolicyDecision, Measurement{ok|invalid}, Suspect[], Transaction, Verdict{pass|fail|invalid} — attributing cost through JS profiling, scene objects, GPU telemetry, and hierarchical ablation, then writing fixes back inside a transaction that re-measures on the same workload and restores the creator\'s tree on failure.'
     ],
+    stack: ['TypeScript', 'Python', 'SQLite', 'MCP', 'git worktrees', 'flock + TTL leases', 'Multi-agent orchestration', 'GPU + JS profiling'],
     metrics: ['Program: 17 weeks (May 11 - Sep 8, 2026)', '3 systems: flywheel / verifier / perf MCP', '14,328 scored eval runs', 'Nightly: 32 shards / 12 lanes', 'Test-source bias: 27.5% vs 65.6%', 'Perf MCP: 31 governed tools']
   },
   {
@@ -210,14 +211,16 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Full-time',
     bullets: [
-      'Built a company-wide GenAI platform for 20+ internal teams, deploying OpenAI, Gemini, and Llama3 via Ollama and adapting the stack for internal agentic workflows.',
-      'Integrated proprietary compliance-tuned LLMs and agent/tool orchestration paths for multi-step retrieval and enterprise reasoning flows.',
-      'Implemented the document and retrieval layer behind RAG-style workflows, including upload/retrieval/delete paths and context assembly for LLM execution.',
-      'Integrated OpenAI Assistants-style context handling for agentic responses, lifting question-answer accuracy by ~30%.',
-      'Automated Docker-based platform installs across Windows/Linux via scripted tooling and orchestrated VPN-tunneled container networking with Docker Compose to bypass regional API blocks.',
-      'Refreshed Tap&Go wallet rewards with a Flutter-powered merchant search (brand/category/region filters) backed by local JSON data.',
-      'Built a Python automation pipeline that extracts Excel data, scripts Mermaid diagrams, and renders wireless on-site cell diagrams in minutes, cutting generation time 90%.'
+      'Developed a company-wide internal GenAI platform with Node.js and React.js by customizing open-source projects (LibreChat, Open WebUI), deploying OpenAI, Gemini, and Llama3 via Ollama on-prem.',
+      'Extended the codebase using LangChain to integrate a proprietary compliance-trained LLM via the Azure API.',
+      'Engineered a file management system supporting Retrieval Augmented Generation (RAG) by developing server-side RESTful endpoints in Next.js that handle document uploads, retrievals, and deletions.',
+      'Integrated the OpenAI Assistants API to enable context-aware responses, enhancing question-answering accuracy by 30%.',
+      'Developed automation scripts to streamline local installation of the Docker-based GenAI platform across Windows and Linux environments.',
+      'Orchestrated container networking infrastructure with VPN tunneling protocols and Docker Compose to circumvent regional API restrictions.',
+      'Revamped the Tap&Go mobile wallet reward feature using Flutter, building a real-time merchant search with dynamic keyword filtering (brand/category/region) via local JSON data.',
+      'Implemented a Python-based automation pipeline for wireless on-site cell diagram generation, integrating Excel data extraction, Mermaid Markdown scripting, and diagram creation, reducing generation time by 90%.'
     ],
+    stack: ['Node.js', 'React.js', 'Next.js', 'LangChain', 'Ollama', 'Azure OpenAI', 'Docker Compose', 'Flutter', 'Python'],
     metrics: ['Adoption scope: 20+ teams', 'Answer quality: +~30%', 'Diagram generation time: -90%']
   },
   {
@@ -228,12 +231,14 @@ const experiences = [
     dates: 'Jun 2024 - Aug 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built an AI-driven platform with HKUST Center for Education Innovation, securing HKD 250k funding.',
-      'Developed an immersive Babylon.js + Ammo.js virtual classroom with Blender assets, physics, drag-and-drop, avatar movement, spatial audio, and Meta Quest 3 WebXR controls.',
-      'Embedded multimedia video/audio playback, dynamic blackboards, and clickable shelves using TypeScript for richer interactions.',
-      'Engineered a multimodal chat interface with Whisper-powered audio-to-text, SSE streaming, token tracking/retry logic, and LLM-backed interaction flows.',
-      'Deployed a Colyseus-based avatar networking layer on Fly.io to coordinate 100+ concurrent users.'
+      'Led the development of a GenAI Learning Platform with Next.js, securing HKD 250k in funding from the HKUST Center for Education Innovation.',
+      'Built an immersive 3D virtual classroom with Babylon.js, incorporating physics simulation with Ammo.js and custom 3D assets created in Blender.',
+      'Embedded interactive multimedia elements including video/audio playback, dynamic blackboards, and clickable shelves using TypeScript.',
+      'Optimized WebXR controls for Meta Quest 3, implementing drag-and-drop interactions, avatar movement, object scaling, mesh highlighting, and position reset functionalities.',
+      'Engineered a multi-modal chat interface supporting text input, voice recording, and audio-to-text conversion via the OpenAI Whisper API; streamed dynamic AI responses with markdown rendering, token tracking, and retry logic via server-sent events (SSE).',
+      'Developed and deployed a collaborative avatar networking system using Colyseus on Fly.io, enabling real-time interactions supporting 100+ concurrent users.'
     ],
+    stack: ['Next.js', 'TypeScript', 'Babylon.js', 'Ammo.js', 'WebXR', 'Blender', 'Colyseus', 'Fly.io', 'OpenAI Whisper'],
     metrics: ['Funding secured: HKD 250k', 'Concurrent users: 100+', 'Delivery: immersive WebXR classroom']
   },
   {
@@ -244,12 +249,14 @@ const experiences = [
     dates: 'Oct 2023 - Jan 2024',
     employmentType: 'Part-time',
     bullets: [
-      'Built real-time Bloomberg Data License / B-PIPE monitoring dashboards with Node.js + Vue.js, flagging 15+ anomalous patterns across 7 departments.',
-      'Engineered Knex.js-backed REST query/mutation endpoints to process 100k+ Bloomberg invoice records in Oracle, providing schema management and transactional safety.',
-      'Delivered derivatives valuation tooling to meet SFC compliance while automating data ingestion and reporting flows.',
-      'Crafted reusable UI components with TypeScript generics (conditional/indexed/mapped types) and generic parsing helpers with type guards to eliminate runtime validation failures.',
-      'Implemented a concurrent Excel export service with dynamic schemas, rate limiting, and paginated processing to bulk-export 10k+ rows without overloading downstream APIs.'
+      'Led the development of a real-time monitoring dashboard for Bloomberg Data License & Market Data Feed (B-PIPE) usage with Node.js and Vue.js, identifying and flagging 15+ anomalous expenditure patterns across 7 departments.',
+      'Engineered RESTful query and mutation endpoints utilizing Knex.js for schema management, optimizing the processing of 100k+ Bloomberg invoice records in Oracle Database.',
+      'Developed a Derivatives Automated Valuation Engine (SaaS) using TypeScript and React.js to comply with SFC regulations.',
+      'Designed reusable UI components using TypeScript generics with conditional types, indexed access types, and mapped types.',
+      'Engineered generic parsing functions with type guards and type assertions to eliminate runtime validation errors.',
+      'Implemented a generic Excel export feature with dynamic schemas, leveraging concurrent promise calls and rate limiting to bulk-export 10k+ paginated rows per request without API overload.'
     ],
+    stack: ['Node.js', 'Vue.js', 'React.js', 'TypeScript', 'Knex.js', 'Oracle Database', 'REST'],
     metrics: ['Anomalies flagged: 15+', 'Departments supported: 7', 'Invoice rows: 100k+', 'Bulk export: 10k+ rows']
   },
   {
@@ -260,15 +267,16 @@ const experiences = [
     dates: 'Jun 2022 - Oct 2023',
     employmentType: 'Full-time',
     bullets: [
-      'Architected a real-time market intelligence platform, driving 10+ product iterations and $1M HKD in HKSTP funding.',
-      'Built high-scale data delivery paths over paginated GraphQL to stream 5M+ historical records with real-time updates while controlling memory growth.',
-      'Redesigned protobuf/MongoDB schema, implemented indexes/aggregations, and profiled queries before migrating from Mongoose to the native driver, doubling retrieval speed.',
-      'Implemented a GraphQL API with Pothos, layered caching with GraphQL Yoga (configurable TTLs, session scoping, mutation invalidation), cutting endpoint overhead by 40%.',
-      'Delivered watchlist CRUD via Cloud Firestore tied to Firebase Auth for scalable tag-based company/industry tracking.',
-      'Centralized static assets on AWS S3 + CloudFront, enforced IP-restricted Nginx reverse proxies, and hosted separate Ubuntu EC2 instances for frontend/backend in UAT + production.',
-      'Selected t3.medium instances via local resource profiling, configured PM2 for backend resilience, and automated SSL renewals with Certbot.',
-      'Created GoDaddy DNS records + subdomains for load-balanced production and isolated UAT, wiring Nginx upstreams to distribute traffic securely.'
+      'Architected the entire codebase for a Real-time Market Intelligence and Search Platform (SaaS) from scratch with Node.js and React.js, led the team through 10+ product iterations, and acquired HKD 1M in funding from Hong Kong Science & Technology Parks (HKSTP).',
+      'Engineered a high-performance financial news feed processing 5M+ historical records with real-time updates by implementing React Window with Infinite Loader, reducing memory footprint through data chunking and integrating with a paginated GraphQL API.',
+      'Redesigned the underlying protobuf schema to optimize data architecture in MongoDB, implementing indexing and aggregation pipelines to accelerate concurrent processing of 100k+ documents.',
+      'Conducted query profiling analysis and migrated from Mongoose ODM to the native MongoDB Node.js driver, resulting in 2x faster backend data retrieval.',
+      'Built a GraphQL API using Pothos to enforce strict type validation, and implemented multi-layered caching using GraphQL Yoga with configurable TTL parameters, session-based scoping, and automatic mutation-based invalidation, reducing endpoint overhead by 40%.',
+      'Developed watchlist functionality leveraging Cloud Firestore to perform CRUD operations for tag-based tracking of companies and industries, integrated with Firebase Authentication for secure, scalable user management.',
+      'Deployed the platform on AWS, hosting frontend and backend on separate Ubuntu EC2 instances across distinct UAT and production environments, sizing t3.medium instances from measured CPU/memory/storage usage, and serving static assets from S3 through a CloudFront CDN.',
+      'Ran Nginx as reverse proxy and load balancer (upstream blocks with round robin, IP restrictions, HTTPS), kept backend services alive under PM2, and managed GoDaddy subdomains and DNS for load-balanced production and isolated UAT with Certbot-automated SSL renewal.'
     ],
+    stack: ['Node.js', 'React.js', 'GraphQL (Pothos + Yoga)', 'MongoDB', 'Protobuf', 'Firebase', 'AWS EC2/S3/CloudFront', 'Nginx', 'PM2'],
     metrics: ['Funding impact: HKD 1M', 'Product iterations: 10+', 'Record scale: 5M+', 'Retrieval speed: 2x', 'API overhead: -40%']
   },
   {
@@ -280,11 +288,12 @@ const experiences = [
     employmentType: 'Part-time',
     group: 'additional',
     bullets: [
-      'Led platform architecture across core services to improve maintainability and delivery cycles.',
-      'Shipped feature roadmaps end-to-end, from technical design to production release.',
-      'Owned code reviews to keep quality and consistency high across teams.',
-      'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.',
-      'Trained and onboarded engineers with technical docs and hands-on sessions.'
+      'Implemented features across the student app, including the Easter event, Cupid student matching, USTree, and a point collection and swapping system.',
+      'Led a UI and website revamp to a new version, modernizing the front end across the platform.',
+      'Hosted code reviews to keep quality and consistency high across the web team.',
+      'Ran technical training sessions to onboard members and level up the team.',
+      'Organized gathering and bonding sessions to keep members engaged across semesters.',
+      'Coordinated Web, Design, and Marketing workflows to align releases and reduce blockers.'
     ],
     metrics: ['Coordination scope: 3 teams (Web/Design/Backend)', 'Leadership span: 2 years', 'Role: Web Team Lead']
   },
@@ -296,11 +305,13 @@ const experiences = [
     dates: 'Dec 2021 - Jan 2022',
     employmentType: 'Full-time',
     bullets: [
-      'Rolled out the React Native EasyTransit photo upload experience for iOS/Android with a TypeScript Azure Functions backend, lifting UGC ~20%.',
-      'Built a Storj-integrated image pipeline with client compression, multipart parsing, and binary buffer conversion that shaved 300ms off responses and trimmed storage ~40%.',
-      'Structured Sequelize schemas to manage metadata and built signed-URL REST APIs for time-limited image access.',
-      'Delivered a Windows RollCall automation app with Electron + TypeScript, applying Lodash/FP helpers to automate attendance tracking and SQL Server reporting.'
+      'Rolled out the React Native photo upload feature for EasyTransit on iOS/Android, with a TypeScript backend deployed on Azure Functions, increasing user-generated content by 20%.',
+      'Engineered an image processing pipeline with client-side compression, multipart form-data parsing, and binary buffer conversion, and designed a cloud storage solution integrating Storj with the AWS S3 API, improving response times by 300ms and reducing storage requirements by ~40%.',
+      'Structured a relational database schema with Sequelize ORM to manage image metadata.',
+      'Built RESTful API endpoints for upload and retrieval operations, implementing URL signing for time-limited access to stored images.',
+      'Developed a Windows-based RollCall application for MTR (Mass Transit Railway) using Electron and TypeScript, implementing functional programming with Lodash/FP methods to automate attendance tracking and report generation from SQL Server data.'
     ],
+    stack: ['React Native', 'TypeScript', 'Azure Functions', 'Sequelize', 'Storj + AWS S3 API', 'Electron', 'SQL Server'],
     metrics: ['UGC improvement: ~20%', 'Response time: -300ms', 'Storage footprint: ~40% lower']
   }
 ]
@@ -314,7 +325,7 @@ const education = [
     dates: 'Sep 2025 - May 2027',
     gpa: '4.0 CGPA',
     coursework:
-      'OS Kernel Implementation, Agentic AI, Programming Language Principles, Programming Paradigm Design, Compiler Design, Database Management Systems, Distributed Systems, Network Programming'
+      'Information Retrieval, Building Distributed Systems, OS Kernel Implementation, Agentic AI, Programming Language Principles, Programming Paradigm Design, Database Management Systems, Network Programming'
   },
   {
     school: 'Hong Kong Univ. of Sci. & Tech.',
@@ -530,23 +541,23 @@ const setJsonLd = (data) => {
 }
 
 const positioningHighlights = [
-  'I am most interested in the execution layer of modern compute: inference runtimes, GPU systems, and hardware-aware C++.',
-  'My longer-term direction includes AI compiler/runtime work and kernel-level optimization.',
-  'I care about latency budgets, memory behavior, determinism, and measurable performance under real system constraints.',
-  'I am especially drawn to compilers, developer tooling, and the hardware/software boundary.'
+  'I build agentic systems end to end: orchestration, tool and MCP interfaces, retrieval, eval harnesses, and the runtime they execute on.',
+  'Every internship has been the same shape at a different scale - an LLM product that only works if the system underneath it is correct: TikTok Effect House, HKT\'s company-wide GenAI platform, and the HKUST GenAI learning platform.',
+  'The systems depth is what makes the agentic work hold up: leases and locking, failure isolation, atomic state, idempotency, and evals that measure rather than flatter.',
+  'I also work across graphics and interactive runtimes - Babylon.js, WebXR, OpenGL - which is where AR tooling and immersive agent interfaces meet.'
 ]
 
 const recruiterSummary = [
-  'I work on performance-oriented systems, ML runtime-adjacent software, and agentic infrastructure.',
-  'My strongest areas are C/C++ systems thinking, deterministic execution, and hardware-aware software design.',
-  'I also have meaningful overlap with graphics, interactive tooling, and AI developer infrastructure through OpenGL, Babylon.js, Effect House/TTEH harness work, and immersive-system projects.'
+  'I build agentic AI systems and the applications on top of them: orchestration, MCP and tool interfaces, RAG, and the eval harnesses that keep them honest.',
+  'My strongest areas are LLM platform engineering and the distributed systems underneath it, where correctness under concurrency decides whether the AI layer actually works.',
+  'I also work across graphics and interactive runtimes through Effect House AR tooling, Babylon.js, WebXR, and OpenGL, which is where AI-for-creators sits.'
 ]
 
 const bestFitRoles = [
-  'ML systems / inference runtime engineering',
-  'GPU compute and kernel-optimization engineering',
-  'Low-latency infrastructure and market-data systems',
-  'Graphics / interactive tooling and engine-adjacent platform work'
+  'Agentic AI systems and LLM application engineering',
+  'AI platform / LLM infrastructure and developer tooling',
+  'Distributed systems and backend infrastructure',
+  'Graphics, AR, and interactive platform engineering'
 ]
 
 const credibilitySignals = [
@@ -557,9 +568,9 @@ const credibilitySignals = [
 ]
 
 const futureDirection = [
-  'I am continuing deeper into compiler/runtime systems, GPU execution, and kernel-level optimization.',
-  'That direction builds naturally on my current work in systems performance, ML infrastructure, and graphics/tooling foundations.',
-  'The goal is to stay close to the execution layer rather than drift toward generic application engineering.'
+  'I am going deeper into agentic systems that hold up in production: evaluation you can trust, multi-agent orchestration, and runtimes that fail safely.',
+  'That builds directly on my current work at Effect House and on the LLM platforms I shipped at HKT and HKUST.',
+  'The goal is to keep working where the AI layer meets real system constraints, rather than on prompt-level products alone.'
 ]
 
 const financeConcepts = [
@@ -584,242 +595,96 @@ const computerSideEeCourses = [
 ]
 
 const rawSkillSets = {
-  'Core Systems & GPU': {
+  'Agentic & LLM Systems': {
     core: [
       {
-        title: 'Programming',
-        items: ['C++20 (STL, templates, RAII)', 'Python', 'C', 'SQL', 'Bash']
+        title: 'Agent Frameworks & Orchestration',
+        items: ['LangChain', 'LangGraph', 'MCP (Model Context Protocol)', 'OpenAI Assistants API', 'Tool / function calling', 'Multi-agent orchestration']
       },
       {
-        title: 'Performance Fundamentals',
-        items: [
-          'Multithreading',
-          'Memory layout',
-          'Cache hierarchy (L1/L2/L3 and DRAM)',
-          'Contention-aware design',
-          'Concurrency safety',
-          'Determinism'
-        ]
+        title: 'Retrieval & Context',
+        items: ['RAG pipelines', 'Embeddings and vector search', 'Document ingestion and chunking', 'Context assembly and budgeting']
       },
       {
-        title: 'GPU & Parallel Compute',
-        items: [
-          'CUDA',
-          'SIMD/SIMT mental model',
-          'Thread blocks & warps',
-          'Shared memory',
-          'Memory coalescing',
-          'GPU-accelerated pipelines',
-          'Low-level benchmarks'
-        ]
+        title: 'Evaluation & Reliability',
+        items: ['Graded eval harnesses', 'Held-out oracles', 'Grading rubrics', 'Instrumentation audits', 'Regression tracking']
       }
     ],
     supporting: [
       {
-        title: 'Networking',
-        items: ['TCP/IP', 'Streaming systems', 'Deterministic replay', 'Feed handling']
-      },
-      {
-        title: 'Systems Tooling',
-        items: ['gcc / clang', 'CMake', 'gdb', 'perf', 'valgrind', 'Nsight Systems/Compute', 'Google Test', 'Git', 'Unix/Linux', 'POSIX']
-      },
-      {
-        title: 'Profiling & Optimization',
-        items: ['Eval and verification harnesses', 'Cache locality', 'Flame graphs', 'CPU/GPU timelines', 'Vectorization and kernel tuning']
+        title: 'Models & Serving',
+        items: ['OpenAI API', 'Azure OpenAI', 'Gemini', 'Llama 3', 'Ollama (on-prem)', 'Hugging Face Transformers', 'PyTorch', 'vLLM', 'Whisper', 'SSE streaming']
       }
     ]
   },
-  'Distributed & AI Runtime Systems': {
+  'Systems & Distributed Infrastructure': {
     core: [
       {
-        title: 'Design Skills',
-        items: [
-          'Latency budgeting',
-          'Throughput modeling',
-          'Backpressure',
-          'Failure isolation',
-          'Idempotency design',
-          'State-machine thinking'
-        ]
+        title: 'Distributed Design',
+        items: ['Failure isolation', 'Idempotency and crash recovery', 'Leases and state ownership', 'Atomic state publication', 'Backpressure and retry/circuit-breaker', 'State-machine control', 'Consistency vs availability']
       },
       {
-        title: 'Distributed Systems',
-        items: [
-          'Layered and modular architecture',
-          'Domain boundaries and service decomposition',
-          'Pub/sub and stream processing patterns',
-          'Partitioning and sharding basics',
-          'Retry/backoff/circuit-breaker patterns',
-          'At-least-once and exactly-once tradeoffs',
-          'Consistency vs availability',
-          'Async job and workflow orchestration'
-        ]
+        title: 'Performance & Concurrency',
+        items: ['C++20', 'Python', 'C', 'Multithreading and lock design', 'Memory and cache behavior', 'CUDA / SIMT model', 'Profiling (perf, Nsight, flame graphs)']
       }
     ],
     supporting: [
       {
-        title: 'Data & Infra',
-        items: ['PostgreSQL', 'Redis', 'Kafka basics', 'Caching strategies', 'Data retention and replay strategy', 'Kubernetes', 'CI/CD', 'Service observability']
-      },
-      {
-        title: 'AI Runtime Patterns',
-        items: [
-          'PyTorch',
-          'vLLM',
-          'Model gateway + worker pool pattern',
-          'Queue-based batching and scheduling',
-          'Online/offline pipeline separation',
-          'Tracing and metrics for model serving'
-        ]
-      },
-      {
-        title: 'Agentic / LLM Systems',
-        items: [
-          'LangChain',
-          'LangGraph',
-          'OpenAI Assistants API',
-          'Tool orchestration',
-          'Agent routing and eval harnesses',
-          'RAG pipelines',
-          'Context assembly'
-        ]
+        title: 'Infra & Tooling',
+        items: ['Docker', 'Kubernetes', 'AWS', 'Nginx', 'Kafka', 'Redis', 'PostgreSQL', 'CI/CD', 'OpenTelemetry / Grafana', 'Linux / POSIX', 'Git']
       }
     ]
   },
-  'Graphics & Interactive Systems': {
+  'Graphics & Product Engineering': {
     core: [
       {
-        title: 'Applied Graphics',
-        items: ['Babylon.js', 'WebGL', 'WebXR', 'Meta Quest 3', 'Blender asset pipelines']
-      },
-      {
-        title: 'APIs & Engines',
-        items: [
-          'OpenGL',
-          'Vulkan',
-          'Metal',
-          'Unity',
-          'Effect House'
-        ]
+        title: 'Graphics & Interactive Systems',
+        items: ['Effect House', 'Babylon.js', 'WebGL', 'WebXR', 'Meta Quest 3', 'OpenGL', 'Blender asset pipelines', 'Real-time rendering and scene graphs']
       }
     ],
     supporting: [
       {
-        title: 'Interactive Systems',
-        items: ['Real-time rendering intuition', 'Scene graph thinking', 'Physics-integrated interaction', 'Spatial audio integration', 'Avatar / immersive environments']
-      }
-    ]
-  },
-  'Application & Product Engineering': {
-    core: [
-      {
-        title: 'Languages',
-        items: [
-          'TypeScript',
-          'JavaScript',
-          'Python',
-          'Java',
-          'SQL',
-          'Bash',
-          'YAML',
-          'MATLAB'
-        ]
-      },
-      {
-        title: 'Frontend',
-        items: [
-          'React.js',
-          'Next.js',
-          'Vue.js',
-          'React Native',
-          'HTML/CSS',
-          'Redux',
-          'Flutter',
-          'Electron',
-          'Swing'
-        ]
-      }
-    ],
-    supporting: [
-      {
-        title: 'Backend & APIs',
-        items: [
-          'Node.js',
-          'FastAPI',
-          'Spring Boot',
-          'GraphQL',
-          'GraphQL Yoga',
-          'Pothos',
-          'WebSocket',
-          'SSE',
-          'REST API design',
-          'Knex.js',
-          'SQLAlchemy',
-          'Azure Functions'
-        ]
+        title: 'Full-Stack',
+        items: ['TypeScript', 'React.js', 'Next.js', 'React Native', 'Node.js', 'GraphQL (Pothos / Yoga)', 'REST API design', 'Flutter', 'Electron']
       },
       {
         title: 'Data & Storage',
-        items: [
-          'PostgreSQL',
-          'MongoDB',
-          'Oracle',
-          'Redis',
-          'Kafka',
-          'Pandas',
-          'NumPy',
-          'PySpark',
-          'Cloud Firestore'
-        ]
-      },
-      {
-        title: 'Infra & Delivery',
-        items: [
-          'Docker',
-          'Docker Compose',
-          'Kubernetes',
-          'AWS',
-          'Terraform',
-          'Nginx',
-          'PM2',
-          'Certbot',
-          'Fly.io',
-          'OpenTelemetry',
-          'Grafana',
-          'Dagster'
-        ]
+        items: ['MongoDB', 'PostgreSQL', 'Oracle', 'Cloud Firestore', 'Redis', 'Pandas / NumPy']
       }
     ]
-  },
-  'Supporting Internals & Tools': {
-    core: [
-      {
-        title: 'Runtime Internals',
-        items: ['Memory allocators', 'Process/thread model', 'Calling conventions', 'Linking + binary formats']
-      },
-      {
-        title: 'Toolchain Basics',
-        items: ['Compiler flags and optimization levels', 'IR awareness (basic)', 'Symbol/debug info basics']
-      }
-    ],
-    supporting: [
-      {
-        title: 'Languages',
-        items: ['C++', 'C', 'Python', 'Rust', 'Assembly (reading)']
-      },
-      {
-        title: 'Platform Exposure',
-        items: ['RISC-V', 'QEMU', 'VM and container isolation basics', 'Resource limits and scheduling behavior', 'Infrastructure as code basics']
-      }
-    ]
-  },
-  
+  }
 }
 
 const skillSets = rawSkillSets
 const skillTracks = Object.keys(skillSets)
 
-function App() {
+const BULLET_PREVIEW = 6
+
+// Shows the first few bullets with the rest behind a toggle. In seoMode every
+// bullet is rendered so crawlers and LLM agents get the full text.
+function BulletList({ bullets, seoMode }) {
+  const [expanded, setExpanded] = useState(false)
+  const collapsible = !seoMode && bullets.length > BULLET_PREVIEW + 1
+  const visible = collapsible && !expanded ? bullets.slice(0, BULLET_PREVIEW) : bullets
+  const hidden = bullets.length - visible.length
+
+  return (
+    <>
+      <ul className="plain-list">
+        {visible.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>
+      {collapsible ? (
+        <button type="button" className="bullet-toggle" onClick={() => setExpanded((v) => !v)}>
+          {expanded ? 'Show less' : `Show ${hidden} more`}
+        </button>
+      ) : null}
+    </>
+  )
+}
+
+function App({ seoMode = false }) {
   const [activeSection, setActiveSection] = useState('profile')
   const prerenderDispatched = useRef(false)
   const renderExperienceCard = (item) => (
@@ -845,11 +710,16 @@ function App() {
         )}{' '}
         · <span className="exp-location">{item.location}</span> · <span className="exp-date">{item.dates}</span>
       </p>
-      <ul className="plain-list">
-        {item.bullets.map((bullet) => (
-          <li key={bullet}>{bullet}</li>
-        ))}
-      </ul>
+      <BulletList bullets={item.bullets} seoMode={seoMode} />
+      {item.stack?.length ? (
+        <div className="tag-row experience-stack">
+          {item.stack.map((tech) => (
+            <span className="tag-text" key={tech}>
+              {tech}
+            </span>
+          ))}
+        </div>
+      ) : null}
       {item.metrics?.length ? (
         <div className="metric-row">
           {item.metrics.map((metric) => (
@@ -964,23 +834,35 @@ function App() {
                 {PRIMARY_NAME} | Hans
               </a>
             </h1>
-            <p className="hero-role">Systems, runtime, and performance engineering</p>
+            <p className="hero-role">Agentic AI systems &middot; LLM infrastructure &middot; Graphics engineering</p>
             <p className="hero-summary">
-              I build performance-oriented C/C++ systems and care about how software behaves close to the machine:
-              memory, concurrency, latency, and runtime efficiency. My strongest traits are systems thinking,
-              execution-focused engineering, and a willingness to work at the hardware/software boundary, with growing
-              overlap in graphics tooling, GPU-adjacent work, and developer-facing infrastructure.
+              I build agentic AI systems and the infrastructure they run on - multi-agent orchestration, MCP tooling,
+              RAG, and evaluation harnesses - backed by the distributed systems depth that keeps them correct under load.
             </p>
             <div className="hero-meta">
-              <span>Focused on deterministic systems, runtime behavior, and performance-critical software.</span>
-              <span className="hero-meta-highlight">Open to Hong Kong &amp; US locations</span>
+              <span className="hero-meta-highlight">Open to new grad / 2027 roles &middot; US &amp; Hong Kong</span>
             </div>
           </div>
           <div className="hero-side">
-            <p className="hero-side-title">Breadth</p>
-            <p className="hero-side-line">Low-Latency &amp; Determinism: C++20, TCP/IP bypass, zero-allocation critical paths.</p>
-            <p className="hero-side-line">Hardware-Aware Compute: CUDA, SIMD/SIMT, memory coalescing, cache hierarchy optimization.</p>
-            <p className="hero-side-line">Systems Infrastructure: Linux internals, distributed consensus, streaming architectures.</p>
+            <p className="hero-side-title">At a glance</p>
+            <dl className="glance">
+              <div className="glance-row">
+                <dt>Now</dt>
+                <dd>SWE Intern, TikTok Effect House (Intelligent Creation) &mdash; San Jose, CA</dd>
+              </div>
+              <div className="glance-row">
+                <dt>Education</dt>
+                <dd>M.S. Computer Science, Northeastern University &mdash; 4.0 GPA, May 2027</dd>
+              </div>
+              <div className="glance-row">
+                <dt>Core stack</dt>
+                <dd>LangChain &middot; LangGraph &middot; MCP &middot; PyTorch &middot; TypeScript &middot; Python &middot; C++ &middot; React</dd>
+              </div>
+              <div className="glance-row">
+                <dt>Also</dt>
+                <dd>5 prior engineering roles &middot; HKD 1.25M in funding won &middot; Babylon.js / WebXR / OpenGL</dd>
+              </div>
+            </dl>
             <div className="hero-links">
               <a href="mailto:ho.chak@northeastern.edu">Email</a>
               <a href="https://linkedin.com/in/chaksingho/" target="_blank" rel="noopener noreferrer">
@@ -1014,7 +896,7 @@ function App() {
 
       <main className="main">
 
-        {activeSection === 'overview' ? (
+        {seoMode || activeSection === 'overview' ? (
           <section className="section" id="overview">
             <div className="section-heading">
               <h2>Overview</h2>
@@ -1056,7 +938,7 @@ function App() {
           </section>
         ) : null}
 
-        {activeSection === 'experience' ? (
+        {seoMode || activeSection === 'experience' ? (
           <section className="section" id="experience">
             <div className="section-heading">
               <h2>Experience (prior)</h2>
@@ -1067,7 +949,7 @@ function App() {
           </section>
         ) : null}
 
-        {activeSection === 'projects' ? (
+        {seoMode || activeSection === 'projects' ? (
           <section className="section" id="projects">
             <div className="section-heading">
               <h2>Projects</h2>
@@ -1083,7 +965,7 @@ function App() {
           </section>
         ) : null}
 
-        {activeSection === 'profile' ? (
+        {seoMode || activeSection === 'profile' ? (
           <section className="section" id="profile">
             <div className="section-heading">
               <h2>Profile</h2>
@@ -1092,10 +974,12 @@ function App() {
               <article className="panel">
                 <h3>Positioning</h3>
                 <p>
-                  I am primarily targeting ML systems, GPU runtime, and low-latency engineering roles. My background
-                  combines C/C++ systems work, agentic AI infrastructure, and performance-focused software where memory
-                  behavior, concurrency, and runtime efficiency matter. I also have solid overlap with graphics and
-                  immersive-system tooling, which makes graphics-oriented platform roles a natural adjacent fit.
+                  I build agentic AI systems and the applications on top of them - orchestration, tool and MCP
+                  interfaces, RAG and retrieval, eval harnesses, and the distributed runtime that keeps them honest.
+                  That work is backed by real systems depth: concurrency, state ownership, failure isolation, and
+                  performance under load, which is what separates an agent demo from an agent platform people depend
+                  on. I also work across graphics and immersive runtimes, from AR creation tooling at Effect House to
+                  Babylon.js and WebXR, which makes AI-for-creators and interactive platform roles a natural fit.
                 </p>
                 <ul className="plain-list">
                   {positioningHighlights.map((item) => (
@@ -1106,10 +990,11 @@ function App() {
               <article className="panel ee-panel">
                 <h3>Computer-side EE foundation</h3>
                 <p>
-                  My EE background matters because it gives me a better feel for how software interacts with the
-                  machine underneath it. That shows up in how I think about cache and memory behavior, networking,
-                  performance bottlenecks, and hardware-aware tradeoffs. It also includes hands-on VLSI/SRAM work and
-                  computer-organization fundamentals that support lower-level systems and runtime engineering.
+                  My EE background is why the systems layer under my AI work holds up. It gives me a feel for how
+                  software actually meets the machine - memory and cache behavior, networking, contention, and where
+                  performance really goes - which is the difference between an agent pipeline that survives concurrency
+                  and one that quietly corrupts its own state. It also includes hands-on VLSI/SRAM and
+                  computer-organization fundamentals.
                 </p>
                 <ul className="plain-list">
                   {computerSideEeCourses.map((course) => (
@@ -1120,12 +1005,12 @@ function App() {
               <article className="panel">
                 <h3>What I deliver</h3>
                 <ul className="plain-list">
-                  <li>Performance-first system design with explicit latency and throughput targets.</li>
-                  <li>Evidence-driven optimization with benchmarks, profiling traces, and regression checks.</li>
-                  <li>Agentic workflow engineering across retrieval, tool use, orchestration, and production constraints.</li>
-                  <li>Hardware-conscious implementation decisions across concurrency, memory movement, and critical-path allocation.</li>
-                  <li>Graphics and interactive-system fluency across Babylon.js, immersive runtime behavior, and engine-adjacent tooling.</li>
-                  <li>Low-latency engineering mindset applicable to market data, execution infrastructure, and GPU-serving systems.</li>
+                  <li>Agentic systems end to end: multi-agent orchestration, tool and MCP interfaces, RAG and context assembly, and agent-callable automation.</li>
+                  <li>Eval infrastructure that measures rather than flatters - graded harnesses, held-out oracles, and instrumentation audits that catch inflated results.</li>
+                  <li>LLM platforms in production: multi-provider gateways (OpenAI, Gemini, Llama via Ollama, Azure), on-prem serving, and compliance-constrained deployments.</li>
+                  <li>Distributed runtime correctness underneath the AI layer: leases, lock taxonomies, atomic state publication, failure isolation, and idempotent recovery.</li>
+                  <li>Graphics and interactive-system fluency across Effect House AR tooling, Babylon.js, WebXR, and OpenGL render pipelines.</li>
+                  <li>Full-stack delivery around the model: React/Next.js, Node.js, GraphQL and REST services, and the cloud infra to ship them.</li>
                 </ul>
               </article>
               <article className="panel">
@@ -1151,8 +1036,9 @@ function App() {
 
             <p className="group-subtitle">Skills by category</p>
             <p className="plain-summary">
-              Strongest areas: systems performance, distributed/agentic AI infrastructure, and GPU/runtime-adjacent
-              engineering. Additional experience spans graphics tooling, interactive systems, and full-stack product delivery.
+              Strongest areas: agentic and LLM systems, the distributed infrastructure they run on, and graphics and
+              interactive runtimes. Supported by systems and performance fundamentals, and full-stack product delivery
+              across the whole path from model to interface.
             </p>
             <div className="stacked-groups">
               {skillTracks.map((track) => {
@@ -1205,7 +1091,7 @@ function App() {
           </section>
         ) : null}
 
-        {activeSection === 'contact' ? (
+        {seoMode || activeSection === 'contact' ? (
           <section className="section" id="contact">
             <div className="section-heading">
               <h2>Contact</h2>
@@ -1213,8 +1099,9 @@ function App() {
             <div className="panel-grid">
               <article className="panel">
                 <p>
-                  Reach me for ML systems, GPU runtime, graphics/tooling, low-latency infrastructure, or performance-oriented engineering work.
-                  The best fit is work that values strong systems fundamentals, measurable performance, and hardware-aware software decisions.
+                  Reach me for agentic AI systems, LLM infrastructure and developer tooling, distributed backend work,
+                  or graphics and interactive platform engineering. The best fit is work where the AI layer has to survive
+                  real system constraints - correctness under concurrency, evaluation you can trust, and measurable results.
                 </p>
                 <div className="hero-links">
                   <a href="mailto:ho.chak@northeastern.edu">ho.chak@northeastern.edu</a>

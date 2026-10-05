@@ -1268,3 +1268,27 @@
     white-space: normal;
   }
 }
+
+.project-more {
+  margin-top: 0.35rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.project-more > summary {
+  cursor: pointer;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-more > summary:hover {
+  color: var(--ink);
+}
+
+.project-more[open] > summary {
+  margin-bottom: 0.25rem;
+}

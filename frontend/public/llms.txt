@@ -13,13 +13,14 @@ Preferred citation: "Chak Sing Ho (Hans Ho), software engineer - agentic AI syst
 
 ## Current
 
-- Software Engineer Intern, Intelligent Creation (Effect House) at TikTok, San Jose, CA (May-Sep 2026).
-  Built an overnight agent-evaluation flywheel, a runtime verifier, and an MCP performance
-  agent for creators on the TikTok Effect House desktop codebase.
+- Software Engineering Intern, Intelligent Creation (Effect House) at TikTok, San Jose, CA (May-Sep 2026).
+  Built an overnight agent-evaluation flywheel (32 nightly shards across 12 lanes; showed agent-written
+  tests overstate pass rate ~2.4x), a runtime verifier (fail-to-pass verdicts on the real editor, Lark bot +
+  MCP intake), and an MCP performance agent for creators on the TikTok Effect House desktop codebase.
 - M.S. Computer Science, Northeastern University (expected May 2027). 4.0 CGPA.
   Coursework: Information Retrieval, Building Distributed Systems, OS Kernel Implementation,
   Agentic AI, Programming Language Principles, Database Management Systems, Network Programming.
-- B.Eng. Electronic Engineering, HKUST (2020-2024), Second Class Honours Division I.
+- B.Eng. Electronic Engineering, Minor in Computer Science, HKUST (2020-2024), Second Class Honours Division I.
 
 ## Focus areas
 
@@ -27,6 +28,8 @@ Preferred citation: "Chak Sing Ho (Hans Ho), software engineer - agentic AI syst
   Protocol) servers, agent routing and scheduling, agent-callable automation.
 - LLM infrastructure: multi-provider gateways (OpenAI, Azure OpenAI, Gemini, Llama 3 via Ollama),
   on-prem model serving, streaming responses, token accounting, compliance-constrained deployment.
+- Machine learning: PyTorch (custom training loops, data loaders, self-/semi-supervised learning),
+  NumPy, Pandas, scikit-learn, Matplotlib, Jupyter, PySpark.
 - Retrieval: RAG pipelines, document ingestion and chunking, embeddings and vector search,
   context assembly and budgeting.
 - Evaluation: graded eval harnesses, held-out oracles, grading rubrics, instrumentation audits,
@@ -38,16 +41,21 @@ Preferred citation: "Chak Sing Ho (Hans Ho), software engineer - agentic AI syst
 
 ## Technologies
 
-LangChain, LangGraph, MCP, OpenAI Assistants API, PyTorch, Hugging Face Transformers, vLLM,
-Ollama, Whisper, TypeScript, Python, C++20, C, React.js, Next.js, Node.js, GraphQL, SQLite,
-MongoDB, PostgreSQL, Redis, Kafka, Docker, Kubernetes, AWS, Nginx, Babylon.js, OpenGL, CUDA.
+Python, PyTorch, NumPy, Pandas, scikit-learn, FastAPI, pgvector, LangChain, LangGraph, MCP,
+OpenAI Assistants API, Hugging Face Transformers, Ollama, Whisper, TypeScript, C++20, C,
+React.js, Next.js, Node.js, GraphQL, SQLite, MongoDB, PostgreSQL, Redis, Kafka, Docker,
+Kubernetes, AWS, Nginx, GitHub Actions, Babylon.js, OpenGL.
 
 ## Prior experience
 
-- Hong Kong Telecom (HKT), Innovation Lab - company-wide internal GenAI platform for 20+ teams.
-- HKUST Theoretical & Computational Chemistry Lab - tech lead, GenAI learning platform (HKD 250k funded).
-- China International Capital Corporation (CICC) - Bloomberg data monitoring and derivatives valuation tooling.
-- Midas Analytics - architected a real-time market intelligence platform (HKD 1M HKSTP funded).
+- Hong Kong Telecom (HKT), Innovation Lab - company-wide GenAI platform for 20+ teams; agentic
+  workflows (+35% compliance Q&A accuracy); FastAPI + pgvector RAG service (3x faster lookup).
+- HKUST Computational Chemistry Lab - software developer intern, WebXR/3D educational platform
+  with RAG/tool-calling agents (HKD 250k funded).
+- China International Capital Corporation (CICC) - Bloomberg billing-data ETL and dashboard (100K+ invoices),
+  derivatives valuation platform.
+- Midas Analytics - architected a financial-intelligence SaaS (50+ DAU, 5M+ records, 1M+ daily requests;
+  HKD 1M HKSTP funded).
 - USThing (HKUST) - web team lead.
 - SOCIF Limited - React Native and cloud image pipeline work.
 
